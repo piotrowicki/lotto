@@ -16,9 +16,37 @@
         <mockito.version>2.12.0</mockito.version>
         <primefaces.version>6.1</primefaces.version>
         <hibernate.version>5.0.7.Final</hibernate.version>
+        <jsf.version>2.1</jsf.version>
+        <cdi.version>2.0</cdi.version>
+        <ejb.version>3.0</ejb.version>
     </properties>
     
     <dependencies>
+        <!-- JSF -->
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>${jsf.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- CDI -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>${cdi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- EJB -->
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>${ejb.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        
         <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>

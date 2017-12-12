@@ -3,10 +3,69 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                 template="./template/template.xhtml">
     <ui:define name="title">Zaloguj</ui:define>
     <ui:define name="content">
-        TABLE
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <p:dataTable id="draws" var="draw" value="#{drawBean.draws}" 
+                         editable="true" 
+                         rowIndexVar="rowIndex"
+                         rows="20"
+                         paginator="true"
+                         style="margin-bottom:20px">
+                <f:facet name="header">
+                    Lotto draws:
+                </f:facet>
+
+                <p:ajax event="rowEdit" listener="#{drawBean.onRowEdit}" update=":form:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{drawBean.onRowCancel}" update=":form:msgs" />
+
+                <p:column headerText="Id:">
+                    <h:outputText value="#{rowIndex+1}." />
+                </p:column>
+
+                <p:column headerText="Numbers:">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{draw.numbers}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{draw.numbers}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Create date:">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{draw.createDate}">
+                                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+                            </h:outputText>
+                        </f:facet>
+                        <f:facet name="input"><p:inputText value="#{draw.createDate}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Update date:">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{draw.updateDate}">
+                                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
+                            </h:outputText>
+                        </f:facet>
+                        <f:facet name="input"><p:inputText value="#{draw.updateDate}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column style="width:32px">
+                    <p:rowEditor />
+                </p:column>
+
+                <f:facet name="footer">
+                    In total there are #{fn:length(drawBean.draws)} draws.
+                </f:facet>
+            </p:dataTable>
+        </h:form>
     </ui:define>
 
 </ui:composition>
