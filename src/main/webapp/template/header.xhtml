@@ -8,8 +8,21 @@
       xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition> 
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <p:graphicImage name="/images/ajax-loader.gif" />
+            </p:dialog>
+            
             <header class="ui-g-12 ui-md-12 ui-lg-12">
-                Header
+                <p:tabMenu activeIndex="#{param.i}">
+                    <p:menuitem value="Predictions:" outcome="/menu/index" icon="fa fa-bar-chart-o">
+                        <f:param name="i" value="0" />
+                    </p:menuitem>
+                    <p:menuitem value="Draws:" outcome="/menu/table" icon="fa fa-search">
+                        <f:param name="i" value="1" />
+                    </p:menuitem>
+                </p:tabMenu>
             </header>
         </ui:composition>	
     </body>
