@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,6 +35,9 @@ public class Draw implements Serializable {
     
     @Column(name = "NUMBERS")
     private String numbers;
+    
+    @Column(name = "DRAW_DATE")
+    private Date drawDate;
     
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CREATE_DATE", columnDefinition = "DATETIME")
@@ -58,25 +63,35 @@ public class Draw implements Serializable {
         this.numbers = numbers;
     }
 
+    public Date getDrawDate() {
+        return drawDate;
+    }
+
+    public void setDrawDate(Date drawDate) {
+        this.drawDate = drawDate;
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    @PrePersist
+    public void setCreateDate() {
+        this.createDate = new Date();
     }
 
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    @PreUpdate
+    public void setUpdateDate() {
+        this.updateDate = new Date();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, numbers, createDate);
+        return Objects.hash(id, numbers, drawDate, createDate);
     }
 
     @Override
@@ -89,11 +104,12 @@ public class Draw implements Serializable {
         Draw number = (Draw) obj;
         return id == number.id &&
                 Objects.equals(numbers, number.numbers) &&
+                Objects.equals(drawDate, number.drawDate) &&
                 Objects.equals(createDate, number.createDate);
     }
 
     @Override
     public String toString() {
-        return "Number{" + "id=" + id + ", draw=" + numbers + ", createDate=" + createDate + '}';
+        return "Draw{" + "id=" + id + ", numbers=" + numbers + ", drawDate=" + drawDate + ", createDate=" + createDate + '}';
     }
 }
