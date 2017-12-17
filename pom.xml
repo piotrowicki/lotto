@@ -13,7 +13,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.12</junit.version>
-        <mockito.version>2.12.0</mockito.version>
+        <mockito.version>1.10.19</mockito.version>
         <primefaces.version>6.1</primefaces.version>
         <hibernate.version>5.0.7.Final</hibernate.version>
         <jsf.version>2.1</jsf.version>
@@ -66,7 +66,7 @@
         <!-- Mockito -->
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
+            <artifactId>mockito-all</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
@@ -96,6 +96,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>3.6.1</version>
+        </dependency>
+        
+        <!-- Jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.2</version>
         </dependency>
     </dependencies>
 

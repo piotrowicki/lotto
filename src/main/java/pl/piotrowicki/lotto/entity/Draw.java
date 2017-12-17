@@ -36,7 +36,7 @@ public class Draw implements Serializable {
     @Column(name = "NUMBERS")
     private String numbers;
     
-    @Column(name = "DRAW_DATE")
+    @Column(name = "DRAW_DATE", columnDefinition = "DATE")
     private Date drawDate;
     
     @Temporal(TemporalType.TIMESTAMP)

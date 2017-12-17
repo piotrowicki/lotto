@@ -20,4 +20,8 @@ public class DrawDao implements Serializable {
     public List<Draw> findAll() {
         return em.createNamedQuery("Draw.findAll").getResultList();
     }
+
+    public void save(Draw entity) {
+        em.persist(entity);
+    }
 }

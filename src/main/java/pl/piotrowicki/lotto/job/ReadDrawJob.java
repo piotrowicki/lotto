@@ -1,8 +1,13 @@
 package pl.piotrowicki.lotto.job;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
+import javax.inject.Inject;
+import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.service.DrawService;
+import pl.piotrowicki.lotto.service.JsoupReader;
 
 /**
  *
@@ -11,9 +16,20 @@ import javax.ejb.Singleton;
 @Singleton
 public class ReadDrawJob implements Serializable {
     
+    private static final Logger LOGGER = Logger.getLogger(ReadDrawJob.class.getName());
+       
+    @Inject
+    private JsoupReader jsoupReader;
+    
+    @Inject
+    private DrawService drawService;
+    
     @Schedule(hour = "0", minute = "0", persistent = false)
     public void run() {
+        String input = jsoupReader.read();
         
+        Draw entity = drawService.convertToEntity(input);
+        
+        drawService.save(entity);
     }
-    
 }
