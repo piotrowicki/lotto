@@ -24,7 +24,9 @@ import javax.persistence.TemporalType;
 @Table(name = "DRAW")
 @NamedQueries({
     @NamedQuery(name = "Draw.findAll",
-            query = "SELECT n FROM Draw n")
+            query = "SELECT d FROM Draw d"),
+    @NamedQuery(name = "Draw.findByDrawAndDrawDate",
+            query = "SELECT d FROM Draw d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 public class Draw implements Serializable {
 
