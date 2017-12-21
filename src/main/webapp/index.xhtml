@@ -7,8 +7,15 @@
                 template="./template/template.xhtml">
     <ui:define name="title"></ui:define>
     <ui:define name="content">
-        <h:form>
-            <p:commandButton value="Send" icon="ui-icon-refresh" />
-        </h:form>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-12">Mode:</div>
+            <div class="ui-g-12 ui-md-12 ui-lg-12">#{statisticBean.mode}</div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
+            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
+            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
+            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
+        </div>
     </ui:define>
 </ui:composition>

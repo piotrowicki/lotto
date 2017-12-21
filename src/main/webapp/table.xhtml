@@ -11,7 +11,7 @@
         <h:form id="form">
             <p:growl id="msgs" showDetail="true"/>
 
-            <p:dataTable id="draws" var="draw" value="#{drawBean.draws}" 
+            <p:dataTable id="draws" var="draw" value="#{drawTableBean.draws}" 
                          editable="true" 
                          rowIndexVar="rowIndex"
                          rows="20"
@@ -21,8 +21,8 @@
                     Lotto draws:
                 </f:facet>
 
-                <p:ajax event="rowEdit" listener="#{drawBean.onRowEdit}" update=":form:msgs" />
-                <p:ajax event="rowEditCancel" listener="#{drawBean.onRowCancel}" update=":form:msgs" />
+                <p:ajax event="rowEdit" listener="#{drawTableBean.onRowEdit}" update=":form:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{drawTableBean.onRowCancel}" update=":form:msgs" />
 
                 <p:column headerText="Id:">
                     <h:outputText value="#{rowIndex+1}." />
@@ -62,7 +62,7 @@
                 </p:column>
 
                 <f:facet name="footer">
-                    In total there are #{fn:length(drawBean.draws)} draws.
+                    In total there are #{fn:length(drawTableBean.draws)} draws.
                 </f:facet>
             </p:dataTable>
         </h:form>

@@ -18,7 +18,7 @@ import pl.piotrowicki.lotto.service.DrawService;
  */
 @Named
 @ConversationScoped
-public class DrawBean implements Serializable {
+public class DrawTableBean implements Serializable {
     
     private List<Draw> draws;
     
