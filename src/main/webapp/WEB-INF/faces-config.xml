@@ -21,8 +21,8 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>/menu/index</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
+            <from-outcome>/menu/statistics</from-outcome>
+            <to-view-id>/statistics.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
@@ -30,8 +30,8 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>/menu/table</from-outcome>
-            <to-view-id>/table.xhtml</to-view-id>
+            <from-outcome>/menu/draws</from-outcome>
+            <to-view-id>/draws.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

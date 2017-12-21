@@ -41,7 +41,7 @@
     
     <!-- welcome file -->
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>statistics.xhtml</welcome-file>
     </welcome-file-list>
     
     <!-- Exceptions configuration -->

@@ -12,10 +12,14 @@
             <div class="ui-g-12 ui-md-12 ui-lg-12">#{statisticBean.mode}</div>
         </div>
         <div class="ui-g">
-            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
-            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
-            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
-            <div class="ui-g-12 ui-md-12 ui-lg-6">ui-g-12 ui-md-12 ui-lg-6</div>
+            <div class="ui-g-12 ui-md-12 ui-lg-6">
+                 <p:chart type="line" model="#{lineChartBean.model}" style="width:480px" />
+            </div>
+            <div class="ui-g-12 ui-md-12 ui-lg-6">
+                <p:chart type="pie" model="#{pieChartBean.model}" style="width:480px;" />
+            </div>
+            <div class="ui-g-12 ui-md-12 ui-lg-6"></div>
+            <div class="ui-g-12 ui-md-12 ui-lg-6"></div>
         </div>
     </ui:define>
 </ui:composition>
