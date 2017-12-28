@@ -34,6 +34,17 @@
                         <f:facet name="input"><p:inputText value="#{draw.numbers}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
+                
+                <p:column headerText="Draw date:">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{draw.drawDate}">
+                                 <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
+                        </f:facet>
+                        <f:facet name="input"><p:inputText value="#{draw.drawDate}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
 
                 <p:column headerText="Create date:">
                     <p:cellEditor>
