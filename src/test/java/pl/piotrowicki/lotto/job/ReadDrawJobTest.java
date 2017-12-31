@@ -1,8 +1,7 @@
 package pl.piotrowicki.lotto.job;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +21,6 @@ import pl.piotrowicki.lotto.service.JsoupReader;
 public class ReadDrawJobTest {
     
     private static final String DRAW = "2017-12-01 1 7 11 21 33 46";
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
     @Mock
     private JsoupReader jsoupReader;
@@ -36,7 +34,7 @@ public class ReadDrawJobTest {
     @Test
     public void testRunWithSave() throws ParseException {
         // given
-        Date date = sdf.parse("2017-12-15");
+        LocalDate date = LocalDate.parse("2017-12-15");
         
         Draw draw = new Draw();
         draw.setNumbers(DRAW);
@@ -57,7 +55,7 @@ public class ReadDrawJobTest {
      @Test
     public void testRunWithoutSave() throws ParseException {
         // given
-        Date date = sdf.parse("2017-12-15");
+        LocalDate date = LocalDate.parse("2017-12-15");
         
         Draw draw = new Draw();
         draw.setNumbers(DRAW);

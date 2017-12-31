@@ -1,7 +1,8 @@
 package pl.piotrowicki.lotto.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -39,15 +38,13 @@ public class Draw implements Serializable {
     private String numbers;
     
     @Column(name = "DRAW_DATE", columnDefinition = "DATE")
-    private Date drawDate;
+    private LocalDate drawDate;
     
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CREATE_DATE", columnDefinition = "DATETIME")
-    private Date createDate;
+    private LocalDateTime createDate;
     
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "UPDATE_DATE", columnDefinition = "DATETIME")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     public Integer getId() {
         return id;
@@ -65,30 +62,30 @@ public class Draw implements Serializable {
         this.numbers = numbers;
     }
 
-    public Date getDrawDate() {
+    public LocalDate getDrawDate() {
         return drawDate;
     }
 
-    public void setDrawDate(Date drawDate) {
+    public void setDrawDate(LocalDate drawDate) {
         this.drawDate = drawDate;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
     @PrePersist
     public void setCreateDate() {
-        this.createDate = new Date();
+        this.createDate = LocalDateTime.now();
     }
 
-    public Date getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
     @PreUpdate
     public void setUpdateDate() {
-        this.updateDate = new Date();
+        this.updateDate = LocalDateTime.now();
     }
 
     @Override

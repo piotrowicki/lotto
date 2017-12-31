@@ -38,9 +38,7 @@
                 <p:column headerText="Draw date:">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{draw.drawDate}">
-                                 <f:convertDateTime pattern="yyyy-MM-dd" />
-                            </h:outputText>
+                            <h:outputText value="#{draw.drawDate}" converter="localDateConverter" />
                         </f:facet>
                         <f:facet name="input"><p:inputText value="#{draw.drawDate}" style="width:100%"/></f:facet>
                     </p:cellEditor>
@@ -49,9 +47,7 @@
                 <p:column headerText="Create date:">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{draw.createDate}">
-                                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
-                            </h:outputText>
+                            <h:outputText value="#{draw.createDate}" converter="localDateTimeConverter" />
                         </f:facet>
                         <f:facet name="input"><p:inputText value="#{draw.createDate}" style="width:100%"/></f:facet>
                     </p:cellEditor>
@@ -60,9 +56,7 @@
                 <p:column headerText="Update date:">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{draw.updateDate}">
-                                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
-                            </h:outputText>
+                            <h:outputText value="#{draw.updateDate}" converter="localDateTimeConverter" />
                         </f:facet>
                         <f:facet name="input"><p:inputText value="#{draw.updateDate}" style="width:100%"/></f:facet>
                     </p:cellEditor>

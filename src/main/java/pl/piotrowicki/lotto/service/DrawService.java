@@ -1,7 +1,7 @@
 package pl.piotrowicki.lotto.service;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -35,7 +35,7 @@ public class DrawService implements Serializable {
         drawDao.save(entity);
     }
 
-    public Optional<Draw> findByDrawAndDrawDate(String numbers, Date drawDate) {
+    public Optional<Draw> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
         return drawDao.findByDrawAndDrawDate(numbers, drawDate);
     }
  }
