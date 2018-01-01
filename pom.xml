@@ -38,6 +38,14 @@
             <scope>provided</scope>
         </dependency>
         
+        <!-- Test UI components -->
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.2.15</version><!-- the version you are using -->
+            <scope>provided</scope>
+        </dependency>
+        
         <!-- CDI -->
         <dependency>
             <groupId>javax.enterprise</groupId>
