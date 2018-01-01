@@ -14,10 +14,14 @@ import javax.faces.convert.FacesConverter;
  */
 @FacesConverter(value = "localDateTimeConverter")
 public class LocalDateTimeConverter implements Converter {
+    
+    private static final String PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return LocalDateTime.parse(value);
+        return value.isEmpty() 
+               ? null
+               : LocalDateTime.parse(value, DateTimeFormatter.ofPattern(PATTERN));
     }
 
     @Override
@@ -25,7 +29,7 @@ public class LocalDateTimeConverter implements Converter {
         Optional<LocalDateTime> localDateTime = Optional.ofNullable((LocalDateTime) value);
         
         return localDateTime.isPresent() 
-                ? localDateTime.get().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                ? localDateTime.get().format(DateTimeFormatter.ofPattern(PATTERN))
                 : "";
     }
 }

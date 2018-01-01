@@ -22,9 +22,9 @@ public class LocalDateConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-         Optional<LocalDate> localDate = Optional.ofNullable((LocalDate) value);
-        
-        return localDate.isPresent() 
+        Optional<LocalDate> localDate = Optional.ofNullable((LocalDate) value);
+
+        return localDate.isPresent()
                 ? localDate.get().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                 : "";
     }
