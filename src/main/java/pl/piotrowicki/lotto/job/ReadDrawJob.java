@@ -25,7 +25,7 @@ public class ReadDrawJob implements Serializable {
     @Inject
     private DrawService drawService;
 
-    @Schedule(hour = "0", minute = "0", persistent = false)
+    @Schedule(hour = "*/7", persistent = false)
     public void run() {
         String input = jsoupReader.read();
 
