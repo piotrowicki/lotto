@@ -11,9 +11,9 @@ import org.jsoup.Jsoup;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class JsoupReader {
+public class JsoupReaderService {
     
-    private static final Logger LOGGER = Logger.getLogger(JsoupReader.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(JsoupReaderService.class.getName());
     
     private static final String LOTTO_URL = "http://app.lotto.pl/wyniki/?type=dl";
     

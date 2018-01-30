@@ -9,7 +9,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import pl.piotrowicki.lotto.dao.DrawDao;
 import pl.piotrowicki.lotto.entity.Draw;
-import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**
  *
@@ -25,10 +24,6 @@ public class DrawService implements Serializable {
     
     public List<Draw> findAll() {
         return drawDao.findAll();
-    }
-
-    public Draw convertToEntity(String input) {
-        return DrawConverterUtil.convertToEntity(input);
     }
 
     public void save(Draw entity) {

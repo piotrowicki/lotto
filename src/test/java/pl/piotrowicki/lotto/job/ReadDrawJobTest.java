@@ -1,7 +1,6 @@
 package pl.piotrowicki.lotto.job;
 
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.Optional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +10,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import pl.piotrowicki.lotto.entity.Draw;
 import pl.piotrowicki.lotto.service.DrawService;
-import pl.piotrowicki.lotto.service.JsoupReader;
+import pl.piotrowicki.lotto.service.JsoupReaderService;
+import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**
  *
@@ -23,7 +23,7 @@ public class ReadDrawJobTest {
     private static final String DRAW = "2017-12-01 1 7 11 21 33 46";
     
     @Mock
-    private JsoupReader jsoupReader;
+    private JsoupReaderService jsoupReader;
     
     @Mock
     private DrawService drawService;
@@ -34,42 +34,28 @@ public class ReadDrawJobTest {
     @Test
     public void testRunWithSave() throws ParseException {
         // given
-        LocalDate date = LocalDate.parse("2017-12-15");
-        
-        Draw draw = new Draw();
-        draw.setNumbers(DRAW);
-        draw.setDrawDate(date);
-        
+        Draw draw = DrawConverterUtil.convertToEntity(DRAW);
         given(jsoupReader.read()).willReturn(DRAW);
-        given(drawService.convertToEntity(DRAW)).willReturn(draw);
-        given(drawService.findByDrawAndDrawDate(DRAW, date)).willReturn(Optional.empty());
+        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.empty());
         
         // when
         drawJob.run();
         
         // then
-        verify(drawService).convertToEntity(DRAW);
         verify(drawService).save(draw);
     }
     
      @Test
     public void testRunWithoutSave() throws ParseException {
         // given
-        LocalDate date = LocalDate.parse("2017-12-15");
-        
-        Draw draw = new Draw();
-        draw.setNumbers(DRAW);
-        draw.setDrawDate(date);
-        
+        Draw draw = DrawConverterUtil.convertToEntity(DRAW);
         given(jsoupReader.read()).willReturn(DRAW);
-        given(drawService.convertToEntity(DRAW)).willReturn(draw);
-        given(drawService.findByDrawAndDrawDate(DRAW, date)).willReturn(Optional.of(draw));
+        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.of(new Draw()));
         
         // when
         drawJob.run();
         
         // then
-        verify(drawService).convertToEntity(DRAW);
         verify(drawService, never()).save(draw);
     }
 }
