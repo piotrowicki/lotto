@@ -7,9 +7,25 @@
                 template="./template/template.xhtml">
     <ui:define name="title">Statistics</ui:define>
     <ui:define name="content">
+        <h:form>
+            <p:growl id="msgs" showDetail="true" autoUpdate="true" />
+            <div class="ui-g">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="option" value="Option:" />
+                    <p:selectOneMenu valueChangeListener="#{barChartBean.handleChange}">
+                        <f:selectItems id="option"
+                                       value="#{calculatorOptionBean.calculatorOptions}"
+                                       var="option"
+                                       itemValue="#{option}"
+                                       itemLabel="#{option.description}"/>
+                        <p:ajax update="chart" />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+            </div>
+        </h:form>
         <div class="ui-g">
             <div class="ui-g-12 ui-md-12 ui-lg-12">
-                <p:chart type="bar" model="#{barChartBean.barChartModel}" responsive="true" />
+                <p:chart id="chart" type="bar" model="#{barChartBean.barChartModel}" responsive="true" />
             </div>
         </div>
     </ui:define>

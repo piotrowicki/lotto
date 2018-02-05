@@ -5,7 +5,6 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.*;
 import org.hamcrest.collection.IsMapContaining;
-import org.junit.Before;
 import org.junit.Test;
 import pl.piotrowicki.lotto.entity.Draw;
 
@@ -15,13 +14,8 @@ import pl.piotrowicki.lotto.entity.Draw;
  */
 public class ModeCalculatorServiceTest {
 
-    private BarChartModeCalculatorService barChartModeCalculatorService;
+    private final ModeStrategyCalculation modeStrategy = new ModeStrategyCalculation();
 
-    @Before
-    public void init() {
-      barChartModeCalculatorService = new BarChartModeCalculatorService(Arrays.asList());
-    }
-    
     @Test
     public void testCalculate() {
         // given
@@ -30,11 +24,9 @@ public class ModeCalculatorServiceTest {
 
         Draw draw2 = new Draw();
         draw2.setNumbers("9 8 7 6 5 4");
-        
-        barChartModeCalculatorService = new BarChartModeCalculatorService(Arrays.asList(draw1, draw2));
 
         // when
-        Map<Integer, Long> calculatedMode = barChartModeCalculatorService.calculate();
+        Map<Integer, Long> calculatedMode = modeStrategy.calculate(Arrays.asList(draw1, draw2));
             
         // then
         assertThat(calculatedMode.size(), is(9));
