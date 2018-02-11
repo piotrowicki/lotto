@@ -1,10 +1,8 @@
 package pl.piotrowicki.lotto.service;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.primefaces.model.chart.BarChartModel;
@@ -18,17 +16,11 @@ import pl.piotrowicki.lotto.enums.CalculatorOption;
 @Stateless
 public class StatisticService implements Serializable {
 
-    private List<Draw> draws = new ArrayList<>();
-
     @Inject
     private DrawService drawService;
 
-    @PostConstruct
-    public void init() {
-        draws = drawService.findAll();
-    }
-
     public BarChartModel process(CalculatorOption option) {
+        List<Draw> draws = drawService.findAll();
         CalculationStrategyService strategy = null;
 
         switch (option) {
