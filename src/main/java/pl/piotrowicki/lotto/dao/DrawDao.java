@@ -18,7 +18,7 @@ public class DrawDao implements Serializable {
     
     @PersistenceContext
     private EntityManager em;
-    
+       
     public List<Draw> findAll() {
         return em.createNamedQuery("Draw.findAll").getResultList();
     }
@@ -34,5 +34,12 @@ public class DrawDao implements Serializable {
                 .getResultList()
                 .stream()
                 .findFirst();
+    }
+
+    /**
+     * For testing purposes only
+     */
+    public void setEntityManager(EntityManager em) {
+        this.em = em;
     }
 }
