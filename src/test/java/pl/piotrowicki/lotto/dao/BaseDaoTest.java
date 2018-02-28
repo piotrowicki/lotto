@@ -31,5 +31,4 @@ public class BaseDaoTest {
         em.getTransaction().rollback();
         em.close();
     }
-    
 }

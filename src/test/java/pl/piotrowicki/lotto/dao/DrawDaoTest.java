@@ -20,9 +20,7 @@ public class DrawDaoTest extends BaseDaoTest {
     private final DrawDao dao = new DrawDao();
 
     @Before
-    @Override
-    public void init() {
-        super.init();
+    public void setUp() {
         dao.setEntityManager(em);
     }
 
