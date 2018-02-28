@@ -8,11 +8,11 @@ Collecting lottery draws and generating as charts
 
 ```
 <Resource id="lottoDS" type="DataSource">
-    JdbcDriver  com.mysql.jdbc.Driver
-    JdbcUrl jdbc:mysql://localhost/lotto
-    UserName    xxx
-    Password    yyy
-    JtaManaged true
+    JdbcDriver = com.mysql.jdbc.Driver
+    JdbcUrl = jdbc:mysql://localhost/lotto
+    UserName = xxx
+    Password = yyy
+    JtaManaged = true
     testOnBorrow = true
     validationQuery = SELECT 1
 </Resource>
