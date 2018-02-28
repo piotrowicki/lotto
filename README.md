@@ -13,5 +13,7 @@ Collecting lottery draws and generating as charts
     UserName    xxx
     Password    yyy
     JtaManaged true
+    testOnBorrow = true
+    validationQuery = SELECT 1
 </Resource>
 ```
