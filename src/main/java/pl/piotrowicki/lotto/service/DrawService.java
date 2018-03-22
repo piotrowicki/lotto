@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.dao.DrawDao;
 import pl.piotrowicki.lotto.entity.Draw;
 
@@ -17,7 +17,7 @@ import pl.piotrowicki.lotto.entity.Draw;
 @Stateless
 public class DrawService implements Serializable {
 
-    private static final Logger LOGGER = Logger.getLogger(DrawService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(DrawService.class);
 
     @Inject
     private DrawDao drawDao;
