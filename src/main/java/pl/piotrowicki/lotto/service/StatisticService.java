@@ -1,5 +1,7 @@
 package pl.piotrowicki.lotto.service;
 
+import pl.piotrowicki.lotto.service.configuration.impl.ModeStrategyConfiguration;
+import pl.piotrowicki.lotto.service.calculation.impl.ModeStrategyCalculation;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;

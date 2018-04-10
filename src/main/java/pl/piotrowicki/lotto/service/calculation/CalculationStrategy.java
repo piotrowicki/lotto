@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.calculation;
 
 import java.util.List;
 import java.util.Map;

@@ -1,5 +1,6 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.configuration.impl;
 
+import pl.piotrowicki.lotto.service.configuration.ConfigurationStrategy;
 import java.util.Map;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;

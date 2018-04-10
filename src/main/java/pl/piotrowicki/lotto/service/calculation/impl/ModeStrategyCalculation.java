@@ -1,5 +1,6 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.calculation.impl;
 
+import pl.piotrowicki.lotto.service.calculation.CalculationStrategy;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;

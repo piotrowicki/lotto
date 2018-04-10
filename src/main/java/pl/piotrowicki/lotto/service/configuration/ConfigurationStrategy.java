@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.configuration;
 
 import java.util.Map;
 import org.primefaces.model.chart.BarChartModel;
