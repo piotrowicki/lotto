@@ -6,23 +6,13 @@ body {
     margin: 10px;
 }
 
-.ui-tabmenu li.ui-state-active {
-    border: 1px solid #FFA900;
-    background: #FFE673;
+#loginForm {
+    margin-left: 10%;
+    text-align: right;
 }
 
-.ui-tabmenu li.ui-state-active .ui-menuitem-text {
-    color: #000;
-}
-
-.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-    border: 1px solid #FFA900;
-    background: #FFE673;
-    color: #000;
-}
-
-.ui-paginator .ui-paginator-page.ui-state-active {
-    background: #FFE673;
-    color: #000;
-    border-color: #FFA900;
+.ui-inputfield.username, .ui-inputfield.password, .ui-outputlabel {
+    height: 20px;
+    width: 400px;
+    font-size: 20px;
 }

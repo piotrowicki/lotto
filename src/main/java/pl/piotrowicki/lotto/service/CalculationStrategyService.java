@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import org.primefaces.model.chart.BarChartModel;
 import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.service.calculation.CalculationStrategy;
+import pl.piotrowicki.lotto.service.configuration.ConfigurationStrategy;
 
 /**
  *
@@ -11,8 +13,8 @@ import pl.piotrowicki.lotto.entity.Draw;
  */
 public class CalculationStrategyService {
 
-    private CalculationStrategy calcStrategy;
-    private ConfigurationStrategy configStrategy;
+    private final CalculationStrategy calcStrategy;
+    private final ConfigurationStrategy configStrategy;
 
     public CalculationStrategyService(CalculationStrategy calcStrategy, ConfigurationStrategy configStrategy) {
         this.calcStrategy = calcStrategy;

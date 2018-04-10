@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Table(name = "DRAW")
 @NamedQueries({
     @NamedQuery(name = "Draw.findAll",
-            query = "SELECT d FROM Draw d"),
+            query = "SELECT d FROM Draw d ORDER BY d.drawDate desc"),
     @NamedQuery(name = "Draw.findByDrawAndDrawDate",
             query = "SELECT d FROM Draw d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })

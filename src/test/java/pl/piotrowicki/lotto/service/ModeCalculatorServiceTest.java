@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.service;
 
+import pl.piotrowicki.lotto.service.calculation.impl.ModeStrategyCalculation;
 import java.util.Arrays;
 import java.util.Map;
 import static org.hamcrest.CoreMatchers.is;

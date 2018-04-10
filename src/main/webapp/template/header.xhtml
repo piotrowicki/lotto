@@ -15,14 +15,20 @@
             </p:dialog>
             <div class="ui-g">
                 <header class="ui-g-12 ui-md-12 ui-lg-12">
-                    <p:tabMenu activeIndex="#{param.i}">
-                        <p:menuitem value="Statistics:" outcome="/menu/statistics" icon="fa fa-bar-chart-o">
-                            <f:param name="i" value="0" />
-                        </p:menuitem>
-                        <p:menuitem value="Draws:" outcome="/menu/draws" icon="fa fa-search">
-                            <f:param name="i" value="1" />
-                        </p:menuitem>
-                    </p:tabMenu>
+                    <h:form>
+                        <p:tabMenu activeIndex="#{param.i}">
+                            <p:menuitem value="Statistics:" outcome="/menu/statistics" icon="fa fa-bar-chart-o">
+                                <f:param name="i" value="0" />
+                            </p:menuitem>
+
+                            <p:menuitem value="Draws:" outcome="/menu/draws" icon="fa fa-search">
+                                <f:param name="i" value="1" />
+                            </p:menuitem>
+
+                            <p:menuitem ajax="false" rendered="#{empty request.remoteUser}"
+                                        action="#{loginBean.logout}" value="Logout" />
+                        </p:tabMenu>
+                    </h:form>
                 </header>
             </div>
         </ui:composition>	

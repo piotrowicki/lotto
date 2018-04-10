@@ -25,7 +25,7 @@
                 <p:ajax event="rowEditCancel" listener="#{drawTableBean.onRowCancel}" update=":form:msgs" />
 
                 <p:column headerText="Id:">
-                    <h:outputText value="#{rowIndex+1}." />
+                    <h:outputText value="#{fn:length(drawTableBean.draws)-rowIndex}." />
                 </p:column>
 
                 <p:column headerText="Numbers:">
