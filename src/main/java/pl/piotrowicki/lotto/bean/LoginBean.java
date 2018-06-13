@@ -20,8 +20,4 @@ public class LoginBean implements Serializable {
     public String login(String username, String password) {
         return loginService.login(username, password);
     }
-
-    public void logout() {
-        loginService.logout();
-    }
 }

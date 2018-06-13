@@ -31,8 +31,4 @@ public class LoginService implements Serializable {
         }
         return null;
     }
-
-    public void logout() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-    }
 }

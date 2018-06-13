@@ -24,9 +24,6 @@
                             <p:menuitem value="Draws:" outcome="/menu/draws" icon="fa fa-search">
                                 <f:param name="i" value="1" />
                             </p:menuitem>
-
-                            <p:menuitem ajax="false" rendered="#{!empty request.remoteUser}"
-                                        action="#{loginBean.logout}" value="Logout" />
                         </p:tabMenu>
                     </h:form>
                 </header>
