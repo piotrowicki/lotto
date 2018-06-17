@@ -11,9 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Draw implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID", updatable = false, nullable = false)
     private Integer id;
     
     @Column(name = "NUMBERS")
@@ -41,9 +41,11 @@ public class Draw implements Serializable {
     private LocalDate drawDate;
     
     @Column(name = "CREATE_DATE", columnDefinition = "DATETIME")
+    @CreationTimestamp
     private LocalDateTime createDate;
     
     @Column(name = "UPDATE_DATE", columnDefinition = "DATETIME")
+    @UpdateTimestamp
     private LocalDateTime updateDate;
 
     public Integer getId() {
@@ -74,18 +76,8 @@ public class Draw implements Serializable {
         return createDate;
     }
 
-    @PrePersist
-    public void setCreateDate() {
-        this.createDate = LocalDateTime.now();
-    }
-
     public LocalDateTime getUpdateDate() {
         return updateDate;
-    }
-
-    @PreUpdate
-    public void setUpdateDate() {
-        this.updateDate = LocalDateTime.now();
     }
 
     @Override
