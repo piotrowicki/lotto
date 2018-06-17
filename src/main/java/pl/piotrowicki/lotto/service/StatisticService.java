@@ -1,7 +1,5 @@
 package pl.piotrowicki.lotto.service;
 
-import pl.piotrowicki.lotto.service.configuration.impl.ModeStrategyConfiguration;
-import pl.piotrowicki.lotto.service.calculation.impl.ModeStrategyCalculation;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +8,10 @@ import javax.inject.Inject;
 import org.primefaces.model.chart.BarChartModel;
 import pl.piotrowicki.lotto.entity.Draw;
 import pl.piotrowicki.lotto.enums.CalculatorOption;
+import pl.piotrowicki.lotto.service.calculation.impl.ModeStrategyCalculation;
+import pl.piotrowicki.lotto.service.calculation.impl.PercentageStrategyCalculation;
+import pl.piotrowicki.lotto.service.configuration.impl.ModeStrategyConfiguration;
+import pl.piotrowicki.lotto.service.configuration.impl.PercentageStrategyConfiguration;
 
 /**
  *
@@ -28,6 +30,9 @@ public class StatisticService implements Serializable {
         switch (option) {
             case MODE:
                 strategy = new CalculationStrategyService(new ModeStrategyCalculation(), new ModeStrategyConfiguration());
+                break;
+            case PERCENTAGE:
+                strategy = new CalculationStrategyService(new PercentageStrategyCalculation(), new PercentageStrategyConfiguration());
                 break;
             default:
                 throw new IllegalStateException("Not valid value: " + option);

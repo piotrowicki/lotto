@@ -7,6 +7,7 @@ package pl.piotrowicki.lotto.enums;
 public enum CalculatorOption {
     
     MODE("Most often value"),
+    PERCENTAGE("Percentage value"),
     AVG("Average value");
     
     private final String description;
