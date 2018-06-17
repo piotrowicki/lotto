@@ -1,8 +1,11 @@
 package pl.piotrowicki.lotto.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.primefaces.model.chart.BarChartModel;
@@ -23,8 +26,10 @@ public class StatisticService implements Serializable {
     @Inject
     private DrawService drawService;
 
+    private List<Draw> draws = new ArrayList<>();
+
     public BarChartModel process(CalculatorOption option) {
-        List<Draw> draws = drawService.findAll();
+        draws = drawService.findAll();
         CalculationStrategyService strategy = null;
 
         switch (option) {
@@ -40,5 +45,11 @@ public class StatisticService implements Serializable {
 
         Map<Integer, Long> statistic = strategy.doCalculate(draws);
         return strategy.doConfiguration(statistic);
+    }
+
+    public String getLatestResult() {
+        Optional<Draw> max = draws.stream().max(Comparator.comparing(Draw::getCreateDate));
+        
+        return max.isPresent() ? max.get().getNumbers() + " " + max.get().getCreateDate() : "";
     }
 }

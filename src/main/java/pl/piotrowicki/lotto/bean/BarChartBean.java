@@ -22,12 +22,15 @@ public class BarChartBean implements Serializable {
 
     private BarChartModel barChartModel;
 
+    private String latestResult;
+
     @Inject
     private StatisticService statisticService;
 
     @PostConstruct
     public void init() {
         barChartModel = statisticService.process(CalculatorOption.MODE);
+        latestResult = statisticService.getLatestResult();
     }
 
     public void handleChange(ValueChangeEvent event) {
@@ -46,5 +49,9 @@ public class BarChartBean implements Serializable {
 
     public void setBarChartModel(BarChartModel barChartModel) {
         this.barChartModel = barChartModel;
+    }
+
+    public String getLatestResult() {
+        return latestResult;
     }
 }
