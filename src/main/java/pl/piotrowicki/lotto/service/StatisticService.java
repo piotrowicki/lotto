@@ -9,7 +9,7 @@ import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.primefaces.model.chart.BarChartModel;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.enums.CalculatorOption;
 import pl.piotrowicki.lotto.service.calculation.impl.ModeStrategyCalculation;
 import pl.piotrowicki.lotto.service.calculation.impl.PercentageStrategyCalculation;
@@ -26,7 +26,7 @@ public class StatisticService implements Serializable {
     @Inject
     private DrawService drawService;
 
-    private List<Draw> draws = new ArrayList<>();
+    private List<DrawEntity> draws = new ArrayList<>();
 
     public BarChartModel process(CalculatorOption option) {
         draws = drawService.findAll();
@@ -48,7 +48,7 @@ public class StatisticService implements Serializable {
     }
 
     public String getLatestResult() {
-        Optional<Draw> max = draws.stream().max(Comparator.comparing(Draw::getCreateDate));
+        Optional<DrawEntity> max = draws.stream().max(Comparator.comparing(DrawEntity::getCreateDate));
         
         return max.isPresent() ? max.get().getNumbers() + " " + max.get().getCreateDate() : "";
     }

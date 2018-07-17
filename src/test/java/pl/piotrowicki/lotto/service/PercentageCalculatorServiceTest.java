@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import org.hamcrest.collection.IsMapContaining;
 import org.junit.Test;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.calculation.impl.PercentageStrategyCalculation;
 
 /**
@@ -20,7 +20,7 @@ public class PercentageCalculatorServiceTest {
     @Test
     public void testCalculate() {
         // given
-        Draw draw1 = new Draw();
+        DrawEntity draw1 = new DrawEntity();
         draw1.setNumbers("5 4 3 2 1 1");
 
 

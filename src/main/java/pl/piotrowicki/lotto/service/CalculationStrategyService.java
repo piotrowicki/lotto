@@ -3,7 +3,7 @@ package pl.piotrowicki.lotto.service;
 import java.util.List;
 import java.util.Map;
 import org.primefaces.model.chart.BarChartModel;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.calculation.CalculationStrategy;
 import pl.piotrowicki.lotto.service.configuration.ConfigurationStrategy;
 
@@ -21,7 +21,7 @@ public class CalculationStrategyService {
         this.configStrategy = configStrategy;
     }
 
-    public Map<Integer, Long> doCalculate(List<Draw> draws) {
+    public Map<Integer, Long> doCalculate(List<DrawEntity> draws) {
         return calcStrategy.calculate(draws);
     }   
 

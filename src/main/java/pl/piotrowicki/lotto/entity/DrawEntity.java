@@ -14,10 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  *
@@ -31,7 +27,7 @@ import org.hibernate.annotations.UpdateTimestamp;
     @NamedQuery(name = "Draw.findByDrawAndDrawDate",
             query = "SELECT d FROM Draw d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
-public class Draw implements Serializable {
+public class DrawEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,10 +97,10 @@ public class Draw implements Serializable {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         
-        if (!(obj instanceof Draw)) {
+        if (!(obj instanceof DrawEntity)) {
             return false;
         }
-        Draw number = (Draw) obj;
+        DrawEntity number = (DrawEntity) obj;
         return id == number.id &&
                 Objects.equals(numbers, number.numbers) &&
                 Objects.equals(drawDate, number.drawDate) &&

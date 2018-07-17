@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.*;
 import org.hamcrest.collection.IsMapContaining;
 import org.junit.Test;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
  *
@@ -20,10 +20,10 @@ public class ModeCalculatorServiceTest {
     @Test
     public void testCalculate() {
         // given
-        Draw draw1 = new Draw();
+        DrawEntity draw1 = new DrawEntity();
         draw1.setNumbers("5 4 3 2 1 1");
 
-        Draw draw2 = new Draw();
+        DrawEntity draw2 = new DrawEntity();
         draw2.setNumbers("9 8 7 6 5 4");
 
         // when

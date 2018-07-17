@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.dao.DrawDao;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
  *
@@ -22,15 +22,15 @@ public class DrawService implements Serializable {
     @Inject
     private DrawDao drawDao;
     
-    public List<Draw> findAll() {
+    public List<DrawEntity> findAll() {
         return drawDao.findAll();
     }
 
-    public void save(Draw entity) {
+    public void save(DrawEntity entity) {
         drawDao.save(entity);
     }
 
-    public Optional<Draw> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
+    public Optional<DrawEntity> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
         return drawDao.findByDrawAndDrawDate(numbers, drawDate);
     }
  }

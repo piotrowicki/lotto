@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**
@@ -16,7 +16,7 @@ import pl.piotrowicki.lotto.util.DrawConverterUtil;
 public class ModeStrategyCalculation implements CalculationStrategy {
 
     @Override
-    public Map<Integer, Long> calculate(List<Draw> draws) {
+    public Map<Integer, Long> calculate(List<DrawEntity> draws) {
         List<Integer> allNumbers = DrawConverterUtil.convertToIntegers(draws);
 
         return allNumbers.stream()
