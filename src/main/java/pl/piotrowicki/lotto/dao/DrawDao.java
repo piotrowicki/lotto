@@ -20,7 +20,7 @@ public class DrawDao implements Serializable {
     private EntityManager em;
        
     public List<DrawEntity> findAll() {
-        return em.createNamedQuery("Draw.findAll").getResultList();
+        return em.createNamedQuery("DrawEntity.findAll").getResultList();
     }
 
     public void save(DrawEntity entity) {
@@ -28,7 +28,7 @@ public class DrawDao implements Serializable {
     }
 
     public Optional<DrawEntity> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
-        return em.createNamedQuery("Draw.findByDrawAndDrawDate")
+        return em.createNamedQuery("DrawEntity.findByDrawAndDrawDate")
                 .setParameter("numbers", numbers)
                 .setParameter("drawDate", drawDate)
                 .getResultList()

@@ -22,10 +22,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DRAW")
 @NamedQueries({
-    @NamedQuery(name = "Draw.findAll",
-            query = "SELECT d FROM Draw d ORDER BY d.drawDate desc"),
-    @NamedQuery(name = "Draw.findByDrawAndDrawDate",
-            query = "SELECT d FROM Draw d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+    @NamedQuery(name = "DrawEntity.findAll",
+            query = "SELECT d FROM DrawEntity d ORDER BY d.drawDate desc"),
+    @NamedQuery(name = "DrawEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 public class DrawEntity implements Serializable {
 
