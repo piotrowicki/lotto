@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.service;
 
-import pl.piotrowicki.lotto.service.calculation.impl.ModeStrategyCalculation;
 import java.util.Arrays;
 import java.util.Map;
 import static org.hamcrest.CoreMatchers.is;
@@ -15,7 +14,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  */
 public class ModeCalculatorServiceTest {
 
-    private final ModeStrategyCalculation modeStrategy = new ModeStrategyCalculation();
+    private ModeStatisticService statistic = new ModeStatisticService();
 
     @Test
     public void testCalculate() {
@@ -27,8 +26,8 @@ public class ModeCalculatorServiceTest {
         draw2.setNumbers("9 8 7 6 5 4");
 
         // when
-        Map<Integer, Long> calculatedMode = modeStrategy.calculate(Arrays.asList(draw1, draw2));
-            
+        Map<Integer, Long> calculatedMode = statistic.calculate(Arrays.asList(draw1, draw2));
+
         // then
         assertThat(calculatedMode.size(), is(9));
         assertThat(calculatedMode, IsMapContaining.hasEntry(1, Long.valueOf(2)));

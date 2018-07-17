@@ -1,20 +1,16 @@
 package pl.piotrowicki.lotto.service;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.primefaces.model.chart.BarChartModel;
 import pl.piotrowicki.lotto.entity.DrawEntity;
-import pl.piotrowicki.lotto.enums.CalculatorOption;
-import pl.piotrowicki.lotto.service.calculation.impl.ModeStrategyCalculation;
-import pl.piotrowicki.lotto.service.calculation.impl.PercentageStrategyCalculation;
-import pl.piotrowicki.lotto.service.configuration.impl.ModeStrategyConfiguration;
-import pl.piotrowicki.lotto.service.configuration.impl.PercentageStrategyConfiguration;
+import pl.piotrowicki.lotto.enums.StatisticOption;
 
 /**
  *
@@ -26,30 +22,21 @@ public class StatisticService implements Serializable {
     @Inject
     private DrawService drawService;
 
-    private List<DrawEntity> draws = new ArrayList<>();
-
-    public BarChartModel process(CalculatorOption option) {
+    private List<DrawEntity> draws;
+    
+    @PostConstruct
+    private void init() {
         draws = drawService.findAll();
-        CalculationStrategyService strategy = null;
-
-        switch (option) {
-            case MODE:
-                strategy = new CalculationStrategyService(new ModeStrategyCalculation(), new ModeStrategyConfiguration());
-                break;
-            case PERCENTAGE:
-                strategy = new CalculationStrategyService(new PercentageStrategyCalculation(), new PercentageStrategyConfiguration());
-                break;
-            default:
-                throw new IllegalStateException("Not valid value: " + option);
-        }
-
-        Map<Integer, Long> statistic = strategy.doCalculate(draws);
-        return strategy.doConfiguration(statistic);
+    }
+    
+    public BarChartModel process(StatisticOption option) {
+        AbstractStatisticService statistic = StatisticFactory.getStatisticFromOption(option);
+        Map<Integer, Long> result = statistic.calculate(draws);
+        return statistic.configure(result);
     }
 
     public String getLatestResult() {
-        Optional<DrawEntity> max = draws.stream().max(Comparator.comparing(DrawEntity::getCreateDate));
-        
+        Optional<DrawEntity> max = draws.stream().max(Comparator.comparing(DrawEntity::getCreateDate));    
         return max.isPresent() ? max.get().getNumbers() + " " + max.get().getCreateDate() : "";
     }
 }

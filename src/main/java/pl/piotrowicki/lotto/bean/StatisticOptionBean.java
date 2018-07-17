@@ -2,7 +2,7 @@ package pl.piotrowicki.lotto.bean;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import pl.piotrowicki.lotto.enums.CalculatorOption;
+import pl.piotrowicki.lotto.enums.StatisticOption;
 
 /**
  *
@@ -10,8 +10,8 @@ import pl.piotrowicki.lotto.enums.CalculatorOption;
  */
 @Named
 @ApplicationScoped
-public class CalculatorOptionBean {
-    public CalculatorOption[] getCalculatorOptions() {
-        return CalculatorOption.values();
+public class StatisticOptionBean {
+    public StatisticOption[] getStatisticOptions() {
+        return StatisticOption.values();
     }
 }

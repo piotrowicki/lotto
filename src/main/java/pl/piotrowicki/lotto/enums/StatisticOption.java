@@ -4,7 +4,7 @@ package pl.piotrowicki.lotto.enums;
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-public enum CalculatorOption {
+public enum StatisticOption {
     
     MODE("Most often value"),
     PERCENTAGE("Percentage value"),
@@ -12,7 +12,7 @@ public enum CalculatorOption {
     
     private final String description;
 
-    private CalculatorOption(String description) {
+    private StatisticOption(String description) {
         this.description = description;
     }
 

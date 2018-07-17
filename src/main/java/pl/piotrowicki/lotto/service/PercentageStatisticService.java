@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.service.calculation.impl;
+package pl.piotrowicki.lotto.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -7,18 +7,21 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 import pl.piotrowicki.lotto.entity.DrawEntity;
-import pl.piotrowicki.lotto.service.calculation.CalculationStrategy;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**
  *
- * @author piotrowicki <piotrowicki at gmail.com>
+ * @author Nowik
  */
-public class PercentageStrategyCalculation implements CalculationStrategy {
+public class PercentageStatisticService extends AbstractStatisticService {
 
     @Override
-    public Map<Integer, Long> calculate(List<DrawEntity> draws) {
+    protected Map<Integer, Long> calculate(List<DrawEntity> draws) {
         List<Integer> allNumbers = DrawConverterUtil.convertToIntegers(draws);
 
         Map<Integer, Long> collect = allNumbers.stream()
@@ -42,5 +45,27 @@ public class PercentageStrategyCalculation implements CalculationStrategy {
         }
 
         return collect;
+    }
+
+    @Override
+    protected BarChartModel configure(Map<Integer, Long> statistic) {
+        BarChartModel model = new BarChartModel();
+        ChartSeries chartSeries = new ChartSeries();
+        model.setTitle("PERCENTAGE STATISTIC");
+        model.setShowPointLabels(true);
+        model.setShowDatatip(false);
+        model.setAnimate(true);
+
+        Axis axisY = model.getAxis(AxisType.Y);
+        axisY.setTickFormat("%d");
+        axisY.setTickInterval("20");
+        axisY.setMin(0);
+        axisY.setMax(100);
+
+        model.getAxes().put(AxisType.Y, axisY);
+
+        statistic.forEach(chartSeries::set);
+        model.addSeries(chartSeries);
+        return model;
     }
 }
