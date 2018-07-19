@@ -18,6 +18,8 @@ import pl.piotrowicki.lotto.util.StatisticUtil;
  * @author Nowik
  */
 public class ModeStatisticService extends AbstractStatisticService {
+    
+    private static final String TITLE = "MODE STATISTIC";
 
     @Override
     protected Map<Integer, Long> calculate(List<DrawEntity> draws) {
@@ -34,7 +36,7 @@ public class ModeStatisticService extends AbstractStatisticService {
     protected BarChartModel configure(Map<Integer, Long> statistic) {
         BarChartModel model = new BarChartModel();
         ChartSeries chartSeries = new ChartSeries();
-        model.setTitle("MODE STATISTIC");
+        model.setTitle(TITLE);
         model.setShowPointLabels(true);
         model.setShowDatatip(false);
         model.setAnimate(true);

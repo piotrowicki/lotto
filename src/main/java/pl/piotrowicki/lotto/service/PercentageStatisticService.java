@@ -19,6 +19,8 @@ import pl.piotrowicki.lotto.util.DrawConverterUtil;
  * @author Nowik
  */
 public class PercentageStatisticService extends AbstractStatisticService {
+    
+     private static final String TITLE = "PERCENTAGE STATISTIC";
 
     @Override
     protected Map<Integer, Long> calculate(List<DrawEntity> draws) {
@@ -31,8 +33,7 @@ public class PercentageStatisticService extends AbstractStatisticService {
                         Collectors.counting())
                 );
 
-        for (Map.Entry<Integer, Long> entry : collect.entrySet()) {
-
+        collect.entrySet().forEach((entry) -> {
             BigDecimal currentNumberQuntity = BigDecimal.valueOf(entry.getValue());
             BigDecimal howMAnyNumbers = BigDecimal.valueOf(allNumbers.size());
 
@@ -42,7 +43,7 @@ public class PercentageStatisticService extends AbstractStatisticService {
                     .longValue();
 
             entry.setValue(result);
-        }
+         });
 
         return collect;
     }
@@ -51,7 +52,7 @@ public class PercentageStatisticService extends AbstractStatisticService {
     protected BarChartModel configure(Map<Integer, Long> statistic) {
         BarChartModel model = new BarChartModel();
         ChartSeries chartSeries = new ChartSeries();
-        model.setTitle("PERCENTAGE STATISTIC");
+        model.setTitle(TITLE);
         model.setShowPointLabels(true);
         model.setShowDatatip(false);
         model.setAnimate(true);
