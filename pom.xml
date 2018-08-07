@@ -19,6 +19,7 @@
         <jsf.version>2.1</jsf.version>
         <cdi.version>2.0</cdi.version>
         <ejb.version>3.0</ejb.version>
+        <commons-lang.version>3.7</commons-lang.version>
     </properties>
     
     <dependencies>
@@ -139,6 +140,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
             <version>3.6.1</version>
+        </dependency>
+        
+        <!-- commons-lang -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang.version}</version>
         </dependency>
         
         <!-- Jsoup -->
