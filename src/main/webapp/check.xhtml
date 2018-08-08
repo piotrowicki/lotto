@@ -12,7 +12,9 @@
             <p:growl id="msgs" showDetail="true" autoUpdate="true" />
             <h:panelGrid columns="3">
                 <p:outputLabel for="numbers" value="Insert your lucky numbers: " />
-                <p:inputMask id="numbers" value="#{luckyNumbersBean.luckyNumbers}" mask="99-99-99-99-99-99" converter="luckyNumbersConverter" />
+                <p:inputMask id="numbers" value="#{luckyNumbersBean.luckyNumbers}" mask="99-99-99-99-99-99" converter="luckyNumbersConverter">
+                    <f:validator for="numbers" validatorId="luckyNumbersValidator" />
+                </p:inputMask>
                 <p:commandButton action="#{luckyNumbersBean.calculateStatistic}" value="Calculate" />
             </h:panelGrid>
         </h:form>
