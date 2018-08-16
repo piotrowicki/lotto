@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import org.junit.Before;
 import org.junit.Test;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
  *
@@ -27,14 +27,14 @@ public class DrawDaoTest extends BaseDaoTest {
     @Test
     public void findAllDaoTest() {
         // given
-        Draw draw = new Draw();
+        DrawEntity draw = new DrawEntity();
         draw.setNumbers(NUMBERS);
         draw.setDrawDate(LocalDate.parse("2018-01-01"));
 
         dao.save(draw);
 
         // when
-        List<Draw> findAll = dao.findAll();
+        List<DrawEntity> findAll = dao.findAll();
 
         // then
         assertThat(findAll.size(), is(1));
@@ -44,14 +44,14 @@ public class DrawDaoTest extends BaseDaoTest {
     @Test
     public void findByDrawAndDrawDate() {
         // given
-        Draw draw = new Draw();
+        DrawEntity draw = new DrawEntity();
         draw.setNumbers(NUMBERS);
         draw.setDrawDate(LocalDate.parse("2018-01-01"));
 
         dao.save(draw);
         
         // when
-        Optional<Draw> result = dao.findByDrawAndDrawDate(NUMBERS, LocalDate.parse("2018-01-01"));
+        Optional<DrawEntity> result = dao.findByDrawAndDrawDate(NUMBERS, LocalDate.parse("2018-01-01"));
         
         // then
         assertThat(result.isPresent(), is(true));

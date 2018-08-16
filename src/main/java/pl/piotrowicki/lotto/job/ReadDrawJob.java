@@ -7,7 +7,7 @@ import javax.ejb.Singleton;
 import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.bean.annotation.Log;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 import pl.piotrowicki.lotto.service.JsoupReaderService;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
@@ -32,9 +32,9 @@ public class ReadDrawJob implements Serializable {
     public void run() {
         String input = jsoupReaderService.read();
 
-        Draw entity = DrawConverterUtil.convertToEntity(input);
+        DrawEntity entity = DrawConverterUtil.convertToEntity(input);
 
-        Optional<Draw> result = drawService.findByDrawAndDrawDate(entity.getNumbers(), entity.getDrawDate());
+        Optional<DrawEntity> result = drawService.findByDrawAndDrawDate(entity.getNumbers(), entity.getDrawDate());
 
         if (!result.isPresent()) {
             drawService.save(entity);

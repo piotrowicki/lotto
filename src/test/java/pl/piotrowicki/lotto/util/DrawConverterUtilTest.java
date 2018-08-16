@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
  *
@@ -27,7 +27,7 @@ public class DrawConverterUtilTest {
         String input = "2017-12-16 13 27 41 1 33 31";
 
         // when
-        Draw entity = DrawConverterUtil.convertToEntity(input);
+        DrawEntity entity = DrawConverterUtil.convertToEntity(input);
 
         // then
         assertThat(entity.getDrawDate(), is(equalTo(date)));
@@ -37,10 +37,10 @@ public class DrawConverterUtilTest {
     @Test
     public void testConvertToIntegers() {
         // given
-        Draw draw1 = new Draw();
+        DrawEntity draw1 = new DrawEntity();
         draw1.setNumbers("1 2 3 4 5");
         
-        Draw draw2 = new Draw();
+        DrawEntity draw2 = new DrawEntity();
         draw2.setNumbers("6 7 8 9 10");
         
         // when

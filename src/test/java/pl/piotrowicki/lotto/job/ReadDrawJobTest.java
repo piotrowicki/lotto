@@ -8,7 +8,7 @@ import static org.mockito.BDDMockito.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 import pl.piotrowicki.lotto.service.JsoupReaderService;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
@@ -34,7 +34,7 @@ public class ReadDrawJobTest {
     @Test
     public void testRunWithSave() throws ParseException {
         // given
-        Draw draw = DrawConverterUtil.convertToEntity(DRAW);
+        DrawEntity draw = DrawConverterUtil.convertToEntity(DRAW);
         given(jsoupReader.read()).willReturn(DRAW);
         given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.empty());
         
@@ -48,9 +48,9 @@ public class ReadDrawJobTest {
      @Test
     public void testRunWithoutSave() throws ParseException {
         // given
-        Draw draw = DrawConverterUtil.convertToEntity(DRAW);
+        DrawEntity draw = DrawConverterUtil.convertToEntity(DRAW);
         given(jsoupReader.read()).willReturn(DRAW);
-        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.of(new Draw()));
+        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.of(new DrawEntity()));
         
         // when
         drawJob.run();

@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 
 /**
@@ -20,7 +20,7 @@ import pl.piotrowicki.lotto.service.DrawService;
 @ConversationScoped
 public class DrawTableBean implements Serializable {
     
-    private List<Draw> draws;
+    private List<DrawEntity> draws;
     
     @Inject
     private DrawService drawService;
@@ -40,11 +40,11 @@ public class DrawTableBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public List<Draw> getDraws() {
+    public List<DrawEntity> getDraws() {
         return draws;
     }
 
-    public void setDraws(List<Draw> draws) {
+    public void setDraws(List<DrawEntity> draws) {
         this.draws = draws;
     }
 }

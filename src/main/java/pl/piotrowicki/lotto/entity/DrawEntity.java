@@ -11,9 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  *
@@ -22,12 +22,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name = "DRAW")
 @NamedQueries({
-    @NamedQuery(name = "Draw.findAll",
-            query = "SELECT d FROM Draw d ORDER BY d.drawDate desc"),
-    @NamedQuery(name = "Draw.findByDrawAndDrawDate",
-            query = "SELECT d FROM Draw d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+    @NamedQuery(name = "DrawEntity.findAll",
+            query = "SELECT d FROM DrawEntity d ORDER BY d.drawDate desc"),
+    @NamedQuery(name = "DrawEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
-public class Draw implements Serializable {
+public class DrawEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,11 +41,9 @@ public class Draw implements Serializable {
     private LocalDate drawDate;
     
     @Column(name = "CREATE_DATE", columnDefinition = "DATETIME")
-    @CreationTimestamp
     private LocalDateTime createDate;
     
     @Column(name = "UPDATE_DATE", columnDefinition = "DATETIME")
-    @UpdateTimestamp
     private LocalDateTime updateDate;
 
     public Integer getId() {
@@ -79,6 +77,16 @@ public class Draw implements Serializable {
     public LocalDateTime getUpdateDate() {
         return updateDate;
     }
+    
+    @PrePersist
+    public void prePersist() {
+        createDate = LocalDateTime.now();
+    }
+    
+    @PreUpdate
+    public void preUpdate() {
+        updateDate = LocalDateTime.now();
+    }
 
     @Override
     public int hashCode() {
@@ -89,10 +97,10 @@ public class Draw implements Serializable {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         
-        if (!(obj instanceof Draw)) {
+        if (!(obj instanceof DrawEntity)) {
             return false;
         }
-        Draw number = (Draw) obj;
+        DrawEntity number = (DrawEntity) obj;
         return id == number.id &&
                 Objects.equals(numbers, number.numbers) &&
                 Objects.equals(drawDate, number.drawDate) &&

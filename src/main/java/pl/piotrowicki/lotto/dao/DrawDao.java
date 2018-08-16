@@ -7,7 +7,7 @@ import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import pl.piotrowicki.lotto.entity.Draw;
+import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
  *
@@ -19,16 +19,16 @@ public class DrawDao implements Serializable {
     @PersistenceContext
     private EntityManager em;
        
-    public List<Draw> findAll() {
-        return em.createNamedQuery("Draw.findAll").getResultList();
+    public List<DrawEntity> findAll() {
+        return em.createNamedQuery("DrawEntity.findAll").getResultList();
     }
 
-    public void save(Draw entity) {
+    public void save(DrawEntity entity) {
         em.persist(entity);
     }
 
-    public Optional<Draw> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
-        return em.createNamedQuery("Draw.findByDrawAndDrawDate")
+    public Optional<DrawEntity> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
+        return em.createNamedQuery("DrawEntity.findByDrawAndDrawDate")
                 .setParameter("numbers", numbers)
                 .setParameter("drawDate", drawDate)
                 .getResultList()
