@@ -3,8 +3,11 @@ package pl.piotrowicki.lotto.util;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import pl.piotrowicki.lotto.dto.LuckyNumberDto;
 import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 
@@ -33,5 +36,17 @@ public class DrawConverterUtil {
                 .flatMap(Arrays::stream)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public static List<LuckyNumberDto> convertToLuckyNumberDto(List<DrawEntity> draws) {
+        return draws.stream()
+                .map(f -> new LuckyNumberDto(f.getDrawDate(), convertToIntegerSet(f.getNumbers())))
+                .collect(Collectors.toList());
+    }
+
+    public static Set<Integer> convertToIntegerSet(String numbers) {
+        return Stream.of(numbers.split(" "))
+                .map(Integer::parseInt)
+                .collect(Collectors.toSet());
     }
 }

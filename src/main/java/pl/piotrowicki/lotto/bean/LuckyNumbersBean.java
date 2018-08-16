@@ -1,11 +1,18 @@
 package pl.piotrowicki.lotto.bean;
 
+import com.google.common.collect.Sets;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
+import pl.piotrowicki.lotto.dao.DrawDao;
+import pl.piotrowicki.lotto.dto.LuckyNumberDto;
+import pl.piotrowicki.lotto.dto.LuckyNumbersResultDto;
+import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**
  *
@@ -14,16 +21,27 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class LuckyNumbersBean implements Serializable {
-    
+
     private List<Integer> luckyNumbers;
+    private LuckyNumbersResultDto result;
+
+    @Inject
+    private DrawDao drawDao;
 
     public void calculateStatistic() {
-        if (luckyNumbers.isEmpty())  {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "WARNING: ", "Insert your favorite numbers.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            return;
+        List<DrawEntity> entites = drawDao.findAll();
+
+        List<LuckyNumberDto> luckyNumbersDto = DrawConverterUtil.convertToLuckyNumberDto(entites);
+        Set<Set<Integer>> userPowerSet = Sets.powerSet(Sets.newHashSet(luckyNumbers)).stream().filter(p -> p.size() > 2).collect(Collectors.toSet());
+
+        result = new LuckyNumbersResultDto();
+        for (LuckyNumberDto luckyNumberDto : luckyNumbersDto) {
+            for (Set<Integer> set : userPowerSet) {
+                if (luckyNumberDto.getDraw().containsAll(set)) {
+                    result.addEntry(set, luckyNumberDto);
+                }
+            }
         }
-        System.out.println(luckyNumbers);
     }
 
     public List<Integer> getLuckyNumbers() {
@@ -32,5 +50,13 @@ public class LuckyNumbersBean implements Serializable {
 
     public void setLuckyNumbers(List<Integer> luckyNumbers) {
         this.luckyNumbers = luckyNumbers;
+    }
+
+    public LuckyNumbersResultDto getResult() {
+        return result;
+    }
+
+    public void setResult(LuckyNumbersResultDto result) {
+        this.result = result;
     }
 }

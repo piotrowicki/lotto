@@ -8,15 +8,73 @@
                 template="./template/template.xhtml">
     <ui:define name="title">Draws</ui:define>
     <ui:define name="content">
-        <h:form>
+        <h:form id="lucky">
             <p:growl id="msgs" showDetail="true" autoUpdate="true" />
             <h:panelGrid columns="3">
                 <p:outputLabel for="numbers" value="Insert your lucky numbers: " />
                 <p:inputMask id="numbers" value="#{luckyNumbersBean.luckyNumbers}" mask="99-99-99-99-99-99" converter="luckyNumbersConverter">
                     <f:validator for="numbers" validatorId="luckyNumbersValidator" />
                 </p:inputMask>
-                <p:commandButton action="#{luckyNumbersBean.calculateStatistic}" value="Calculate" />
+                <p:commandButton action="#{luckyNumbersBean.calculateStatistic}" value="Check" update="luckyTables" />
             </h:panelGrid>
         </h:form>
+
+        <p:spacer/> 
+        
+        <p:panel id="luckyTables">
+            <p:dataTable id="threeTable" var="res" value="#{luckyNumbersBean.result.threeHit}">
+                <f:facet name="header">
+                    Lucky 3:
+                </f:facet>
+                <p:column headerText="Draw:">
+                    <h:outputText value="#{res.drawAsString}" />
+                </p:column>
+                <p:column headerText="Date:">
+                    <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
+                </p:column>
+            </p:dataTable>
+
+            <p:spacer/> 
+            
+            <p:dataTable id="fourTable" var="res" value="#{luckyNumbersBean.result.fourHit}">
+                <f:facet name="header">
+                    Lucky 4:
+                </f:facet>
+                <p:column headerText="Draw:">
+                    <h:outputText value="#{res.drawAsString}" />
+                </p:column>
+                <p:column headerText="Date:">
+                    <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
+                </p:column>
+            </p:dataTable>
+
+            <p:spacer/> 
+            
+            <p:dataTable id="fiveTable" var="res" value="#{luckyNumbersBean.result.fiveHit}">
+                <f:facet name="header">
+                    Lucky 5:
+                </f:facet>
+                <p:column headerText="Draw:">
+                    <h:outputText value="#{res.drawAsString}" />
+                </p:column>
+                <p:column headerText="Date:">
+                    <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
+                </p:column>
+            </p:dataTable>
+
+            <p:spacer/> 
+            
+            <p:dataTable id="sixTable" var="res" value="#{luckyNumbersBean.result.sixHit}">
+                <f:facet name="header">
+                    Lucky 6:
+                </f:facet>
+                <p:column headerText="Draw:">
+                    <h:outputText value="#{res.drawAsString}" />
+                </p:column>
+                <p:column headerText="Date:">
+                    <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
     </ui:define>
 </ui:composition>
