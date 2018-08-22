@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.bean;
 
+import java.io.Serializable;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import pl.piotrowicki.lotto.enums.StatisticOption;
@@ -10,7 +11,7 @@ import pl.piotrowicki.lotto.enums.StatisticOption;
  */
 @Named
 @ApplicationScoped
-public class StatisticOptionBean {
+public class StatisticOptionBean implements Serializable {
     public StatisticOption[] getStatisticOptions() {
         return StatisticOption.values();
     }

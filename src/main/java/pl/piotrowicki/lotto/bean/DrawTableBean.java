@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.bean;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -18,7 +17,7 @@ import pl.piotrowicki.lotto.service.DrawService;
  */
 @Named
 @RequestScoped
-public class DrawTableBean implements Serializable {
+public class DrawTableBean {
     
     private List<DrawEntity> draws;
     

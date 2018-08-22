@@ -1,7 +1,6 @@
 package pl.piotrowicki.lotto.bean;
 
 import com.google.common.collect.Sets;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,7 +19,7 @@ import pl.piotrowicki.lotto.util.DrawConverterUtil;
  */
 @Named
 @RequestScoped
-public class LuckyNumbersBean implements Serializable {
+public class LuckyNumbersBean {
 
     private List<Integer> luckyNumbers;
     private LuckyNumbersResultDto result;

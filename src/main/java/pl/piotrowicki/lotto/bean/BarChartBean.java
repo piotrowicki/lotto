@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.bean;
 
-import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -18,7 +17,7 @@ import pl.piotrowicki.lotto.service.StatisticService;
  */
 @Named
 @RequestScoped
-public class BarChartBean implements Serializable {
+public class BarChartBean {
 
     private BarChartModel barChartModel;
 
