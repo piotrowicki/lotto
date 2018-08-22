@@ -1,9 +1,8 @@
 package pl.piotrowicki.lotto.bean;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,8 +16,8 @@ import pl.piotrowicki.lotto.service.DrawService;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Named
-@ConversationScoped
-public class DrawTableBean implements Serializable {
+@RequestScoped
+public class DrawTableBean {
     
     private List<DrawEntity> draws;
     

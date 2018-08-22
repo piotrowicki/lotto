@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.bean;
 
-import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,7 +11,7 @@ import pl.piotrowicki.lotto.service.LoginService;
  */
 @Named
 @RequestScoped
-public class LoginBean implements Serializable {
+public class LoginBean {
 
     @Inject
     private LoginService loginService;
