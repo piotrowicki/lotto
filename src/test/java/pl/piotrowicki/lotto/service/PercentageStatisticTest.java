@@ -12,7 +12,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-public class PercentageCalculatorServiceTest {
+public class PercentageStatisticTest {
 
     private PercentageStatistic statistic = new PercentageStatistic();
 
@@ -23,14 +23,14 @@ public class PercentageCalculatorServiceTest {
         draw1.setNumbers("5 4 3 2 1 1");
 
         // when
-        Map<Integer, Long> calculatedMode = statistic.calculateStats(Arrays.asList(draw1));
+        Map<Integer, Long> stats = statistic.calculateStats(Arrays.asList(draw1));
 
         // then
-        assertThat(calculatedMode.size(), is(5));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(1, Long.valueOf(33)));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(2, Long.valueOf(17)));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(3, Long.valueOf(17)));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(4, Long.valueOf(17)));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(5, Long.valueOf(17)));
+        assertThat(stats.size(), is(5));
+        assertThat(stats, IsMapContaining.hasEntry(1, Long.valueOf(33)));
+        assertThat(stats, IsMapContaining.hasEntry(2, Long.valueOf(17)));
+        assertThat(stats, IsMapContaining.hasEntry(3, Long.valueOf(17)));
+        assertThat(stats, IsMapContaining.hasEntry(4, Long.valueOf(17)));
+        assertThat(stats, IsMapContaining.hasEntry(5, Long.valueOf(17)));
     }
 }

@@ -12,8 +12,8 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
 public abstract class Statistic {
     
     protected final BarChartModel doCalculate(List<DrawEntity> draws) {
-        Map<Integer, Long> statistic = calculateStats(draws);
-        return configureStats(statistic);
+        Map<Integer, Long> stats = calculateStats(draws);
+        return configureStats(stats);
     }
     
     protected abstract Map<Integer, Long> calculateStats(List<DrawEntity> draws);
