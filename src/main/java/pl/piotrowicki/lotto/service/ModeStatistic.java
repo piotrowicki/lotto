@@ -17,12 +17,12 @@ import pl.piotrowicki.lotto.util.StatisticUtil;
  *
  * @author Nowik
  */
-public class ModeStatisticService extends AbstractStatisticService {
+public class ModeStatistic extends Statistic {
     
     private static final String TITLE = "MODE STATISTIC";
 
     @Override
-    protected Map<Integer, Long> calculate(List<DrawEntity> draws) {
+    protected Map<Integer, Long> calculateStats(List<DrawEntity> draws) {
         List<Integer> allNumbers = DrawConverterUtil.convertToIntegers(draws);
         return allNumbers.stream()
                 .collect(Collectors.groupingBy(
@@ -33,7 +33,7 @@ public class ModeStatisticService extends AbstractStatisticService {
     }
 
     @Override
-    protected BarChartModel configure(Map<Integer, Long> statistic) {
+    protected BarChartModel configureStats(Map<Integer, Long> statistic) {
         BarChartModel model = new BarChartModel();
         ChartSeries chartSeries = new ChartSeries();
         model.setTitle(TITLE);

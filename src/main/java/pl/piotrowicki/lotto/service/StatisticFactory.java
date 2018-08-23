@@ -8,12 +8,12 @@ import pl.piotrowicki.lotto.enums.StatisticOption;
  */
 public class StatisticFactory {
 
-    public static AbstractStatisticService getStatisticFromOption(StatisticOption option) {
+    public static Statistic getStatisticFromOption(StatisticOption option) {
         switch (option) {
             case MODE:
-                return new ModeStatisticService();
+                return new ModeStatistic();
             case PERCENTAGE:
-                return new PercentageStatisticService();
+                return new PercentageStatistic();
             default:
                 throw new IllegalStateException("Not valid value: " + option);
         }

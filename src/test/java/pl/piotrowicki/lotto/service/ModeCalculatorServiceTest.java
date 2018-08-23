@@ -14,7 +14,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  */
 public class ModeCalculatorServiceTest {
 
-    private ModeStatisticService statistic = new ModeStatisticService();
+    private ModeStatistic statistic = new ModeStatistic();
 
     @Test
     public void testCalculate() {
@@ -26,7 +26,7 @@ public class ModeCalculatorServiceTest {
         draw2.setNumbers("9 8 7 6 5 4");
 
         // when
-        Map<Integer, Long> calculatedMode = statistic.calculate(Arrays.asList(draw1, draw2));
+        Map<Integer, Long> calculatedMode = statistic.calculateStats(Arrays.asList(draw1, draw2));
 
         // then
         assertThat(calculatedMode.size(), is(9));

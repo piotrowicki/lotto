@@ -18,12 +18,12 @@ import pl.piotrowicki.lotto.util.DrawConverterUtil;
  *
  * @author Nowik
  */
-public class PercentageStatisticService extends AbstractStatisticService {
+public class PercentageStatistic extends Statistic {
     
      private static final String TITLE = "PERCENTAGE STATISTIC";
 
     @Override
-    protected Map<Integer, Long> calculate(List<DrawEntity> draws) {
+    protected Map<Integer, Long> calculateStats(List<DrawEntity> draws) {
         List<Integer> allNumbers = DrawConverterUtil.convertToIntegers(draws);
 
         Map<Integer, Long> collect = allNumbers.stream()
@@ -49,7 +49,7 @@ public class PercentageStatisticService extends AbstractStatisticService {
     }
 
     @Override
-    protected BarChartModel configure(Map<Integer, Long> statistic) {
+    protected BarChartModel configureStats(Map<Integer, Long> statistic) {
         BarChartModel model = new BarChartModel();
         ChartSeries chartSeries = new ChartSeries();
         model.setTitle(TITLE);

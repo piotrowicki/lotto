@@ -14,7 +14,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  */
 public class PercentageCalculatorServiceTest {
 
-    private PercentageStatisticService statistic = new PercentageStatisticService();
+    private PercentageStatistic statistic = new PercentageStatistic();
 
     @Test
     public void testCalculate() {
@@ -23,7 +23,7 @@ public class PercentageCalculatorServiceTest {
         draw1.setNumbers("5 4 3 2 1 1");
 
         // when
-        Map<Integer, Long> calculatedMode = statistic.calculate(Arrays.asList(draw1));
+        Map<Integer, Long> calculatedMode = statistic.calculateStats(Arrays.asList(draw1));
 
         // then
         assertThat(calculatedMode.size(), is(5));
