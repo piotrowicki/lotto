@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
@@ -14,21 +13,16 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class DrawDao implements Serializable {
-    
-    @PersistenceContext
-    private EntityManager em;
-       
-    public List<DrawEntity> findAll() {
-        return em.createNamedQuery("DrawEntity.findAll").getResultList();
-    }
+public class DrawDao extends BaseDao<DrawEntity, Long> implements Serializable {
 
-    public void save(DrawEntity entity) {
-        em.persist(entity);
+    private static final long serialVersionUID = 7343692652633610283L;
+
+    public List<DrawEntity> findAll() {
+        return getEm().createNamedQuery("DrawEntity.findAll").getResultList();
     }
 
     public Optional<DrawEntity> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
-        return em.createNamedQuery("DrawEntity.findByDrawAndDrawDate")
+        return getEm().createNamedQuery("DrawEntity.findByDrawAndDrawDate")
                 .setParameter("numbers", numbers)
                 .setParameter("drawDate", drawDate)
                 .getResultList()
@@ -38,8 +32,9 @@ public class DrawDao implements Serializable {
 
     /**
      * For testing purposes only
+     * @param em - EntityManager
      */
     public void setEntityManager(EntityManager em) {
-        this.em = em;
+        setEm(em);
     }
 }
