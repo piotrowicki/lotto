@@ -2,18 +2,18 @@ package pl.piotrowicki.lotto.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
+import pl.piotrowicki.lotto.dto.DrawDto;
 
 /**
  *
@@ -22,37 +22,44 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DRAW")
 @NamedQueries({
-    @NamedQuery(name = "DrawEntity.findAll",
+    @NamedQuery(
+            name = "DrawEntity.findAll",
             query = "SELECT d FROM DrawEntity d ORDER BY d.drawDate desc"),
-    @NamedQuery(name = "DrawEntity.findByDrawAndDrawDate",
+    @NamedQuery(
+            name = "DrawEntity.findByDrawAndDrawDate",
             query = "SELECT d FROM DrawEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
-public class DrawEntity implements Serializable {
+@NamedNativeQueries({
+    @NamedNativeQuery(
+            name = "DrawDTO.findAll",
+            query = "SELECT "
+                    + " d.id as id," 
+                    + " d.numbers as numbers," 
+                    + " d.draw_date as drawDate" 
+                    + " FROM Draw d ORDER BY d.draw_date desc",
+            resultSetMapping = "DrawDTOMapping"
+    )
+})
+@SqlResultSetMapping(
+        name = "DrawDTOMapping",
+        classes = @ConstructorResult(
+                targetClass = DrawDto.class,
+                columns = {
+                    @ColumnResult(name = "id", type = Long.class),
+                    @ColumnResult(name = "numbers", type = String.class),
+                    @ColumnResult(name = "drawDate", type = LocalDate.class)
+                }
+        )
+)
+public class DrawEntity extends BaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", updatable = false, nullable = false)
-    private Integer id;
-    
+    private static final long serialVersionUID = 3850344349208488641L;
+
     @Column(name = "NUMBERS")
     private String numbers;
-    
+
     @Column(name = "DRAW_DATE", columnDefinition = "DATE")
     private LocalDate drawDate;
-    
-    @Column(name = "CREATE_DATE", columnDefinition = "DATETIME")
-    private LocalDateTime createDate;
-    
-    @Column(name = "UPDATE_DATE", columnDefinition = "DATETIME")
-    private LocalDateTime updateDate;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNumbers() {
         return numbers;
@@ -70,45 +77,25 @@ public class DrawEntity implements Serializable {
         this.drawDate = drawDate;
     }
 
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public LocalDateTime getUpdateDate() {
-        return updateDate;
-    }
-    
-    @PrePersist
-    public void prePersist() {
-        createDate = LocalDateTime.now();
-    }
-    
-    @PreUpdate
-    public void preUpdate() {
-        updateDate = LocalDateTime.now();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        DrawEntity that = (DrawEntity) o;
+        return Objects.equals(getId(), that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, numbers, drawDate, createDate);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        
-        if (!(obj instanceof DrawEntity)) {
-            return false;
-        }
-        DrawEntity number = (DrawEntity) obj;
-        return id == number.id &&
-                Objects.equals(numbers, number.numbers) &&
-                Objects.equals(drawDate, number.drawDate) &&
-                Objects.equals(createDate, number.createDate);
+        return 37;
     }
 
     @Override
     public String toString() {
-        return "Draw{" + "id=" + id + ", numbers=" + numbers + ", drawDate=" + drawDate + ", createDate=" + createDate + '}';
+        return "Draw{" + "id=" + super.getId() + ", numbers=" + numbers + ", drawDate=" + drawDate + '}';
     }
 }
