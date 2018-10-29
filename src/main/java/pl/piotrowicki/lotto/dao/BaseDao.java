@@ -15,8 +15,9 @@ public class BaseDao<T, PK extends Serializable> implements Serializable {
     @PersistenceContext
     private EntityManager em;
     
-    public void save(T entity) {
+    public T save(T entity) {
         em.persist(entity);
+        return entity;
     }
     
     public T merge(T entity) {
