@@ -45,7 +45,7 @@ public class ModeStatistic extends Statistic {
         axisY.setTickFormat("%d");
         axisY.setTickInterval("1");
         axisY.setMin(0);
-        axisY.setMax(StatisticUtil.calculateAxisYSizeWithAdditionalSpace(statistic, 1));
+        axisY.setMax(StatisticUtil.calculateAxisYSizeWithAdditionalSpace(statistic, 2));
 
         model.getAxes().put(AxisType.Y, axisY);
 

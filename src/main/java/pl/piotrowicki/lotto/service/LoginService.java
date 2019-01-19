@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class LoginService implements Serializable {
+public class LoginService {
 
     private static final Logger LOGGER = Logger.getLogger(LoginService.class);
 

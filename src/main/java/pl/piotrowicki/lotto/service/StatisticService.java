@@ -16,7 +16,7 @@ import pl.piotrowicki.lotto.enums.StatisticOption;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class StatisticService implements Serializable {
+public class StatisticService {
 
     @Inject
     private DrawService drawService;
