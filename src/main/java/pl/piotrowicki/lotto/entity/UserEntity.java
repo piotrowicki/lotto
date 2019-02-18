@@ -34,7 +34,7 @@ public class UserEntity extends BaseEntity {
     private LocalDateTime lastLogon;
     
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "ROLE_ID")
     private UserRoleEntity role;
 
     public String getLogin() {
