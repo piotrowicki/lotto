@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.entity;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -51,7 +50,7 @@ import pl.piotrowicki.lotto.dto.DrawDto;
                 }
         )
 )
-public class DrawEntity extends BaseEntity implements Serializable {
+public class DrawEntity extends BaseEntity {
 
     private static final long serialVersionUID = 3850344349208488641L;
 
