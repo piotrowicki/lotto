@@ -6,13 +6,7 @@ body {
     margin: 10px;
 }
 
-#loginForm {
-    margin-left: 10%;
-    text-align: right;
-}
-
-.ui-inputfield.username, .ui-inputfield.password, .ui-outputlabel {
-    height: 20px;
-    width: 400px;
+.ui-inputfield {
+    height: 40px;
     font-size: 20px;
 }
