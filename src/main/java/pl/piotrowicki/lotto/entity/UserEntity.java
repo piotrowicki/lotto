@@ -1,11 +1,12 @@
 package pl.piotrowicki.lotto.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -13,13 +14,13 @@ import javax.persistence.Table;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Entity
-@Table(name = "USERS")
+@Table(name = "USER")
 public class UserEntity extends BaseEntity {
 
     private static final long serialVersionUID = -5170288537131044056L;
    
-    @Column(name = "LOGIN")
-    private String login;
+    @Column(name = "USERNAME")
+    private String username;
     
     @Column(name = "PASSWORD")
     private String password;
@@ -33,16 +34,15 @@ public class UserEntity extends BaseEntity {
     @Column(name = "LAST_LOGON")
     private LocalDateTime lastLogon;
     
-    @ManyToOne
-    @JoinColumn(name = "ROLE_ID")
-    private UserRoleEntity role;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<RoleEntity> roles;
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
-
-    public void setLogin(String login) {
-        this.login = login;
+    
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -77,11 +77,11 @@ public class UserEntity extends BaseEntity {
         this.lastLogon = lastLogon;
     }
 
-    public UserRoleEntity getRole() {
-        return role;
+    public List<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public void setRole(UserRoleEntity role) {
-        this.role = role;
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
     }
 }
