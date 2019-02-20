@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.dao;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -13,9 +12,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class DrawDao extends BaseDao<DrawEntity, Long> implements Serializable {
-
-    private static final long serialVersionUID = 7343692652633610283L;
+public class DrawDao extends BaseDao<DrawEntity, Long> {
 
     public List<DrawEntity> findAll() {
         return getEm().createNamedQuery("DrawEntity.findAll").getResultList();

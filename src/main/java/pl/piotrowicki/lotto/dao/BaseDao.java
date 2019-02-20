@@ -1,16 +1,14 @@
 package pl.piotrowicki.lotto.dao;
 
-import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import pl.piotrowicki.lotto.entity.BaseEntity;
 
 /**
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-public class BaseDao<T, PK extends Serializable> implements Serializable {
-
-    private static final long serialVersionUID = -5059287681052464835L;
+public class BaseDao<T extends BaseEntity, Long> {
     
     @PersistenceContext
     private EntityManager em;
@@ -28,7 +26,7 @@ public class BaseDao<T, PK extends Serializable> implements Serializable {
         em.remove(entity);
     }
     
-    public T findById(Class<T> clazz, PK id) {
+    public T findById(Class<T> clazz, Long id) {
         return em.find(clazz, id);
     }
 
