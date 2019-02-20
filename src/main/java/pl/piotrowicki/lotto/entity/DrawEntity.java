@@ -19,7 +19,7 @@ import pl.piotrowicki.lotto.dto.DrawDto;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Entity
-@Table(name = "DRAW")
+@Table(name = "DRAWS")
 @NamedQueries({
     @NamedQuery(
             name = "DrawEntity.findAll",
@@ -35,7 +35,7 @@ import pl.piotrowicki.lotto.dto.DrawDto;
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM Draw d ORDER BY d.draw_date desc",
+                    + " FROM Draws d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })
