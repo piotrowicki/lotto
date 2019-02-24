@@ -8,11 +8,6 @@
       xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition> 
-            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-
-            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                <p:graphicImage name="/images/ajax-loader.gif" />
-            </p:dialog>
             <div class="ui-g">
                 <header class="ui-g-12 ui-md-12 ui-lg-12">
                     <h:form>
