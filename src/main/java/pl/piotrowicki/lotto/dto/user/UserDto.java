@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.dto.user;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -7,7 +8,9 @@ import java.util.Objects;
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-public class UserDto {
+public class UserDto implements Serializable {
+
+    private static final long serialVersionUID = 5002729881930837058L;
 
     private Long id;
     private String username;
