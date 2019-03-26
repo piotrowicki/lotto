@@ -14,7 +14,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  */
 public class ModeStatisticTest {
 
-    private ModeStatistic statistic = new ModeStatistic();
+    private final ModeStatistic statistic = new ModeStatistic();
 
     @Test
     public void testCalculate() {

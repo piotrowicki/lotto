@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import org.hibernate.annotations.NaturalId;
 
 /**
@@ -16,6 +17,7 @@ import org.hibernate.annotations.NaturalId;
 @Table(name = "USERS")
 public class UserEntity extends BaseEntity {
 
+    @Transient
     private static final long serialVersionUID = -5170288537131044056L;
 
     @NaturalId

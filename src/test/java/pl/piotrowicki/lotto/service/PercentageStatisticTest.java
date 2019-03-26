@@ -14,7 +14,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  */
 public class PercentageStatisticTest {
 
-    private PercentageStatistic statistic = new PercentageStatistic();
+    private final PercentageStatistic statistic = new PercentageStatistic();
 
     @Test
     public void testCalculate() {

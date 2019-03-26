@@ -28,6 +28,8 @@ public class LuckyNumbersResultDto {
             case 6:
                 sixHit.add(luckyNumberDto);
                 break;
+            default:
+                break;
         }
     }
 

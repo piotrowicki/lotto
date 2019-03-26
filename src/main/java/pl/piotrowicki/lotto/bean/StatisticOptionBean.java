@@ -12,6 +12,9 @@ import pl.piotrowicki.lotto.enums.StatisticOption;
 @Named
 @ApplicationScoped
 public class StatisticOptionBean implements Serializable {
+
+    private static final long serialVersionUID = -6014382080713253271L;
+    
     public StatisticOption[] getStatisticOptions() {
         return StatisticOption.values();
     }
