@@ -8,25 +8,23 @@
       xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition> 
-            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-
-            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                <p:graphicImage name="/images/ajax-loader.gif" />
-            </p:dialog>
             <div class="ui-g">
                 <header class="ui-g-12 ui-md-12 ui-lg-12">
                     <h:form>
                         <p:tabMenu activeIndex="#{param.i}">
-                            <p:menuitem value="Statistics:" outcome="/menu/statistics" icon="fa fa-bar-chart-o">
+                            <p:menuitem value="Statistics" outcome="/menu/statistics" icon="fa fa-bar-chart-o">
                                 <f:param name="i" value="0" />
                             </p:menuitem>
 
-                            <p:menuitem value="Draws:" outcome="/menu/draws" icon="fa fa-search">
+                            <p:menuitem value="Draws" outcome="/menu/draws" icon="fa fa-search">
                                 <f:param name="i" value="1" />
                             </p:menuitem>
                             
-                            <p:menuitem value="Check numbers:" outcome="/menu/check" icon="fa fa-star">
+                            <p:menuitem value="Check numbers" outcome="/menu/check" icon="fa fa-star">
                                 <f:param name="i" value="2" />
+                            </p:menuitem>
+                            <p:menuitem rendered="#{not empty request.remoteUser}" action="#{loginBean.logout}" value="Logout (#{loggedUserBean.user.username})" icon="fa fa-star">
+                                <f:param name="i" value="3" />
                             </p:menuitem>
                         </p:tabMenu>
                     </h:form>

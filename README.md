@@ -7,7 +7,7 @@ Collecting lottery draws and generating as charts
 * DS tomee.xml resource configuration
 
 ```
-<Resource id="lottoDS" type="DataSource">
+<Resource id="jdbc/lottoDS" type="DataSource">
     JdbcDriver = com.mysql.jdbc.Driver
     JdbcUrl = jdbc:mysql://localhost/lotto
     UserName = xxx

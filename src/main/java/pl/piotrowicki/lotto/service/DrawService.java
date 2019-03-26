@@ -15,7 +15,7 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class DrawService implements Serializable {
+public class DrawService {
 
     private static final Logger LOGGER = Logger.getLogger(DrawService.class);
 

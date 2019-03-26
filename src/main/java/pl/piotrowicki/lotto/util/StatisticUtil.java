@@ -9,11 +9,15 @@ import java.util.Map;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 public class StatisticUtil {
-     public static Long calculateAxisYSize(Map<Integer, Long> numbersMode) {
+     public static long calculateAxisYSize(Map<Integer, Long> numbersMode) {
         return Collections.max(numbersMode.entrySet(), Comparator.comparingLong(Map.Entry::getValue)).getValue();
     }
      
-     public static Long calculateAxisYSizeWithAdditionalSpace(Map<Integer, Long> numbersMode, int space) {
+     public static long calculateAxisYSizeWithAdditionalSpace(Map<Integer, Long> numbersMode, int space) {
          return calculateAxisYSize(numbersMode) + space;
      }
+
+    public static long calculateAxisYTickInterval(Map<Integer, Long> numbersMode) {
+        return calculateAxisYSizeWithAdditionalSpace(numbersMode, 0) / 10;
+    }
 }

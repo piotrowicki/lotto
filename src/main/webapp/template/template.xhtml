@@ -16,8 +16,22 @@
         <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 
         <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-            <p:graphicImage name="images/ajaxloadingbar.gif" />
+            <p:graphicImage name="/images/ajax-loader.gif" />
         </p:dialog>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: right;">
+                <h:form>
+                    <p:commandLink action="#{localeBean.setLocale('pl')}">
+                        <p:graphicImage name="/images/Flag_of_Poland.png" alt="Polish" style="width: 32px;"/>
+                    </p:commandLink>                     
+
+                    <p:commandLink action="#{localeBean.setLocale('en')}">
+                        <p:graphicImage name="/images/Flag_of_United_Kingdom.png" alt="English" style="width: 32px;"/>
+                    </p:commandLink>
+                </h:form>
+            </div>
+        </div>
 
         <div id="top">
             <ui:insert name="top">

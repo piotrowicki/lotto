@@ -33,13 +33,13 @@ public class BarChartBean {
     }
 
     public void handleChange(ValueChangeEvent event) {
-        StatisticOption calculatorOption = StatisticOption.valueOf(event.getNewValue().toString());
-        if (calculatorOption == StatisticOption.AVG) {
+        StatisticOption option = StatisticOption.valueOf(event.getNewValue().toString());
+        if (option == StatisticOption.AVG) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "WARNING: ", "Not supported yet.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return;
         }
-        barChartModel = statisticService.process(calculatorOption);
+        barChartModel = statisticService.process(option);
     }
 
     public BarChartModel getBarChartModel() {

@@ -12,9 +12,9 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-public class ModeCalculatorServiceTest {
+public class ModeStatisticTest {
 
-    private ModeStatisticService statistic = new ModeStatisticService();
+    private ModeStatistic statistic = new ModeStatistic();
 
     @Test
     public void testCalculate() {
@@ -26,13 +26,13 @@ public class ModeCalculatorServiceTest {
         draw2.setNumbers("9 8 7 6 5 4");
 
         // when
-        Map<Integer, Long> calculatedMode = statistic.calculate(Arrays.asList(draw1, draw2));
+        Map<Integer, Long> stats = statistic.calculateStats(Arrays.asList(draw1, draw2));
 
         // then
-        assertThat(calculatedMode.size(), is(9));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(1, Long.valueOf(2)));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(4, Long.valueOf(2)));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(7, Long.valueOf(1)));
-        assertThat(calculatedMode, IsMapContaining.hasEntry(9, Long.valueOf(1)));
+        assertThat(stats.size(), is(9));
+        assertThat(stats, IsMapContaining.hasEntry(1, Long.valueOf(2)));
+        assertThat(stats, IsMapContaining.hasEntry(4, Long.valueOf(2)));
+        assertThat(stats, IsMapContaining.hasEntry(7, Long.valueOf(1)));
+        assertThat(stats, IsMapContaining.hasEntry(9, Long.valueOf(1)));
     }
 }

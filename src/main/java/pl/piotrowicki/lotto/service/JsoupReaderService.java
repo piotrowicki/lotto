@@ -11,7 +11,7 @@ import org.jsoup.Jsoup;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class JsoupReaderService implements Serializable {
+public class JsoupReaderService {
 
     private static final Logger LOG = Logger.getLogger(JsoupReaderService.class);
 

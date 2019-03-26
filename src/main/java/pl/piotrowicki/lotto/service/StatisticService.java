@@ -1,9 +1,7 @@
 package pl.piotrowicki.lotto.service;
 
-import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -17,7 +15,7 @@ import pl.piotrowicki.lotto.enums.StatisticOption;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class StatisticService implements Serializable {
+public class StatisticService {
 
     @Inject
     private DrawService drawService;
@@ -30,9 +28,8 @@ public class StatisticService implements Serializable {
     }
     
     public BarChartModel process(StatisticOption option) {
-        AbstractStatisticService statistic = StatisticFactory.getStatisticFromOption(option);
-        Map<Integer, Long> result = statistic.calculate(draws);
-        return statistic.configure(result);
+        Statistic statistic = StatisticFactory.getStatisticFromOption(option);
+        return statistic.doCalculate(draws);
     }
 
     public String getLatestResult() {
