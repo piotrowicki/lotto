@@ -10,12 +10,12 @@
     <ui:define name="content">
         <div class="ui-fluid">
             <div class="ui-g-12 ui-md-3 ui-lg-4"/>
-            
+
             <div class="ui-g-12 ui-md-6 ui-lg-4">
                 <h1>Login to get access:</h1> 
                 <h:form id="loginForm">
                     <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-12" styleClass="ui-panelgrid-blank ui-fluid" layout="grid">
-                        <p:outputLabel for="username" value="Username: " />
+                        <p:outputLabel for="username" value="#{msg['login.form.username']}: " />
                         <p:inputText id="username" binding="#{username}" class="username" required="true"/>
 
                         <p:outputLabel for="password" value="Password: " />
@@ -28,7 +28,7 @@
                 </h:form>
                 <p:messages id="messages" showDetail="true" closable="true" />
             </div>
-            
+
             <div class="ui-g-12 ui-md-3 ui-lg-4"/>
         </div>
     </ui:define>

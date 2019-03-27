@@ -6,6 +6,10 @@
 
     <!-- RESOURCES -->
     <application>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>pl</supported-locale>
+        </locale-config>
         <resource-bundle>
             <base-name>
                 pl.piotrowicki.lotto.resource.messages
@@ -20,10 +24,10 @@
     <!-- NAVIGATION RULES --> 
     <navigation-rule>
         <from-view-id>*</from-view-id>
+    
         <navigation-case>
             <from-outcome>/menu/statistics</from-outcome>
             <to-view-id>/statistics.xhtml</to-view-id>
-            <redirect />
         </navigation-case>
         
         <navigation-case>

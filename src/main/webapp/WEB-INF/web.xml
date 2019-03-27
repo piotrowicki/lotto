@@ -41,7 +41,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-           
+
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
