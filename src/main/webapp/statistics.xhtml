@@ -8,10 +8,10 @@
     <ui:define name="title">Statistics</ui:define>
     <ui:define name="content">
         <h:form>
-            <p:growl id="msgs" showDetail="true" autoUpdate="true" />
+            <p:growl id="msgs" showDetail="true" />
             <div class="ui-g">
                 <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="option" value="Option:" />
+                    <p:outputLabel for="option" value="#{msg['statistics.mode']}" />
                     <p:selectOneMenu valueChangeListener="#{barChartBean.handleChange}">
                         <f:selectItems id="option"
                                        value="#{statisticOptionBean.statisticOptions}"
@@ -28,6 +28,6 @@
                 <p:chart id="chart" type="bar" model="#{barChartBean.barChartModel}" responsive="true" />
             </div>
         </div>
-        <p:panel class="ui-g-12 ui-md-6 ui-lg-3">Latest: #{barChartBean.latestResult}</p:panel>
+        <p:panel class="ui-g-12 ui-md-6 ui-lg-3">#{msg['statistics.latestResult']}: #{barChartBean.latestResult}</p:panel>
     </ui:define>
 </ui:composition>

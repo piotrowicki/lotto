@@ -9,13 +9,13 @@
     <ui:define name="title">Draws</ui:define>
     <ui:define name="content">
         <h:form id="lucky">
-            <p:growl id="msgs" showDetail="true" autoUpdate="true" />
+            <p:growl id="msgs" showDetail="true" />
             <h:panelGrid columns="3">
-                <p:outputLabel for="numbers" value="Insert your lucky numbers: " />
+                <p:outputLabel for="numbers" value="#{msg['check.inputNumbers']}: " />
                 <p:inputMask id="numbers" value="#{luckyNumbersBean.luckyNumbers}" mask="99-99-99-99-99-99" converter="luckyNumbersConverter">
                     <f:validator for="numbers" validatorId="luckyNumbersValidator" />
                 </p:inputMask>
-                <p:commandButton action="#{luckyNumbersBean.calculateStatistic}" value="Check" update="luckyTables" />
+                <p:commandButton action="#{luckyNumbersBean.calculateStatistic}" value="#{msg['check.submit']}" update="luckyTables" />
             </h:panelGrid>
         </h:form>
 
@@ -24,12 +24,12 @@
         <p:panel id="luckyTables">
             <p:dataTable id="threeTable" var="res" value="#{luckyNumbersBean.result.threeHit}">
                 <f:facet name="header">
-                    Lucky 3:
+                    <h:outputText value="#{msg['check.three']}"/>
                 </f:facet>
-                <p:column headerText="Draw:">
+                <p:column headerText="#{msg['table.numbers']}">
                     <h:outputText value="#{res.drawAsString}" />
                 </p:column>
-                <p:column headerText="Date:">
+                <p:column headerText="#{msg['table.drawDate']}:">
                     <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
                 </p:column>
             </p:dataTable>
@@ -38,12 +38,12 @@
             
             <p:dataTable id="fourTable" var="res" value="#{luckyNumbersBean.result.fourHit}">
                 <f:facet name="header">
-                    Lucky 4:
+                    <h:outputText value="#{msg['check.four']}"/>
                 </f:facet>
-                <p:column headerText="Draw:">
+                <p:column headerText="#{msg['table.numbers']}">
                     <h:outputText value="#{res.drawAsString}" />
                 </p:column>
-                <p:column headerText="Date:">
+                <p:column headerText="#{msg['table.drawDate']}">
                     <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
                 </p:column>
             </p:dataTable>
@@ -52,12 +52,12 @@
             
             <p:dataTable id="fiveTable" var="res" value="#{luckyNumbersBean.result.fiveHit}">
                 <f:facet name="header">
-                    Lucky 5:
+                    <h:outputText value="#{msg['check.five']}"/>
                 </f:facet>
-                <p:column headerText="Draw:">
+                <p:column headerText="#{msg['table.numbers']}">
                     <h:outputText value="#{res.drawAsString}" />
                 </p:column>
-                <p:column headerText="Date:">
+                <p:column headerText="#{msg['table.drawDate']}">
                     <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
                 </p:column>
             </p:dataTable>
@@ -66,12 +66,12 @@
             
             <p:dataTable id="sixTable" var="res" value="#{luckyNumbersBean.result.sixHit}">
                 <f:facet name="header">
-                    Lucky 6:
+                    <h:outputText value="#{msg['check.six']}"/>
                 </f:facet>
-                <p:column headerText="Draw:">
+                <p:column headerText="#{msg['table.numbers']}">
                     <h:outputText value="#{res.drawAsString}" />
                 </p:column>
-                <p:column headerText="Date:">
+                <p:column headerText="#{msg['table.drawDate']}">
                     <h:outputText value="#{res.drawDate}" converter="localDateConverter" />
                 </p:column>
             </p:dataTable>
