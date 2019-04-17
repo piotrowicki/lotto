@@ -3,8 +3,11 @@ package pl.piotrowicki.lotto.entity;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
+import pl.piotrowicki.lotto.enums.UserRole;
 
 /**
  *
@@ -21,7 +24,8 @@ public class UserRolesEntity extends BaseEntity {
     private String username;
 
     @Column(name = "ROLE_NAME")
-    private String roleName;
+    @Enumerated(EnumType.STRING)
+    private UserRole roleName;
 
     public String getUsername() {
         return username;
@@ -31,11 +35,11 @@ public class UserRolesEntity extends BaseEntity {
         this.username = username;
     }
 
-    public String getRoleName() {
+    public UserRole getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(UserRole roleName) {
         this.roleName = roleName;
     }
 

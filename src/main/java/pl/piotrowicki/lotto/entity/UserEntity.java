@@ -3,11 +3,17 @@ package pl.piotrowicki.lotto.entity;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.annotations.NaturalId;
+import pl.piotrowicki.lotto.dto.user.UserDto;
 
 /**
  *
@@ -15,6 +21,35 @@ import org.hibernate.annotations.NaturalId;
  */
 @Entity
 @Table(name = "USERS")
+@SqlResultSetMapping(
+        name = "UserDTOMapping",
+        classes = @ConstructorResult(
+                targetClass = UserDto.class,
+                columns = {
+                    @ColumnResult(name = "id", type = Long.class),
+                    @ColumnResult(name = "username", type = String.class),
+                    @ColumnResult(name = "email", type = String.class),
+                    @ColumnResult(name = "city", type = String.class),
+                    @ColumnResult(name = "lastLogon", type = LocalDateTime.class),
+                    @ColumnResult(name = "role", type = String.class)
+                }
+        )
+)
+@NamedNativeQueries({
+    @NamedNativeQuery(
+            name = "UserDTO.findAll",
+            query = "SELECT "
+                    + " u.id as id," 
+                    + " u.username as username," 
+                    + " u.email as email," 
+                    + " u.city as city," 
+                    + " u.last_logon as lastLogon," 
+                    + " ur.role_name as role" 
+                    + " FROM USERS u"
+                    + " JOIN USER_ROLES ur ON u.username = ur.username",
+            resultSetMapping = "UserDTOMapping"
+    )
+})
 public class UserEntity extends BaseEntity {
 
     @Transient

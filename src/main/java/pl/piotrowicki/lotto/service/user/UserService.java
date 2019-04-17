@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.service.user;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import pl.piotrowicki.lotto.dao.user.UserDao;
@@ -26,5 +27,9 @@ public class UserService {
 
     public void save(UserEntity user) {
         userDao.save(user);
+    }
+
+    public List<UserDto> findAll() {
+        return userDao.findAll();
     }
 }

@@ -23,8 +23,13 @@
                             <p:menuitem value="#{msg['menu.check']}" outcome="/menu/check" icon="fa fa-star">
                                 <f:param name="i" value="2" />
                             </p:menuitem>
-                            <p:menuitem rendered="#{not empty request.remoteUser}" action="#{loginBean.logout}" value="#{msg['menu.logout']} (#{loggedUserBean.user.username})" icon="fa fa-star">
+                            
+                            <p:menuitem value="#{msg['menu.users']}" outcome="/menu/users" icon="fa fa-user">
                                 <f:param name="i" value="3" />
+                            </p:menuitem>
+                            
+                            <p:menuitem rendered="#{not empty request.remoteUser}" action="#{loginBean.logout}" value="#{msg['menu.logout']} (#{loggedUserBean.user.username})" icon="fa fa-star">
+                                <f:param name="i" value="4" />
                             </p:menuitem>
                         </p:tabMenu>
                     </h:form>

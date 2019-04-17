@@ -18,7 +18,7 @@
                          paginator="true"
                          style="margin-bottom:20px">
                 <f:facet name="header">
-                    <h:outputText value="#{msg['table.title']}" />
+                    <h:outputText value="#{msg['draws.table.title']}" />
                 </f:facet>
 
                 <p:ajax event="rowEdit" listener="#{drawTableBean.onRowEdit}" update=":form:msgs" />
@@ -28,14 +28,14 @@
                     <h:outputText value="#{fn:length(drawTableBean.draws)-rowIndex}." />
                 </p:column>
 
-                <p:column headerText="#{msg['table.numbers']}">
+                <p:column headerText="#{msg['draws.table.numbers']}">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{draw.numbers}" /></f:facet>
                         <f:facet name="input"><p:inputText value="#{draw.numbers}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="#{msg['table.drawDate']}">
+                <p:column headerText="#{msg['draws.table.drawDate']}">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value="#{draw.drawDate}" converter="localDateConverter" />
@@ -44,11 +44,11 @@
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="#{msg['table.createDate']}">             
+                <p:column headerText="#{msg['draws.table.createDate']}">             
                     <h:outputText value="#{draw.createDate}" converter="localDateTimeConverter" />
                 </p:column>
 
-                <p:column headerText="#{msg['table.updateDate']}">
+                <p:column headerText="#{msg['draws.table.updateDate']}">
                     <h:outputText value="#{draw.updateDate}" converter="localDateTimeConverter" />
                 </p:column>
 
@@ -57,7 +57,7 @@
                 </p:column>
 
                 <f:facet name="footer">
-                    <h:outputFormat value="#{msg['table.summary']}">
+                    <h:outputFormat value="#{msg['draws.table.summary']}">
                         <f:param value="#{fn:length(drawTableBean.draws)}"/>
                     </h:outputFormat>
                 </f:facet>
