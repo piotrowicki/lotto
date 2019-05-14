@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.job;
 
-import java.io.Serializable;
 import java.util.Optional;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
@@ -17,8 +16,8 @@ import pl.piotrowicki.lotto.util.DrawConverterUtil;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Singleton
-public class ReadDrawJob implements Serializable {
-
+public class ReadDrawJob  {
+    
     private static final Logger LOGGER = Logger.getLogger(ReadDrawJob.class);
 
     @Inject

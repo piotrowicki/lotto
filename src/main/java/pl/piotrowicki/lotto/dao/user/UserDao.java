@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.dao.user;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -43,5 +44,9 @@ public class UserDao extends BaseDao<UserEntity, Long> {
                 .setResultTransformer(Transformers.aliasToBean(UserDto.class))
                 .getSingleResult();
         return user;
+    }
+
+    public List<UserDto> findAll() {
+        return getEm().createNamedQuery("UserDTO.findAll").getResultList();
     }
 }

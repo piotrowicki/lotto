@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -8,7 +9,9 @@ import javax.persistence.Embeddable;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Embeddable
-public class Address {
+public class Address implements Serializable {
+
+    private static final long serialVersionUID = 7375782521706939386L;
     
     @Column(name = "STREET")
     private String street;

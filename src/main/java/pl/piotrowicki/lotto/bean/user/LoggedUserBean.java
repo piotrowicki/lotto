@@ -14,7 +14,7 @@ import pl.piotrowicki.lotto.dto.user.UserDto;
 public class LoggedUserBean implements Serializable {
 
     private static final long serialVersionUID = 3448553453688248850L;
-    
+
     private UserDto user;
 
     public UserDto getUser() {

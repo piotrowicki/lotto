@@ -6,6 +6,10 @@
 
     <!-- RESOURCES -->
     <application>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>pl</supported-locale>
+        </locale-config>
         <resource-bundle>
             <base-name>
                 pl.piotrowicki.lotto.resource.messages
@@ -20,20 +24,33 @@
     <!-- NAVIGATION RULES --> 
     <navigation-rule>
         <from-view-id>*</from-view-id>
+    
         <navigation-case>
             <from-outcome>/menu/statistics</from-outcome>
-            <to-view-id>/statistics.xhtml</to-view-id>
-            <redirect />
+            <to-view-id>statistics.xhtml</to-view-id>
         </navigation-case>
         
         <navigation-case>
             <from-outcome>/menu/draws</from-outcome>
-            <to-view-id>/draws.xhtml</to-view-id>
+            <to-view-id>draws.xhtml</to-view-id>
         </navigation-case>
         
         <navigation-case>
             <from-outcome>/menu/check</from-outcome>
-            <to-view-id>/check.xhtml</to-view-id>
+            <to-view-id>check.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>/menu/users</from-outcome>
+            <to-view-id>users.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>users.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>changePassword</from-outcome>
+            <to-view-id>changePassword.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
    

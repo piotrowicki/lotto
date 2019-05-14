@@ -19,7 +19,7 @@ public class LoginBean {
     public String login(String username, String password) {
         return loginService.login(username, password);
     }
-    
+
     public String logout() {
         return loginService.logout();
     }

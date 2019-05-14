@@ -1,7 +1,6 @@
 package pl.piotrowicki.lotto.service;
 
 import java.io.IOException;
-import java.io.Serializable;
 import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
