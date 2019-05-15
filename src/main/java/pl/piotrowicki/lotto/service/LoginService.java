@@ -37,7 +37,7 @@ public class LoginService {
             request.login(username, password);
             
             UserEntity user = userService.findUserByUsername(username);
-            user.setLastLogon(LocalDateTime.now());
+            user.setLastLogin(LocalDateTime.now());
             userService.save(user);
             
             UserDto userDto = mapUserToDto().apply(user);
@@ -62,7 +62,7 @@ public class LoginService {
             dto.setUsername(t.getUsername());
             dto.setEmail(t.getEmail());
             dto.setCity(t.getAddress().getCity());
-            dto.setLastLogon(t.getLastLogon());
+            dto.setLastLogin(t.getLastLogin());
             return dto;
         };
     }
