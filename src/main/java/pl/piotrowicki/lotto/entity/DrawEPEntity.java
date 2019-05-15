@@ -12,33 +12,33 @@ import javax.persistence.Table;
 
 /**
  *
- * @author piotrowicki <piotrowicki at gmail.com>
+ * @author nowik
  */
 @Entity
-@Table(name = "DRAWS")
+@Table(name = "DRAWS_EP")
 @NamedQueries({
     @NamedQuery(
-            name = "DrawEntity.findAll",
-            query = "SELECT d FROM DrawEntity d ORDER BY d.drawDate desc"),
+            name = "DrawEPEntity.findAll",
+            query = "SELECT d FROM DrawEPEntity d ORDER BY d.drawDate desc"),
     @NamedQuery(
-            name = "DrawEntity.findByDrawAndDrawDate",
-            query = "SELECT d FROM DrawEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+            name = "DrawEPEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawEPEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name = "DrawDTO.findAll",
+            name = "DrawDTO.findAllEP",
             query = "SELECT "
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM Draws d ORDER BY d.draw_date desc",
+                    + " FROM DRAWS_EP d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })
-public class DrawEntity extends BaseEntity {
-
-    private static final long serialVersionUID = 3850344349208488641L;
-
+public class DrawEPEntity extends BaseEntity {
+    
+    private static final long serialVersionUID = 7611069553792619336L;
+    
     @Column(name = "NUMBERS")
     private String numbers;
 
@@ -60,7 +60,7 @@ public class DrawEntity extends BaseEntity {
     public void setDrawDate(LocalDate drawDate) {
         this.drawDate = drawDate;
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -69,7 +69,7 @@ public class DrawEntity extends BaseEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DrawEntity that = (DrawEntity) o;
+        DrawEPEntity that = (DrawEPEntity) o;
         return Objects.equals(getId(), that.getId());
     }
 
@@ -77,9 +77,5 @@ public class DrawEntity extends BaseEntity {
     public int hashCode() {
         return 37;
     }
-
-    @Override
-    public String toString() {
-        return "Draw{" + "id=" + super.getId() + ", numbers=" + numbers + ", drawDate=" + drawDate + '}';
-    }
+    
 }
