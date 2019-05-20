@@ -1,8 +1,6 @@
 package pl.piotrowicki.lotto.entity;
 
-import java.time.LocalDate;
 import java.util.Objects;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
@@ -35,32 +33,10 @@ import javax.persistence.Table;
             resultSetMapping = "DrawDTOMapping"
     )
 })
-public class DrawEPEntity extends BaseEntity {
+public class DrawEPEntity extends BaseDrawEntity {
     
     private static final long serialVersionUID = 7611069553792619336L;
-    
-    @Column(name = "NUMBERS")
-    private String numbers;
-
-    @Column(name = "DRAW_DATE", columnDefinition = "DATE")
-    private LocalDate drawDate;
-
-    public String getNumbers() {
-        return numbers;
-    }
-
-    public void setNumbers(String numbers) {
-        this.numbers = numbers;
-    }
-
-    public LocalDate getDrawDate() {
-        return drawDate;
-    }
-
-    public void setDrawDate(LocalDate drawDate) {
-        this.drawDate = drawDate;
-    }
-    
+      
     @Override
     public boolean equals(Object o) {
         if (this == o) {

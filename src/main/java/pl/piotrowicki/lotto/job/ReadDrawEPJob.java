@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.job;
 
-import java.time.LocalDate;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
@@ -13,8 +12,8 @@ import pl.piotrowicki.lotto.service.JsoupReaderService;
  * @author nowik
  */
 @Singleton
-public class ReadDrawEPJob {
-    
+public class ReadDrawEPJob extends BaseDrawJob<DrawEPEntity> {
+
     private static final String EKSTRA_PENSJA = "http://app.lotto.pl/wyniki/?type=ep";
 
     @Inject
@@ -24,26 +23,14 @@ public class ReadDrawEPJob {
     private DrawEPService service;
 
     @Schedule(hour = "*/7", persistent = false)
-    public void run() {
+    public void run() throws InstantiationException, IllegalAccessException {
         String input = jsoupReaderService.read(EKSTRA_PENSJA);
 
-        DrawEPEntity entity = convertToEntity(input);
-        
-         DrawEPEntity result = service.findByDrawAndDrawDate(entity.getNumbers(), entity.getDrawDate());
+        DrawEPEntity entity = convertToEntity(DrawEPEntity.class, input);
+        DrawEPEntity result = service.findByDrawAndDrawDate(entity.getNumbers(), entity.getDrawDate());
 
         if (result != null) {
             service.save(entity);
-        }    
-    }
-    
-    public DrawEPEntity convertToEntity(String input) {
-        String[] splittedDraw = input.split(" ");
-
-        int firstSpace = input.indexOf(" ") + 1;
-
-        DrawEPEntity entity = new DrawEPEntity();
-        entity.setDrawDate(LocalDate.parse(splittedDraw[0]));
-        entity.setNumbers(input.substring(firstSpace));
-        return entity;
+        }
     }
 }

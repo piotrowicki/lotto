@@ -33,11 +33,11 @@ public class ReadDrawJobTest {
     
     @InjectMocks
     private ReadDrawJob drawJob;
-
+    
     @Test
-    public void testRunWithSave() throws ParseException {
+    public void testRunWithSave() throws ParseException, InstantiationException, IllegalAccessException {
         // given
-        DrawEntity draw = drawJob.convertToEntity(DRAW);
+        DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
         given(jsoupReader.read(anyString())).willReturn(DRAW);
         given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.empty());
         
@@ -49,9 +49,9 @@ public class ReadDrawJobTest {
     }
        
      @Test
-    public void testRunWithoutSave() throws ParseException {
+    public void testRunWithoutSave() throws ParseException, InstantiationException, IllegalAccessException {
         // given
-        DrawEntity draw = drawJob.convertToEntity(DRAW);
+        DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
         given(jsoupReader.read(anyString())).willReturn(DRAW);
         given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.of(new DrawEntity()));
         
@@ -63,13 +63,13 @@ public class ReadDrawJobTest {
     }
     
        @Test
-    public void testConvertToEntity() {
+    public void testConvertToEntity() throws InstantiationException, IllegalAccessException {
         // given
         LocalDate date = LocalDate.parse("2017-12-16");
         String input = "2017-12-16 13 27 41 1 33 31";
 
         // when
-        DrawEntity entity = drawJob.convertToEntity(input);
+        DrawEntity entity = drawJob.convertToEntity(DrawEntity.class, input);
 
         // then
         assertThat(entity.getDrawDate(), is(equalTo(date)));

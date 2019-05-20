@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.job;
 
-import java.time.LocalDate;
 import java.util.Optional;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
@@ -16,7 +15,7 @@ import pl.piotrowicki.lotto.service.JsoupReaderService;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Singleton
-public class ReadDrawJob  {
+public class ReadDrawJob extends BaseDrawJob<DrawEntity>  {
     
     private static final Logger LOGGER = Logger.getLogger(ReadDrawJob.class);
     
@@ -33,23 +32,17 @@ public class ReadDrawJob  {
     public void run() {
         String input = jsoupReaderService.read(LOTTO_URL);
 
-        DrawEntity entity = convertToEntity(input);
+        DrawEntity entity = null;
+        try {
+            entity = convertToEntity(DrawEntity.class, input);
+        } catch (InstantiationException | IllegalAccessException ex) {
+            LOGGER.error("Unable to convert String into Entity: " + ex);
+        } 
 
         Optional<DrawEntity> result = drawService.findByDrawAndDrawDate(entity.getNumbers(), entity.getDrawDate());
 
         if (!result.isPresent()) {
             drawService.save(entity);
         }
-    }
-    
-    public DrawEntity convertToEntity(String input) {
-        String[] splittedDraw = input.split(" ");
-
-        int firstSpace = input.indexOf(" ") + 1;
-
-        DrawEntity entity = new DrawEntity();
-        entity.setDrawDate(LocalDate.parse(splittedDraw[0]));
-        entity.setNumbers(input.substring(firstSpace));
-        return entity;
-    }
+    } 
 }

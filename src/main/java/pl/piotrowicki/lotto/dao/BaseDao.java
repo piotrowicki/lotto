@@ -13,12 +13,12 @@ public class BaseDao<T extends BaseEntity, Long> {
     @PersistenceContext
     private EntityManager em;
     
-    public T save(T entity) {
+    public <T extends BaseEntity> T save(T entity) {
         em.persist(entity);
         return entity;
     }
     
-    public T merge(T entity) {
+    public <T extends BaseEntity> T merge(T entity) {
         return em.merge(entity);
     }
     
@@ -26,7 +26,7 @@ public class BaseDao<T extends BaseEntity, Long> {
         em.remove(entity);
     }
     
-    public T findById(Class<T> clazz, Long id) {
+    public <T extends BaseEntity> T findById(Class<T> clazz, Long id) {
         return em.find(clazz, id);
     }
 
