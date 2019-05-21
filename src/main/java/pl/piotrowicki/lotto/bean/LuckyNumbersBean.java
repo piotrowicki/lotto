@@ -28,7 +28,7 @@ public class LuckyNumbersBean {
     private DrawDao drawDao;
 
     public void calculateStatistic() {
-        List<DrawEntity> entites = drawDao.findAll();
+        List<DrawEntity> entites = drawDao.findAll(DrawEntity.class);
 
         List<LuckyNumberDto> luckyNumbersDto = DrawConverterUtil.convertToLuckyNumberDto(entites);
         Set<Set<Integer>> userPowerSet = Sets.powerSet(Sets.newHashSet(luckyNumbers)).stream().filter(p -> p.size() > 2).collect(Collectors.toSet());
