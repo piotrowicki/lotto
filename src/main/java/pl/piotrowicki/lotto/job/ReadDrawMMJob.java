@@ -38,7 +38,7 @@ public class ReadDrawMMJob extends BaseDrawJob<DrawMMEntity> {
         }
         result = service.findByDrawAndDrawDate(DrawMMEntity.class, entity.getNumbers(), entity.getDrawDate());
 
-        if (result != null) {
+        if (result == null) {
             service.save(entity);
         }
 
@@ -50,7 +50,7 @@ public class ReadDrawMMJob extends BaseDrawJob<DrawMMEntity> {
         }
         result = service.findByDrawAndDrawDate(DrawMMEntity.class, entity.getNumbers(), entity.getDrawDate());
 
-        if (result != null) {
+        if (result == null) {
             service.save(entity);
         }
     }

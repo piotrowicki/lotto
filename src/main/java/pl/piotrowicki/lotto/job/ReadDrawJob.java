@@ -40,7 +40,7 @@ public class ReadDrawJob extends BaseDrawJob<DrawEntity>  {
 
         DrawEntity result = drawService.findByDrawAndDrawDate(DrawEntity.class, entity.getNumbers(), entity.getDrawDate());
 
-        if (result != null) {
+        if (result == null) {
             drawService.save(entity);
         }
     } 

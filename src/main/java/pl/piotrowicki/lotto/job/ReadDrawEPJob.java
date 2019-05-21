@@ -37,7 +37,7 @@ public class ReadDrawEPJob extends BaseDrawJob<DrawEPEntity> {
         }
         DrawEPEntity result = service.findByDrawAndDrawDate(DrawEPEntity.class, entity.getNumbers(), entity.getDrawDate());
 
-        if (result != null) {
+        if (result == null) {
             service.save(entity);
         }
     }
