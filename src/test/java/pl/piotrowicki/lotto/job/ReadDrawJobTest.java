@@ -39,7 +39,7 @@ public class ReadDrawJobTest {
         DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
         given(jsoupReader.read(anyString())).willReturn(DRAW);
        
-        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(new DrawEntity());
+        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(null);
         
         // when
         drawJob.run();
@@ -53,7 +53,7 @@ public class ReadDrawJobTest {
         // given
         DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
         given(jsoupReader.read(anyString())).willReturn(DRAW);
-        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(null);
+        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(new DrawEntity());
         
         // when
         drawJob.run();
