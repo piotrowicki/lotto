@@ -12,7 +12,6 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import org.hibernate.annotations.NaturalId;
 import pl.piotrowicki.lotto.dto.user.UserDto;
 
 /**
@@ -55,7 +54,6 @@ public class UserEntity extends BaseEntity {
     @Transient
     private static final long serialVersionUID = -5170288537131044056L;
 
-    @NaturalId
     @Column(name = "USERNAME", nullable = false)
     private String username;
 

@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Entity
-@Table(name = "DRAWS")
+@Table(name = "DRAW_DL")
 @NamedQueries({
     @NamedQuery(
             name = "DrawEntity.findAll",
@@ -29,7 +29,7 @@ import javax.persistence.Table;
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM Draws d ORDER BY d.draw_date desc",
+                    + " FROM DRAW_DL d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })

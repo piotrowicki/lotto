@@ -13,27 +13,27 @@ import javax.persistence.Table;
  * @author nowik
  */
 @Entity
-@Table(name = "DRAW_EP")
+@Table(name = "DRAW_MM")
 @NamedQueries({
     @NamedQuery(
-            name = "DrawEPEntity.findAll",
-            query = "SELECT d FROM DrawEPEntity d ORDER BY d.drawDate desc"),
+            name = "DrawMMEntity.findAll",
+            query = "SELECT d FROM DrawMMEntity d ORDER BY d.drawDate desc"),
     @NamedQuery(
-            name = "DrawEPEntity.findByDrawAndDrawDate",
-            query = "SELECT d FROM DrawEPEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+            name = "DrawMMEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawMMEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name = "DrawDTO.findAllEP",
+            name = "DrawDTO.findAllMM",
             query = "SELECT "
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM DRAW_EP d ORDER BY d.draw_date desc",
+                    + " FROM DRAW_MM d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })
-public class DrawEPEntity extends BaseDrawEntity {
+public class DrawMMEntity extends BaseDrawEntity {
     
     private static final long serialVersionUID = 7611069553792619336L;
       
@@ -45,7 +45,7 @@ public class DrawEPEntity extends BaseDrawEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DrawEPEntity that = (DrawEPEntity) o;
+        DrawMMEntity that = (DrawMMEntity) o;
         return Objects.equals(getId(), that.getId());
     }
 
@@ -53,5 +53,4 @@ public class DrawEPEntity extends BaseDrawEntity {
     public int hashCode() {
         return 37;
     }
-    
 }
