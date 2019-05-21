@@ -18,7 +18,7 @@ public class ReadDrawKAJob extends BaseDrawJob<DrawKAEntity> {
 
     private static final Logger LOGGER = Logger.getLogger(ReadDrawKAJob.class);
 
-    private static final String LOTTO_URL = "http://app.lotto.pl/wyniki/?type=ka";
+    private static final String KASKADA = "http://app.lotto.pl/wyniki/?type=ka";
 
     @Inject
     private JsoupReaderService jsoupReaderService;
@@ -29,7 +29,7 @@ public class ReadDrawKAJob extends BaseDrawJob<DrawKAEntity> {
     @Log
     @Schedule(hour = "*/7", persistent = false)
     public void run() {
-        String input = jsoupReaderService.read(LOTTO_URL);
+        String input = jsoupReaderService.read(KASKADA);
 
         DrawKAEntity entity = null;
         try {
