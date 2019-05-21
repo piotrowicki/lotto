@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.job;
 
-import java.util.Optional;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
@@ -39,9 +38,9 @@ public class ReadDrawJob extends BaseDrawJob<DrawEntity>  {
             LOGGER.error("Unable to convert String into Entity: " + ex);
         } 
 
-        Optional<DrawEntity> result = drawService.findByDrawAndDrawDate(entity.getNumbers(), entity.getDrawDate());
+        DrawEntity result = drawService.findByDrawAndDrawDate(DrawEntity.class, entity.getNumbers(), entity.getDrawDate());
 
-        if (!result.isPresent()) {
+        if (result != null) {
             drawService.save(entity);
         }
     } 

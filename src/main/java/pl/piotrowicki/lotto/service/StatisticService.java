@@ -24,7 +24,7 @@ public class StatisticService {
     
     @PostConstruct
     private void init() {
-        draws = drawService.findAll();
+        draws = drawService.findAll(DrawEntity.class);
     }
     
     public BarChartModel process(StatisticOption option) {

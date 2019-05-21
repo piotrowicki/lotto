@@ -2,7 +2,6 @@ package pl.piotrowicki.lotto.job;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.Optional;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -39,7 +38,8 @@ public class ReadDrawJobTest {
         // given
         DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
         given(jsoupReader.read(anyString())).willReturn(DRAW);
-        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.empty());
+       
+        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(new DrawEntity());
         
         // when
         drawJob.run();
@@ -53,7 +53,7 @@ public class ReadDrawJobTest {
         // given
         DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
         given(jsoupReader.read(anyString())).willReturn(DRAW);
-        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.of(new DrawEntity()));
+        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(null);
         
         // when
         drawJob.run();
