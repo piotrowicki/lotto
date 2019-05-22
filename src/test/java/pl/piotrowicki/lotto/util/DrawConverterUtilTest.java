@@ -1,10 +1,8 @@
 package pl.piotrowicki.lotto.util;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -19,20 +17,6 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class DrawConverterUtilTest {
-
-    @Test
-    public void testConvertToEntity() {
-        // given
-        LocalDate date = LocalDate.parse("2017-12-16");
-        String input = "2017-12-16 13 27 41 1 33 31";
-
-        // when
-        DrawEntity entity = DrawConverterUtil.convertToEntity(input);
-
-        // then
-        assertThat(entity.getDrawDate(), is(equalTo(date)));
-        assertThat(entity.getNumbers(), is(equalTo("13 27 41 1 33 31")));
-    }
 
     @Test
     public void testConvertToIntegers() {

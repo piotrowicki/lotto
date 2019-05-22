@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
-import org.hibernate.annotations.NaturalId;
 import pl.piotrowicki.lotto.enums.UserRole;
 
 /**
@@ -19,7 +18,6 @@ public class UserRolesEntity extends BaseEntity {
 
     private static final long serialVersionUID = -4783666319759511245L;
 
-    @NaturalId
     @Column(name = "USERNAME", nullable = false)
     private String username;
 

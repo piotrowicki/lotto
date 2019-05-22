@@ -17,17 +17,17 @@ public class UserDto implements Serializable {
     private String username;
     private String email;
     private String city;
-    private LocalDateTime lastLogon;
+    private LocalDateTime lastLogin;
     private UserRole role;
     
     public UserDto() {}
 
-    public UserDto(Long id, String username, String email, String city, LocalDateTime lastLogon, String role) {
+    public UserDto(Long id, String username, String email, String city, LocalDateTime lastLogin, String role) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.city = city;
-        this.lastLogon = lastLogon;
+        this.lastLogin = lastLogin;
         this.role = UserRole.valueOf(role);
     }
     
@@ -63,12 +63,12 @@ public class UserDto implements Serializable {
         this.city = city;
     }
     
-    public LocalDateTime getLastLogon() {
-        return lastLogon;
+    public LocalDateTime getLastLogin() {
+        return lastLogin;
     }
 
-    public void setLastLogon(LocalDateTime lastLogon) {
-        this.lastLogon = lastLogon;
+    public void setLastLogin(LocalDateTime lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     public UserRole getRole() {
@@ -90,11 +90,11 @@ public class UserDto implements Serializable {
         UserDto userDto = (UserDto) o;
         return Objects.equals(this.username, userDto.username)
                 && Objects.equals(this.email, userDto.email)
-                && Objects.equals(this.lastLogon, userDto.lastLogon);
+                && Objects.equals(this.lastLogin, userDto.lastLogin);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.username, this.email, this.lastLogon);
+        return Objects.hash(this.username, this.email, this.lastLogin);
     }
 }

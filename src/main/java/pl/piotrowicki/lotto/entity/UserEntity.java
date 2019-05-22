@@ -12,7 +12,6 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import org.hibernate.annotations.NaturalId;
 import pl.piotrowicki.lotto.dto.user.UserDto;
 
 /**
@@ -30,7 +29,7 @@ import pl.piotrowicki.lotto.dto.user.UserDto;
                     @ColumnResult(name = "username", type = String.class),
                     @ColumnResult(name = "email", type = String.class),
                     @ColumnResult(name = "city", type = String.class),
-                    @ColumnResult(name = "lastLogon", type = LocalDateTime.class),
+                    @ColumnResult(name = "lastLogin", type = LocalDateTime.class),
                     @ColumnResult(name = "role", type = String.class)
                 }
         )
@@ -43,7 +42,7 @@ import pl.piotrowicki.lotto.dto.user.UserDto;
                     + " u.username as username," 
                     + " u.email as email," 
                     + " u.city as city," 
-                    + " u.last_logon as lastLogon," 
+                    + " u.last_login as lastLogin," 
                     + " ur.role_name as role" 
                     + " FROM USERS u"
                     + " JOIN USER_ROLES ur ON u.username = ur.username",
@@ -55,7 +54,6 @@ public class UserEntity extends BaseEntity {
     @Transient
     private static final long serialVersionUID = -5170288537131044056L;
 
-    @NaturalId
     @Column(name = "USERNAME", nullable = false)
     private String username;
 
@@ -68,8 +66,8 @@ public class UserEntity extends BaseEntity {
     @Embedded
     private Address address;
 
-    @Column(name = "LAST_LOGON")
-    private LocalDateTime lastLogon;
+    @Column(name = "LAST_LOGIN")
+    private LocalDateTime lastLogin;
 
     public String getUsername() {
         return username;
@@ -103,12 +101,12 @@ public class UserEntity extends BaseEntity {
         this.address = address;
     }
 
-    public LocalDateTime getLastLogon() {
-        return lastLogon;
+    public LocalDateTime getLastLogin() {
+        return lastLogin;
     }
 
-    public void setLastLogon(LocalDateTime lastLogon) {
-        this.lastLogon = lastLogon;
+    public void setLastLogin(LocalDateTime lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     @Override

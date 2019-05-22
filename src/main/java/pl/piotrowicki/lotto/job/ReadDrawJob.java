@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.job;
 
-import java.util.Optional;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
@@ -9,17 +8,18 @@ import pl.piotrowicki.lotto.bean.annotation.Log;
 import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 import pl.piotrowicki.lotto.service.JsoupReaderService;
-import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Singleton
-public class ReadDrawJob  {
+public class ReadDrawJob extends BaseDrawJob<DrawEntity>  {
     
     private static final Logger LOGGER = Logger.getLogger(ReadDrawJob.class);
-
+    
+    private static final String LOTTO_URL = "http://app.lotto.pl/wyniki/?type=dl";
+   
     @Inject
     private JsoupReaderService jsoupReaderService;
 
@@ -29,14 +29,19 @@ public class ReadDrawJob  {
     @Log
     @Schedule(hour = "*/7", persistent = false)
     public void run() {
-        String input = jsoupReaderService.read();
+        String input = jsoupReaderService.read(LOTTO_URL);
 
-        DrawEntity entity = DrawConverterUtil.convertToEntity(input);
+        DrawEntity entity = null;
+        try {
+            entity = convertToEntity(DrawEntity.class, input);
+        } catch (InstantiationException | IllegalAccessException ex) {
+            LOGGER.error("Unable to convert String into Entity: " + ex);
+        } 
 
-        Optional<DrawEntity> result = drawService.findByDrawAndDrawDate(entity.getNumbers(), entity.getDrawDate());
+        DrawEntity result = drawService.findByDrawAndDrawDate(DrawEntity.class, entity.getNumbers(), entity.getDrawDate());
 
-        if (!result.isPresent()) {
+        if (result == null) {
             drawService.save(entity);
         }
-    }
+    } 
 }

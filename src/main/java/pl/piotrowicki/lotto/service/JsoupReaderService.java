@@ -14,11 +14,9 @@ public class JsoupReaderService {
 
     private static final Logger LOG = Logger.getLogger(JsoupReaderService.class);
 
-    private static final String LOTTO_URL = "http://app.lotto.pl/wyniki/?type=dl";
-
-    public String read() {
+    public String read(String url) {
         try {
-            return Jsoup.connect(LOTTO_URL).get().text();
+            return Jsoup.connect(url).get().text();
         } catch (IOException ex) {
             LOG.info("ReadDrawJob couldn't connect to API {0}", ex.getCause());
         }

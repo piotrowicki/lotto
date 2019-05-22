@@ -10,33 +10,33 @@ import javax.persistence.Table;
 
 /**
  *
- * @author piotrowicki <piotrowicki at gmail.com>
+ * @author nowik
  */
 @Entity
-@Table(name = "DRAW_DL")
+@Table(name = "DRAW_EL")
 @NamedQueries({
     @NamedQuery(
-            name = "DrawEntity.findAll",
-            query = "SELECT d FROM DrawEntity d ORDER BY d.drawDate desc"),
+            name = "DrawELEntity.findAll",
+            query = "SELECT d FROM DrawELEntity d ORDER BY d.drawDate desc"),
     @NamedQuery(
-            name = "DrawEntity.findByDrawAndDrawDate",
-            query = "SELECT d FROM DrawEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+            name = "DrawELEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawELEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name = "DrawDTO.findAll",
+            name = "DrawDTO.findAllEL",
             query = "SELECT "
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM DRAW_DL d ORDER BY d.draw_date desc",
+                    + " FROM DRAW_EL d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })
-public class DrawEntity extends BaseDrawEntity {
-
-    private static final long serialVersionUID = 3850344349208488641L;
-
+public class DrawELEntity extends BaseDrawEntity {
+    
+    private static final long serialVersionUID = 7611069553792619336L;
+      
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -45,17 +45,12 @@ public class DrawEntity extends BaseDrawEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DrawEntity that = (DrawEntity) o;
+        DrawELEntity that = (DrawELEntity) o;
         return Objects.equals(getId(), that.getId());
     }
 
     @Override
     public int hashCode() {
         return 37;
-    }
-
-    @Override
-    public String toString() {
-        return "Draw{" + "id=" + super.getId() + ", numbers=" + super.getNumbers() + ", drawDate=" + super.getDrawDate() + '}';
     }
 }

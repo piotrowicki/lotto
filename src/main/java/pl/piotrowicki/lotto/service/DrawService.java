@@ -2,12 +2,11 @@ package pl.piotrowicki.lotto.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.dao.DrawDao;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.BaseDrawEntity;
 
 /**
  *
@@ -21,15 +20,15 @@ public class DrawService {
     @Inject
     private DrawDao drawDao;
     
-    public List<DrawEntity> findAll() {
-        return drawDao.findAll();
+    public <T extends BaseDrawEntity> List<T> findAll(Class<T> aClass) {
+        return drawDao.findAll(aClass);
     }
 
-    public void save(DrawEntity entity) {
+    public <T extends BaseDrawEntity> void save(T entity) {
         drawDao.save(entity);
     }
 
-    public Optional<DrawEntity> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
-        return drawDao.findByDrawAndDrawDate(numbers, drawDate);
+    public <T extends BaseDrawEntity> T findByDrawAndDrawDate(Class<T> aClass, String numbers, LocalDate drawDate) {
+        return drawDao.findByDrawAndDrawDate(aClass, numbers, drawDate);
     }
  }

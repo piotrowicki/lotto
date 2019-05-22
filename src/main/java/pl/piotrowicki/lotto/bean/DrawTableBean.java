@@ -26,7 +26,7 @@ public class DrawTableBean {
     
     @PostConstruct
     public void init() {
-        draws = drawService.findAll();
+        draws = drawService.findAll(DrawEntity.class);
     }
     
     public void onRowEdit(RowEditEvent event) {

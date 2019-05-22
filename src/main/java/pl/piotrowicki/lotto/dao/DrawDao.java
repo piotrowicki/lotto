@@ -2,9 +2,9 @@ package pl.piotrowicki.lotto.dao;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import pl.piotrowicki.lotto.entity.BaseDrawEntity;
 import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
@@ -14,17 +14,18 @@ import pl.piotrowicki.lotto.entity.DrawEntity;
 @Stateless
 public class DrawDao extends BaseDao<DrawEntity, Long> {
 
-    public List<DrawEntity> findAll() {
-        return getEm().createNamedQuery("DrawEntity.findAll").getResultList();
+    public <T extends BaseDrawEntity> List<T> findAll(Class<T> aClass) {
+        return getEm().createNamedQuery(aClass.getSimpleName() + ".findAll").getResultList();
     }
 
-    public Optional<DrawEntity> findByDrawAndDrawDate(String numbers, LocalDate drawDate) {
-        return getEm().createNamedQuery("DrawEntity.findByDrawAndDrawDate")
+    public <T extends BaseDrawEntity> T findByDrawAndDrawDate(Class<T> aClass, String numbers, LocalDate drawDate) {
+        return (T) getEm().createNamedQuery(aClass.getSimpleName() + ".findByDrawAndDrawDate")
                 .setParameter("numbers", numbers)
                 .setParameter("drawDate", drawDate)
                 .getResultList()
                 .stream()
-                .findFirst();
+                .findFirst()
+                .orElse(null);
     }
 
     /**

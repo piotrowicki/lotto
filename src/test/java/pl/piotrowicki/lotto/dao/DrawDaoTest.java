@@ -2,7 +2,6 @@ package pl.piotrowicki.lotto.dao;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import org.junit.Before;
@@ -34,7 +33,7 @@ public class DrawDaoTest extends BaseDaoTest {
         dao.save(draw);
 
         // when
-        List<DrawEntity> findAll = dao.findAll();
+        List<DrawEntity> findAll = dao.findAll(DrawEntity.class);
 
         // then
         assertThat(findAll.size(), is(1));
@@ -51,9 +50,9 @@ public class DrawDaoTest extends BaseDaoTest {
         dao.save(draw);
         
         // when
-        Optional<DrawEntity> result = dao.findByDrawAndDrawDate(NUMBERS, LocalDate.parse("2018-01-01"));
+        DrawEntity result = dao.findByDrawAndDrawDate(DrawEntity.class, NUMBERS, LocalDate.parse("2018-01-01"));
         
         // then
-        assertThat(result.isPresent(), is(true));
+        assertThat(result, notNullValue());
     }
 }

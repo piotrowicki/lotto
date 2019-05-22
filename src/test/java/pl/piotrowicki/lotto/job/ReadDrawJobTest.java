@@ -1,7 +1,10 @@
 package pl.piotrowicki.lotto.job;
 
 import java.text.ParseException;
-import java.util.Optional;
+import java.time.LocalDate;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.*;
@@ -11,7 +14,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 import pl.piotrowicki.lotto.service.JsoupReaderService;
-import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**
  *
@@ -30,13 +32,14 @@ public class ReadDrawJobTest {
     
     @InjectMocks
     private ReadDrawJob drawJob;
-
+    
     @Test
-    public void testRunWithSave() throws ParseException {
+    public void testRunWithSave() throws ParseException, InstantiationException, IllegalAccessException {
         // given
-        DrawEntity draw = DrawConverterUtil.convertToEntity(DRAW);
-        given(jsoupReader.read()).willReturn(DRAW);
-        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.empty());
+        DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
+        given(jsoupReader.read(anyString())).willReturn(DRAW);
+       
+        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(null);
         
         // when
         drawJob.run();
@@ -44,18 +47,32 @@ public class ReadDrawJobTest {
         // then
         verify(drawService).save(draw);
     }
-    
+       
      @Test
-    public void testRunWithoutSave() throws ParseException {
+    public void testRunWithoutSave() throws ParseException, InstantiationException, IllegalAccessException {
         // given
-        DrawEntity draw = DrawConverterUtil.convertToEntity(DRAW);
-        given(jsoupReader.read()).willReturn(DRAW);
-        given(drawService.findByDrawAndDrawDate(draw.getNumbers(), draw.getDrawDate())).willReturn(Optional.of(new DrawEntity()));
+        DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
+        given(jsoupReader.read(anyString())).willReturn(DRAW);
+        given(drawService.findByDrawAndDrawDate(DrawEntity.class, draw.getNumbers(), draw.getDrawDate())).willReturn(new DrawEntity());
         
         // when
         drawJob.run();
         
         // then
         verify(drawService, never()).save(draw);
+    }
+    
+       @Test
+    public void testConvertToEntity() throws InstantiationException, IllegalAccessException {
+        // given
+        LocalDate date = LocalDate.parse("2017-12-16");
+        String input = "2017-12-16 13 27 41 1 33 31";
+
+        // when
+        DrawEntity entity = drawJob.convertToEntity(DrawEntity.class, input);
+
+        // then
+        assertThat(entity.getDrawDate(), is(equalTo(date)));
+        assertThat(entity.getNumbers(), is(equalTo("13 27 41 1 33 31")));
     }
 }
