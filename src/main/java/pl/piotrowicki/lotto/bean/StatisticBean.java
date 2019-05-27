@@ -1,10 +1,9 @@
 package pl.piotrowicki.lotto.bean;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.charts.bar.BarChartModel;
 import pl.piotrowicki.lotto.enums.DrawType;
 import pl.piotrowicki.lotto.service.StatisticService;
 
@@ -23,16 +22,11 @@ public class StatisticBean {
     @Inject
     private StatisticService statisticService;
 
-    @PostConstruct
-    public void init() {
-        barChartModel = statisticService.generateChart(DrawType.DUZY_LOTEK);
-        latestResult = statisticService.getLatestResult();
-    }
-    
     public void changeDrawType() {
         barChartModel = statisticService.generateChart(drawType);
+        latestResult = statisticService.getLatestResult();
     }
-    
+
     public DrawType[] getDrawTypes() {
         return DrawType.values();
     }
