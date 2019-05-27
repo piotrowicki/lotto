@@ -2,7 +2,6 @@ package pl.piotrowicki.lotto.bean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.chart.BarChartModel;
@@ -17,9 +16,9 @@ import pl.piotrowicki.lotto.service.StatisticService;
 @RequestScoped
 public class StatisticBean {
 
-    private BarChartModel barChartModel;
-
     private String latestResult;
+    private DrawType drawType;
+    private BarChartModel barChartModel;
 
     @Inject
     private StatisticService statisticService;
@@ -29,10 +28,9 @@ public class StatisticBean {
         barChartModel = statisticService.generateChart(DrawType.DUZY_LOTEK);
         latestResult = statisticService.getLatestResult();
     }
-
-    public void handleChange(ValueChangeEvent event) {
-        DrawType type = DrawType.valueOf(event.getNewValue().toString());
-        barChartModel = statisticService.generateChart(type);
+    
+    public void changeDrawType() {
+        barChartModel = statisticService.generateChart(drawType);
     }
     
     public DrawType[] getDrawTypes() {
@@ -49,5 +47,13 @@ public class StatisticBean {
 
     public String getLatestResult() {
         return latestResult;
+    }
+
+    public DrawType getDrawType() {
+        return drawType;
+    }
+
+    public void setDrawType(DrawType drawType) {
+        this.drawType = drawType;
     }
 }
