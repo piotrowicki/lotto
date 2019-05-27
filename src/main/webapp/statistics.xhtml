@@ -19,15 +19,17 @@
                                        itemValue="#{type}"
                                        itemLabel="#{type.description}"/>
                     </p:selectOneMenu>
-                    <p:commandButton action="#{statisticBean.changeDrawType}" icon="pi pi-check" value="#{msg['common.ok']}" update="chart"/>
+                    <p:commandButton action="#{statisticBean.changeDrawType}" icon="pi pi-check" value="#{msg['common.ok']}" update="pnl_chart"/>
                 </h:panelGrid>
             </div>
         </h:form>
-        <div class="ui-g">
-            <div class="ui-g-12 ui-md-12 ui-lg-12">
-                <p:chart id="chart" type="bar" model="#{statisticBean.barChartModel}" responsive="true" />
-            </div>
-        </div>
-        <p:panel class="ui-g-12 ui-md-6 ui-lg-3">#{msg['statistics.latestResult']}: #{statisticBean.latestResult}</p:panel>
+        <p:outputPanel id="pnl_chart">
+            <p:outputPanel styleClass="ui-g-12 ui-md-12 ui-lg-12" rendered="#{not empty statisticBean.barChartModel}">
+                <p:barChart id="chart" model="#{statisticBean.barChartModel}" />
+                
+                <p:panel class="ui-g-12 ui-md-6 ui-lg-3">#{msg['statistics.latestResult']}: #{statisticBean.latestResult}</p:panel>
+            </p:outputPanel>
+            
+        </p:outputPanel>
     </ui:define>
 </ui:composition>

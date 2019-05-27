@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.service;
 
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,10 +13,15 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.charts.ChartData;
+import org.primefaces.model.charts.axes.cartesian.CartesianScales;
+import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
+import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearTicks;
+import org.primefaces.model.charts.bar.BarChartDataSet;
+import org.primefaces.model.charts.bar.BarChartModel;
+import org.primefaces.model.charts.bar.BarChartOptions;
+import org.primefaces.model.charts.optionconfig.legend.Legend;
+import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
 import pl.piotrowicki.lotto.entity.BaseDrawEntity;
 import pl.piotrowicki.lotto.entity.DrawELEntity;
 import pl.piotrowicki.lotto.entity.DrawEPEntity;
@@ -24,7 +30,6 @@ import pl.piotrowicki.lotto.entity.DrawKAEntity;
 import pl.piotrowicki.lotto.entity.DrawMMEntity;
 import pl.piotrowicki.lotto.enums.DrawType;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
-import pl.piotrowicki.lotto.util.StatisticUtil;
 
 /**
  *
@@ -69,30 +74,53 @@ public class StatisticService<T extends BaseDrawEntity> {
     }
 
     private BarChartModel configure(Map<Integer, Long> statistic, DrawType type) {
-        BarChartModel model = new BarChartModel();
-        ChartSeries chartSeries = new ChartSeries();
-        model.setTitle(type.getDescription());
-        model.setShowPointLabels(true);
-        model.setShowDatatip(false);
-        model.setAnimate(true);
-
-        Axis axisY = model.getAxis(AxisType.Y);
-        axisY.setTickFormat("%d");
-        axisY.setTickInterval(String.valueOf(StatisticUtil.calculateAxisYTickInterval(statistic)));
-        axisY.setMin(0);
-        axisY.setMax(StatisticUtil.calculateAxisYSizeWithAdditionalSpace(statistic, 2));
-
-        model.getAxes().put(AxisType.Y, axisY);
-
-        statistic.forEach(chartSeries::set);
-        model.addSeries(chartSeries);
-        return model;
+        BarChartModel barModel = new BarChartModel();
+        ChartData data = new ChartData();
+        
+        BarChartDataSet barDataSet = new BarChartDataSet();
+        barDataSet.setLabel(type.getDescription());
+        barDataSet.setData(Lists.newArrayList(statistic.values()));
+        barDataSet.setBackgroundColor("rgba(54, 162, 235, 0.2)");
+        barDataSet.setBorderColor("rgb(54, 162, 235)");
+        barDataSet.setBorderWidth(1);
+     
+        data.addChartDataSet(barDataSet);
+         
+        List<String> labels = new ArrayList<>();
+        statistic.keySet().forEach((integer) -> {
+            labels.add(String.valueOf(integer));
+        });
+        data.setLabels(labels);
+        barModel.setData(data);
+        
+        // Options:
+        BarChartOptions options = new BarChartOptions();
+        CartesianScales cScales = new CartesianScales();
+        CartesianLinearAxes linearAxes = new CartesianLinearAxes();
+        CartesianLinearTicks ticks = new CartesianLinearTicks();
+        ticks.setBeginAtZero(true);
+        linearAxes.setTicks(ticks);
+        cScales.addYAxesData(linearAxes);
+        options.setScales(cScales);
+        
+        Legend legend = new Legend();
+        legend.setDisplay(true);
+        legend.setPosition("bottom");
+        LegendLabel legendLabels = new LegendLabel();
+        legendLabels.setFontStyle("bold");
+        legendLabels.setFontColor("#2980B9");
+        legendLabels.setFontSize(24);
+        legend.setLabels(legendLabels);
+        options.setLegend(legend);
+        
+        barModel.setOptions(options);
+      
+        return barModel;
     }
 
     public String getLatestResult() {
         Optional<T> latestResult = (Optional<T>) getLatestResult(draws);
         return latestResult.isPresent() ? latestResult.get().getNumbers() + " " + latestResult.get().getCreateDate() : "";
-
     }
 
     private Optional<T> getLatestResult(List<T> draws) {
