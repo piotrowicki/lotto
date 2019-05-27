@@ -11,13 +11,13 @@
             <p:growl id="msgs" showDetail="true" />
             <div class="ui-g">
                 <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="option" value="#{msg['statistics.mode']}" />
-                    <p:selectOneMenu valueChangeListener="#{barChartBean.handleChange}">
-                        <f:selectItems id="option"
-                                       value="#{statisticOptionBean.statisticOptions}"
-                                       var="option"
-                                       itemValue="#{option}"
-                                       itemLabel="#{option.description}"/>
+                    <p:outputLabel for="sel_drawTypes" value="#{msg['statistics.drawType']}:" />
+                    <p:selectOneMenu valueChangeListener="#{statisticBean.handleChange}">
+                        <f:selectItems id="sel_drawTypes"
+                                       value="#{statisticBean.drawTypes}"
+                                       var="type"
+                                       itemValue="#{type}"
+                                       itemLabel="#{type.description}"/>
                         <p:ajax update="chart" />
                     </p:selectOneMenu>
                 </h:panelGrid>
@@ -25,9 +25,9 @@
         </h:form>
         <div class="ui-g">
             <div class="ui-g-12 ui-md-12 ui-lg-12">
-                <p:chart id="chart" type="bar" model="#{barChartBean.barChartModel}" responsive="true" />
+                <p:chart id="chart" type="bar" model="#{statisticBean.barChartModel}" responsive="true" />
             </div>
         </div>
-        <p:panel class="ui-g-12 ui-md-6 ui-lg-3">#{msg['statistics.latestResult']}: #{barChartBean.latestResult}</p:panel>
+        <p:panel class="ui-g-12 ui-md-6 ui-lg-3">#{msg['statistics.latestResult']}: #{statisticBean.latestResult}</p:panel>
     </ui:define>
 </ui:composition>

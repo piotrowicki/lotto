@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import pl.piotrowicki.lotto.dto.LuckyNumberDto;
+import pl.piotrowicki.lotto.entity.BaseDrawEntity;
 import pl.piotrowicki.lotto.entity.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 
@@ -18,7 +19,7 @@ public class DrawConverterUtil {
 
     private static final Logger LOGGER = Logger.getLogger(DrawService.class.getName());
 
-    public static List<Integer> convertToIntegers(List<DrawEntity> draws) {
+    public static <T extends BaseDrawEntity> List<Integer> convertToIntegers(List<T> draws) {
         return draws.stream()
                 .map(s -> s.getNumbers().split(" "))
                 .flatMap(Arrays::stream)
