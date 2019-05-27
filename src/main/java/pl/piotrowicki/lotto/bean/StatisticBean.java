@@ -2,13 +2,10 @@ package pl.piotrowicki.lotto.bean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.chart.BarChartModel;
-import pl.piotrowicki.lotto.enums.StatisticOption;
+import pl.piotrowicki.lotto.enums.DrawType;
 import pl.piotrowicki.lotto.service.StatisticService;
 
 /**
@@ -17,29 +14,27 @@ import pl.piotrowicki.lotto.service.StatisticService;
  */
 @Named
 @RequestScoped
-public class BarChartBean {
-
-    private BarChartModel barChartModel;
+public class StatisticBean {
 
     private String latestResult;
+    private DrawType drawType;
+    private BarChartModel barChartModel;
 
     @Inject
     private StatisticService statisticService;
 
     @PostConstruct
     public void init() {
-        barChartModel = statisticService.process(StatisticOption.MODE);
+        barChartModel = statisticService.generateChart(DrawType.DUZY_LOTEK);
         latestResult = statisticService.getLatestResult();
     }
-
-    public void handleChange(ValueChangeEvent event) {
-        StatisticOption option = StatisticOption.valueOf(event.getNewValue().toString());
-        if (option == StatisticOption.AVG) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "WARNING: ", "Not supported yet.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            return;
-        }
-        barChartModel = statisticService.process(option);
+    
+    public void changeDrawType() {
+        barChartModel = statisticService.generateChart(drawType);
+    }
+    
+    public DrawType[] getDrawTypes() {
+        return DrawType.values();
     }
 
     public BarChartModel getBarChartModel() {
@@ -52,5 +47,13 @@ public class BarChartBean {
 
     public String getLatestResult() {
         return latestResult;
+    }
+
+    public DrawType getDrawType() {
+        return drawType;
+    }
+
+    public void setDrawType(DrawType drawType) {
+        this.drawType = drawType;
     }
 }

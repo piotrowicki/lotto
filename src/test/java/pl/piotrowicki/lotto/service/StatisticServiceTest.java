@@ -6,18 +6,23 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.*;
 import org.hamcrest.collection.IsMapContaining;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
 import pl.piotrowicki.lotto.entity.DrawEntity;
 
 /**
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-public class ModeStatisticTest {
+@RunWith(MockitoJUnitRunner.class)
+public class StatisticServiceTest {
 
-    private final ModeStatistic statistic = new ModeStatistic();
+    @Spy
+    private  StatisticService service;
 
     @Test
-    public void testCalculate() {
+    public void testCalculateStats() {
         // given
         DrawEntity draw1 = new DrawEntity();
         draw1.setNumbers("5 4 3 2 1 1");
@@ -26,7 +31,7 @@ public class ModeStatisticTest {
         draw2.setNumbers("9 8 7 6 5 4");
 
         // when
-        Map<Integer, Long> stats = statistic.calculateStats(Arrays.asList(draw1, draw2));
+        Map<Integer, Long> stats = service.calculateStats(Arrays.asList(draw1, draw2));
 
         // then
         assertThat(stats.size(), is(9));

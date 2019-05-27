@@ -12,7 +12,7 @@
         <p:panel id="pnl_users">
             <p:dataTable id="usersTable" var="user" editable="true" value="#{userBean.users}">
                 <f:facet name="header">
-                    <h:outputText value="Users"/>
+                    <h:outputText value="#{msg['users.table.users']}"/>
                 </f:facet>
 
                 <p:column headerText="Id">
@@ -33,6 +33,10 @@
 
                 <p:column headerText="#{msg['users.table.role']}">
                     <h:outputText value="#{user.role}" />
+                </p:column>
+                
+                <p:column headerText="#{msg['users.table.lastLogin']}">
+                    <h:outputText value="#{user.lastLogin}"/>
                 </p:column>
 
                 <p:column headerText="#{msg['users.table.changePassword']}">
