@@ -1,8 +1,11 @@
 package pl.piotrowicki.lotto.service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -34,7 +37,8 @@ public class StatisticService<T extends BaseDrawEntity> {
     private DrawService drawService;
 
     private final Map<DrawType, Class<T>> mapper = new HashMap<>();
-    
+    private List<T> draws = new ArrayList<>();
+
     @PostConstruct
     private void init() {
         mapper.put(DrawType.KASKADA, (Class<T>) DrawKAEntity.class);
@@ -45,16 +49,16 @@ public class StatisticService<T extends BaseDrawEntity> {
     }
 
     public BarChartModel generateChart(DrawType type) {
-        List<T> draws = drawService.findAll(getClass(type));
+        draws = drawService.findAll(getClass(type));
         return generateBarChart(draws, type);
     }
-    
-    public <T extends BaseDrawEntity> BarChartModel generateBarChart(List<T> data, DrawType type) {
+
+    public BarChartModel generateBarChart(List<T> data, DrawType type) {
         Map<Integer, Long> stats = calculateStats(data);
-        return configure(stats, type);      
+        return configure(stats, type);
     }
-    
-     protected <T extends BaseDrawEntity> Map<Integer, Long> calculateStats(List<T> draws) {
+
+    protected Map<Integer, Long> calculateStats(List<T> draws) {
         List<Integer> allNumbers = DrawConverterUtil.convertToIntegers(draws);
         return allNumbers.stream()
                 .collect(Collectors.groupingBy(
@@ -63,7 +67,7 @@ public class StatisticService<T extends BaseDrawEntity> {
                         Collectors.counting())
                 );
     }
-     
+
     private BarChartModel configure(Map<Integer, Long> statistic, DrawType type) {
         BarChartModel model = new BarChartModel();
         ChartSeries chartSeries = new ChartSeries();
@@ -86,9 +90,13 @@ public class StatisticService<T extends BaseDrawEntity> {
     }
 
     public String getLatestResult() {
-      //  Optional<DrawEntity> max = draws.stream().max(Comparator.comparing(DrawEntity::getCreateDate));
-      // return max.isPresent() ? max.get().getNumbers() + " " + max.get().getCreateDate() : "";
-      return null;
+        Optional<T> latestResult = (Optional<T>) getLatestResult(draws);
+        return latestResult.isPresent() ? latestResult.get().getNumbers() + " " + latestResult.get().getCreateDate() : "";
+
+    }
+
+    private Optional<T> getLatestResult(List<T> draws) {
+        return draws.stream().max(Comparator.comparing(T::getDrawDate));
     }
 
     private Class<T> getClass(DrawType type) {
