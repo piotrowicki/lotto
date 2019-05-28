@@ -55,4 +55,23 @@ public class DrawDaoTest extends BaseDaoTest {
         // then
         assertThat(result, notNullValue());
     }
+    
+    @Test
+    public void updateDateTest() {
+        // given
+        final LocalDate changedDate = LocalDate.parse("2018-01-02");
+        DrawEntity draw = new DrawEntity();
+        draw.setNumbers(NUMBERS);
+        draw.setDrawDate(LocalDate.parse("2018-01-01"));
+        
+        dao.save(draw);
+        
+        // when 
+        draw.setDrawDate(changedDate);
+        dao.save(draw);
+        DrawEntity result = dao.findByDrawAndDrawDate(DrawEntity.class, NUMBERS, changedDate);
+        
+        // then
+        assertThat(result.getDrawDate(), notNullValue());
+    }
 }
