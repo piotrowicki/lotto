@@ -24,7 +24,7 @@
                                 <f:param name="i" value="2" />
                             </p:menuitem>
                             
-                            <p:menuitem value="#{msg['menu.users']}" outcome="/menu/users" icon="fa fa-user">
+                            <p:menuitem value="#{msg['menu.users']}" outcome="/menu/users" icon="fa fa-user" rendered="#{facesContext.externalContext.isUserInRole('ADMIN')}">
                                 <f:param name="i" value="3" />
                             </p:menuitem>
                             
