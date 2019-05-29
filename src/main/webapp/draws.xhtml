@@ -6,10 +6,23 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                 template="./template/template.xhtml">
+    
     <ui:define name="title">Draws</ui:define>
     <ui:define name="content">
         <h:form id="form">
             <p:growl id="msgs" showDetail="true"/>
+
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="sel_drawTypes" value="#{msg['statistics.drawType']}:" />
+                <p:selectOneMenu value="#{drawTableBean.drawType}">
+                    <f:selectItems id="sel_drawTypes"
+                                   value="#{statisticBean.drawTypes}"
+                                   var="type"
+                                   itemValue="#{type}"
+                                   itemLabel="#{type.description}"/>
+                </p:selectOneMenu>
+                <p:commandButton action="#{drawTableBean.changeDrawType}" icon="pi pi-check" value="#{msg['common.ok']}" update="draws"/>
+            </h:panelGrid>
 
             <p:dataTable id="draws" var="draw" value="#{drawTableBean.draws}" 
                          editable="true" 

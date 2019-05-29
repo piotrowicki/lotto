@@ -1,12 +1,21 @@
 package pl.piotrowicki.lotto.service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.dao.DrawDao;
 import pl.piotrowicki.lotto.entity.BaseDrawEntity;
+import pl.piotrowicki.lotto.entity.DrawELEntity;
+import pl.piotrowicki.lotto.entity.DrawEPEntity;
+import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.DrawKAEntity;
+import pl.piotrowicki.lotto.entity.DrawMMEntity;
+import pl.piotrowicki.lotto.enums.DrawType;
 
 /**
  *
@@ -20,6 +29,17 @@ public class DrawService {
     @Inject
     private DrawDao drawDao;
     
+    private final Map<DrawType, Class<?>> mapper = new HashMap<>();
+
+    @PostConstruct
+    private void init() {
+        mapper.put(DrawType.KASKADA, DrawKAEntity.class);
+        mapper.put(DrawType.MULTI_MULTI, DrawMMEntity.class);
+        mapper.put(DrawType.DUZY_LOTEK, DrawEntity.class);
+        mapper.put(DrawType.EKSTRA_PENSJA, DrawEPEntity.class);
+        mapper.put(DrawType.MINI_LOTTO, DrawELEntity.class);
+    }
+    
     public <T extends BaseDrawEntity> List<T> findAll(Class<T> aClass) {
         return drawDao.findAll(aClass);
     }
@@ -30,5 +50,9 @@ public class DrawService {
 
     public <T extends BaseDrawEntity> T findByDrawAndDrawDate(Class<T> aClass, String numbers, LocalDate drawDate) {
         return drawDao.findByDrawAndDrawDate(aClass, numbers, drawDate);
+    }
+    
+    public <T extends BaseDrawEntity> Class<T> getClass(DrawType type) {
+        return (Class<T>) mapper.get(type);
     }
  }
