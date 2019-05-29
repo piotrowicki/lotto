@@ -25,7 +25,7 @@ public class DrawTableBean {
     @Inject
     private DrawService drawService;
     
-    private List<?> draws = new ArrayList<>();
+    private List<? extends BaseDrawEntity> draws = new ArrayList<>();
     private DrawType drawType;
     
     @PostConstruct
@@ -48,11 +48,11 @@ public class DrawTableBean {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public List<?> getDraws() {
+    public List<? extends BaseDrawEntity> getDraws() {
         return draws;
     }
 
-    public void setDraws(List<?> draws) {
+    public void setDraws(List<? extends BaseDrawEntity> draws) {
         this.draws = draws;
     }
 
