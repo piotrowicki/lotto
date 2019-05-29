@@ -34,6 +34,7 @@ public class UserDao extends BaseDao {
         return em.createQuery(criteria).getSingleResult();
     }
 
+    @SuppressWarnings("deprecation")
     public UserDto getUserByUsername(String username) {
         UserDto user = (UserDto) em.createQuery(
                 "select "

@@ -188,6 +188,9 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <!-- Check unchecked operations
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
+                    -->
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
