@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.bean.user.LoggedUserBean;
 import pl.piotrowicki.lotto.dto.user.UserDto;
-import pl.piotrowicki.lotto.entity.UserEntity;
+import pl.piotrowicki.lotto.entity.user.UserEntity;
 import pl.piotrowicki.lotto.service.user.UserService;
 
 /**

@@ -9,12 +9,12 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.dao.DrawDao;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
-import pl.piotrowicki.lotto.entity.DrawELEntity;
-import pl.piotrowicki.lotto.entity.DrawEPEntity;
-import pl.piotrowicki.lotto.entity.DrawEntity;
-import pl.piotrowicki.lotto.entity.DrawKAEntity;
-import pl.piotrowicki.lotto.entity.DrawMMEntity;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawELEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEPEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawKAEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawMMEntity;
 import pl.piotrowicki.lotto.enums.DrawType;
 
 /**

@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import pl.piotrowicki.lotto.dao.user.UserDao;
 import pl.piotrowicki.lotto.dto.user.UserDto;
-import pl.piotrowicki.lotto.entity.UserEntity;
+import pl.piotrowicki.lotto.entity.user.UserEntity;
 
 /**
  *

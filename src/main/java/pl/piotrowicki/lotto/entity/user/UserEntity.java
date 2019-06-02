@@ -1,5 +1,6 @@
-package pl.piotrowicki.lotto.entity;
+package pl.piotrowicki.lotto.entity.user;
 
+import pl.piotrowicki.lotto.entity.user.Address;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import pl.piotrowicki.lotto.dto.user.UserDto;
+import pl.piotrowicki.lotto.entity.BaseEntity;
 
 /**
  *

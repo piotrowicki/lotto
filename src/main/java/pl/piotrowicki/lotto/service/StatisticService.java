@@ -20,7 +20,7 @@ import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.bar.BarChartOptions;
 import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
 import pl.piotrowicki.lotto.enums.DrawType;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
 
 /**
  *

@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import org.junit.Before;
 import org.junit.Test;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 
 /**
  *

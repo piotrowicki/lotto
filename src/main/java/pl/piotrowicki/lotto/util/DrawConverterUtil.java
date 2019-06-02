@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import pl.piotrowicki.lotto.dto.LuckyNumberDto;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 
 /**

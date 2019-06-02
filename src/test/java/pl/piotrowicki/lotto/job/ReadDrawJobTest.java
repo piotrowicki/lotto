@@ -11,7 +11,7 @@ import static org.mockito.BDDMockito.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 import pl.piotrowicki.lotto.service.DrawService;
 import pl.piotrowicki.lotto.service.JsoupReaderService;
 

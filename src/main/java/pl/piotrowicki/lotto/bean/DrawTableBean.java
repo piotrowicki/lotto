@@ -9,8 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 import pl.piotrowicki.lotto.enums.DrawType;
 import pl.piotrowicki.lotto.service.DrawService;
 

@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.transform.Transformers;
 import pl.piotrowicki.lotto.dao.BaseDao;
 import pl.piotrowicki.lotto.dto.user.UserDto;
-import pl.piotrowicki.lotto.entity.UserEntity;
+import pl.piotrowicki.lotto.entity.user.UserEntity;
 
 /**
  *
