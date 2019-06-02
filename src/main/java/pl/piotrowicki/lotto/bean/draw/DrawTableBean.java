@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.bean;
+package pl.piotrowicki.lotto.bean.draw;
 
 import java.util.ArrayList;
 import java.util.List;

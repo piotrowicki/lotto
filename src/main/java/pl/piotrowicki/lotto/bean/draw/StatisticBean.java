@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.bean;
+package pl.piotrowicki.lotto.bean.draw;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

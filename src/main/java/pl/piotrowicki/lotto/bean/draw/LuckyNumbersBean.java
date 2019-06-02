@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.bean;
+package pl.piotrowicki.lotto.bean.draw;
 
 import com.google.common.collect.Sets;
 import java.util.List;
