@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.draw;
 
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class StatisticService<T extends BaseDrawEntity> {
         return configure(stats, type);
     }
 
-    protected Map<Integer, Long> calculateStats(List<T> draws) {
+    public Map<Integer, Long> calculateStats(List<T> draws) {
         List<Integer> allNumbers = DrawConverterUtil.convertToIntegers(draws);
         return allNumbers.stream()
                 .collect(Collectors.groupingBy(

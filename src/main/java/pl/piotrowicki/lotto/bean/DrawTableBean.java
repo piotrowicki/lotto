@@ -12,7 +12,7 @@ import org.primefaces.event.RowEditEvent;
 import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
 import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 import pl.piotrowicki.lotto.enums.DrawType;
-import pl.piotrowicki.lotto.service.DrawService;
+import pl.piotrowicki.lotto.service.draw.DrawService;
 
 /**
  *

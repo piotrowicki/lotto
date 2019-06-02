@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import pl.piotrowicki.lotto.dto.LuckyNumberDto;
 import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
 import pl.piotrowicki.lotto.entity.draw.DrawEntity;
-import pl.piotrowicki.lotto.service.DrawService;
+import pl.piotrowicki.lotto.service.draw.DrawService;
 
 /**
  *

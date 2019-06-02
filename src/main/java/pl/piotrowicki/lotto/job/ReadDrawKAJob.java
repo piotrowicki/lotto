@@ -6,8 +6,8 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import pl.piotrowicki.lotto.bean.annotation.Log;
 import pl.piotrowicki.lotto.entity.draw.DrawKAEntity;
-import pl.piotrowicki.lotto.service.DrawService;
-import pl.piotrowicki.lotto.service.JsoupReaderService;
+import pl.piotrowicki.lotto.service.draw.DrawService;
+import pl.piotrowicki.lotto.service.draw.JsoupReaderService;
 
 /**
  *

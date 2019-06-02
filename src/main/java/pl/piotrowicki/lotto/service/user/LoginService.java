@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.user;
 
 import java.time.LocalDateTime;
 import java.util.function.Function;
