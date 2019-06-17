@@ -2,23 +2,28 @@ package pl.piotrowicki.lotto.dao.user;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.transform.Transformers;
 import pl.piotrowicki.lotto.dao.BaseDao;
 import pl.piotrowicki.lotto.dto.user.UserDto;
-import pl.piotrowicki.lotto.entity.UserEntity;
+import pl.piotrowicki.lotto.entity.user.UserEntity;
 
 /**
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class UserDao extends BaseDao<UserEntity, Long> {
+public class UserDao extends BaseDao {
+    
+    @PersistenceContext
+    private EntityManager em;
     
     public UserEntity findUserByUsername(String username) {
-        CriteriaBuilder builder = getEm().getCriteriaBuilder();
+        CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<UserEntity> criteria = builder.createQuery(UserEntity.class);
         
         Root<UserEntity> root = criteria.from(UserEntity.class);
@@ -26,11 +31,12 @@ public class UserDao extends BaseDao<UserEntity, Long> {
                 builder.equal(root.get("username"), username)
         );
         
-        return getEm().createQuery(criteria).getSingleResult();
+        return em.createQuery(criteria).getSingleResult();
     }
 
+    @SuppressWarnings("deprecation")
     public UserDto getUserByUsername(String username) {
-        UserDto user = (UserDto) getEm().createQuery(
+        UserDto user = (UserDto) em.createQuery(
                 "select "
                 + "     u.id as id, "
                 + "     u.username as username, "
@@ -47,6 +53,11 @@ public class UserDao extends BaseDao<UserEntity, Long> {
     }
 
     public List<UserDto> findAll() {
-        return getEm().createNamedQuery("UserDTO.findAll").getResultList();
+        return em.createNamedQuery("UserDTO.findAll").getResultList();
+    }
+
+    @Override
+    protected EntityManager getEM() {
+        return em;
     }
 }

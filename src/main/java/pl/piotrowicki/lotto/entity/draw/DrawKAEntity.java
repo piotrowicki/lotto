@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.entity;
+package pl.piotrowicki.lotto.entity.draw;
 
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -13,27 +13,27 @@ import javax.persistence.Table;
  * @author nowik
  */
 @Entity
-@Table(name = "DRAW_EL")
+@Table(name = "DRAW_KA")
 @NamedQueries({
     @NamedQuery(
-            name = "DrawELEntity.findAll",
-            query = "SELECT d FROM DrawELEntity d ORDER BY d.drawDate desc"),
+            name = "DrawKAEntity.findAll",
+            query = "SELECT d FROM DrawKAEntity d ORDER BY d.drawDate desc"),
     @NamedQuery(
-            name = "DrawELEntity.findByDrawAndDrawDate",
-            query = "SELECT d FROM DrawELEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+            name = "DrawKAEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawKAEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name = "DrawDTO.findAllEL",
+            name = "DrawDTO.findAllKA",
             query = "SELECT "
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM DRAW_EL d ORDER BY d.draw_date desc",
+                    + " FROM DRAW_KA d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })
-public class DrawELEntity extends BaseDrawEntity {
+public class DrawKAEntity extends BaseDrawEntity {
     
     private static final long serialVersionUID = 7611069553792619336L;
       

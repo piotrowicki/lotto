@@ -1,5 +1,6 @@
 package pl.piotrowicki.lotto.service;
 
+import pl.piotrowicki.lotto.service.draw.StatisticService;
 import java.util.Arrays;
 import java.util.Map;
 import static org.hamcrest.CoreMatchers.is;
@@ -9,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 
 /**
  *

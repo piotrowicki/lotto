@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.entity;
+package pl.piotrowicki.lotto.entity.draw;
 
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -13,27 +13,27 @@ import javax.persistence.Table;
  * @author nowik
  */
 @Entity
-@Table(name = "DRAW_KA")
+@Table(name = "DRAW_EP")
 @NamedQueries({
     @NamedQuery(
-            name = "DrawKAEntity.findAll",
-            query = "SELECT d FROM DrawKAEntity d ORDER BY d.drawDate desc"),
+            name = "DrawEPEntity.findAll",
+            query = "SELECT d FROM DrawEPEntity d ORDER BY d.drawDate desc"),
     @NamedQuery(
-            name = "DrawKAEntity.findByDrawAndDrawDate",
-            query = "SELECT d FROM DrawKAEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+            name = "DrawEPEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawEPEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name = "DrawDTO.findAllKA",
+            name = "DrawDTO.findAllEP",
             query = "SELECT "
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM DRAW_KA d ORDER BY d.draw_date desc",
+                    + " FROM DRAW_EP d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })
-public class DrawKAEntity extends BaseDrawEntity {
+public class DrawEPEntity extends BaseDrawEntity {
     
     private static final long serialVersionUID = 7611069553792619336L;
       
@@ -45,7 +45,7 @@ public class DrawKAEntity extends BaseDrawEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DrawELEntity that = (DrawELEntity) o;
+        DrawEPEntity that = (DrawEPEntity) o;
         return Objects.equals(getId(), that.getId());
     }
 
@@ -53,4 +53,5 @@ public class DrawKAEntity extends BaseDrawEntity {
     public int hashCode() {
         return 37;
     }
+    
 }

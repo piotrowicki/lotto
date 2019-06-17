@@ -1,7 +1,7 @@
 package pl.piotrowicki.lotto.job;
 
 import java.time.LocalDate;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
 
 /**
  *

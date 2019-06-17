@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.entity;
+package pl.piotrowicki.lotto.entity.draw;
 
 import java.time.LocalDate;
 import javax.persistence.Column;
@@ -7,6 +7,7 @@ import javax.persistence.ConstructorResult;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SqlResultSetMapping;
 import pl.piotrowicki.lotto.dto.DrawDto;
+import pl.piotrowicki.lotto.entity.BaseEntity;
 
 /**
  *

@@ -1,11 +1,11 @@
-package pl.piotrowicki.lotto.bean;
+package pl.piotrowicki.lotto.bean.draw;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.charts.bar.BarChartModel;
 import pl.piotrowicki.lotto.enums.DrawType;
-import pl.piotrowicki.lotto.service.StatisticService;
+import pl.piotrowicki.lotto.service.draw.StatisticService;
 
 /**
  *

@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.draw;
 
 import java.io.IOException;
 import javax.ejb.Stateless;

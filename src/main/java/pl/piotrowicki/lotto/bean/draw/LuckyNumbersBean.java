@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.bean;
+package pl.piotrowicki.lotto.bean.draw;
 
 import com.google.common.collect.Sets;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.inject.Named;
 import pl.piotrowicki.lotto.dao.DrawDao;
 import pl.piotrowicki.lotto.dto.LuckyNumberDto;
 import pl.piotrowicki.lotto.dto.LuckyNumbersResultDto;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
 /**

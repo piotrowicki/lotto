@@ -1,16 +1,14 @@
-package pl.piotrowicki.lotto.service;
+package pl.piotrowicki.lotto.service.draw;
 
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.primefaces.model.charts.ChartData;
@@ -22,12 +20,7 @@ import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.bar.BarChartOptions;
 import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
-import pl.piotrowicki.lotto.entity.DrawELEntity;
-import pl.piotrowicki.lotto.entity.DrawEPEntity;
-import pl.piotrowicki.lotto.entity.DrawEntity;
-import pl.piotrowicki.lotto.entity.DrawKAEntity;
-import pl.piotrowicki.lotto.entity.DrawMMEntity;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
 import pl.piotrowicki.lotto.enums.DrawType;
 import pl.piotrowicki.lotto.util.DrawConverterUtil;
 
@@ -41,20 +34,10 @@ public class StatisticService<T extends BaseDrawEntity> {
     @Inject
     private DrawService drawService;
 
-    private final Map<DrawType, Class<T>> mapper = new HashMap<>();
     private List<T> draws = new ArrayList<>();
 
-    @PostConstruct
-    private void init() {
-        mapper.put(DrawType.KASKADA, (Class<T>) DrawKAEntity.class);
-        mapper.put(DrawType.MULTI_MULTI, (Class<T>) DrawMMEntity.class);
-        mapper.put(DrawType.DUZY_LOTEK, (Class<T>) DrawEntity.class);
-        mapper.put(DrawType.EKSTRA_PENSJA, (Class<T>) DrawEPEntity.class);
-        mapper.put(DrawType.MINI_LOTTO, (Class<T>) DrawELEntity.class);
-    }
-
     public BarChartModel generateChart(DrawType type) {
-        draws = drawService.findAll(getClass(type));
+        draws = drawService.findAll(drawService.getClass(type));
         return generateBarChart(draws, type);
     }
 
@@ -63,7 +46,7 @@ public class StatisticService<T extends BaseDrawEntity> {
         return configure(stats, type);
     }
 
-    protected Map<Integer, Long> calculateStats(List<T> draws) {
+    public Map<Integer, Long> calculateStats(List<T> draws) {
         List<Integer> allNumbers = DrawConverterUtil.convertToIntegers(draws);
         return allNumbers.stream()
                 .collect(Collectors.groupingBy(
@@ -125,9 +108,5 @@ public class StatisticService<T extends BaseDrawEntity> {
 
     private Optional<T> getLatestResult(List<T> draws) {
         return draws.stream().max(Comparator.comparing(T::getDrawDate));
-    }
-
-    private Class<T> getClass(DrawType type) {
-        return mapper.get(type);
     }
 }

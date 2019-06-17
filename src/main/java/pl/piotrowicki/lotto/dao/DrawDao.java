@@ -4,22 +4,25 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import pl.piotrowicki.lotto.entity.BaseDrawEntity;
-import pl.piotrowicki.lotto.entity.DrawEntity;
+import javax.persistence.PersistenceContext;
+import pl.piotrowicki.lotto.entity.draw.BaseDrawEntity;
 
 /**
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Stateless
-public class DrawDao extends BaseDao<DrawEntity, Long> {
+public class DrawDao extends BaseDao {
 
+    @PersistenceContext
+    private EntityManager em;
+    
     public <T extends BaseDrawEntity> List<T> findAll(Class<T> aClass) {
-        return getEm().createNamedQuery(aClass.getSimpleName() + ".findAll").getResultList();
+        return em.createNamedQuery(aClass.getSimpleName() + ".findAll").getResultList();
     }
 
     public <T extends BaseDrawEntity> T findByDrawAndDrawDate(Class<T> aClass, String numbers, LocalDate drawDate) {
-        return (T) getEm().createNamedQuery(aClass.getSimpleName() + ".findByDrawAndDrawDate")
+        return (T) em.createNamedQuery(aClass.getSimpleName() + ".findByDrawAndDrawDate")
                 .setParameter("numbers", numbers)
                 .setParameter("drawDate", drawDate)
                 .getResultList()
@@ -28,11 +31,16 @@ public class DrawDao extends BaseDao<DrawEntity, Long> {
                 .orElse(null);
     }
 
+    @Override
+    protected EntityManager getEM() {
+        return em;
+    }
+    
     /**
      * For testing purposes only
      * @param em - EntityManager
      */
     public void setEntityManager(EntityManager em) {
-        setEm(em);
+        this.em = em;
     }
 }

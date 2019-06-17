@@ -1,40 +1,34 @@
 package pl.piotrowicki.lotto.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import pl.piotrowicki.lotto.entity.BaseEntity;
 
 /**
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-public class BaseDao<T extends BaseEntity, Long> {
-    
-    @PersistenceContext
-    private EntityManager em;
-    
-    public <T extends BaseEntity> T save(T entity) {
-        em.persist(entity);
-        return entity;
-    }
-    
-    public <T extends BaseEntity> T merge(T entity) {
-        return em.merge(entity);
+public abstract class BaseDao<T extends BaseEntity, Long> {
+
+    public T save(T entity) {
+        T result = null;
+        if (entity != null) {
+            if (entity.getId() == null) {
+                getEM().persist(entity);
+                result = entity;
+            } else {
+                result = getEM().merge(entity);
+            }
+        }
+        return result;
     }
     
     public void remove(T entity) {
-        em.remove(entity);
+        getEM().remove(entity);
     }
     
-    public <T extends BaseEntity> T findById(Class<T> clazz, Long id) {
-        return em.find(clazz, id);
+    public T findById(Class<T> clazz, Long id) {
+        return getEM().find(clazz, id);
     }
 
-    public EntityManager getEm() {
-        return em;
-    }
-
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
+    protected abstract EntityManager getEM();
 }

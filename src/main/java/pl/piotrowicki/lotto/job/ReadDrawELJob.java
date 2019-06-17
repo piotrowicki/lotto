@@ -9,9 +9,9 @@ import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 import org.apache.log4j.Logger;
-import pl.piotrowicki.lotto.entity.DrawELEntity;
-import pl.piotrowicki.lotto.service.DrawService;
-import pl.piotrowicki.lotto.service.JsoupReaderService;
+import pl.piotrowicki.lotto.entity.draw.DrawELEntity;
+import pl.piotrowicki.lotto.service.draw.DrawService;
+import pl.piotrowicki.lotto.service.draw.JsoupReaderService;
 
 /**
  *

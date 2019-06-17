@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.entity;
+package pl.piotrowicki.lotto.entity.draw;
 
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -10,33 +10,33 @@ import javax.persistence.Table;
 
 /**
  *
- * @author nowik
+ * @author piotrowicki <piotrowicki at gmail.com>
  */
 @Entity
-@Table(name = "DRAW_MM")
+@Table(name = "DRAW_DL")
 @NamedQueries({
     @NamedQuery(
-            name = "DrawMMEntity.findAll",
-            query = "SELECT d FROM DrawMMEntity d ORDER BY d.drawDate desc"),
+            name = "DrawEntity.findAll",
+            query = "SELECT d FROM DrawEntity d ORDER BY d.drawDate desc"),
     @NamedQuery(
-            name = "DrawMMEntity.findByDrawAndDrawDate",
-            query = "SELECT d FROM DrawMMEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
+            name = "DrawEntity.findByDrawAndDrawDate",
+            query = "SELECT d FROM DrawEntity d WHERE d.numbers = :numbers AND d.drawDate = :drawDate")
 })
 @NamedNativeQueries({
     @NamedNativeQuery(
-            name = "DrawDTO.findAllMM",
+            name = "DrawDTO.findAll",
             query = "SELECT "
                     + " d.id as id," 
                     + " d.numbers as numbers," 
                     + " d.draw_date as drawDate" 
-                    + " FROM DRAW_MM d ORDER BY d.draw_date desc",
+                    + " FROM DRAW_DL d ORDER BY d.draw_date desc",
             resultSetMapping = "DrawDTOMapping"
     )
 })
-public class DrawMMEntity extends BaseDrawEntity {
-    
-    private static final long serialVersionUID = 7611069553792619336L;
-      
+public class DrawEntity extends BaseDrawEntity {
+
+    private static final long serialVersionUID = 3850344349208488641L;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -45,12 +45,17 @@ public class DrawMMEntity extends BaseDrawEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DrawMMEntity that = (DrawMMEntity) o;
+        DrawEntity that = (DrawEntity) o;
         return Objects.equals(getId(), that.getId());
     }
 
     @Override
     public int hashCode() {
         return 37;
+    }
+
+    @Override
+    public String toString() {
+        return "Draw{" + "id=" + super.getId() + ", numbers=" + super.getNumbers() + ", drawDate=" + super.getDrawDate() + '}';
     }
 }

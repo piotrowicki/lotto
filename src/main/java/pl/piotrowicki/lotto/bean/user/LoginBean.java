@@ -1,9 +1,9 @@
-package pl.piotrowicki.lotto.bean;
+package pl.piotrowicki.lotto.bean.user;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import pl.piotrowicki.lotto.service.LoginService;
+import pl.piotrowicki.lotto.service.user.LoginService;
 
 /**
  *

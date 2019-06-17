@@ -1,4 +1,4 @@
-package pl.piotrowicki.lotto.bean;
+package pl.piotrowicki.lotto.bean.user;
 
 import java.io.Serializable;
 import java.util.Locale;
