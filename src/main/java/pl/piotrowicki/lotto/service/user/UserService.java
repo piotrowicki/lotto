@@ -32,4 +32,8 @@ public class UserService {
     public List<UserDto> findAll() {
         return userDao.findAll();
     }
+
+    public void updatePassword(Long id, String password) {
+        userDao.updatePassword(id, password);
+    }
 }

@@ -18,6 +18,8 @@ import pl.piotrowicki.lotto.service.user.UserService;
 public class UserBean {
     
     private List<UserDto> users;
+    private Long userId;
+    private String password;
     
     @Inject
     private UserService userService;
@@ -26,9 +28,28 @@ public class UserBean {
     public void init() {
         users = userService.findAll();
     }
+    
+    public void updatePassword(Long id, String password) {     
+        userService.updatePassword(id, password);
+    }
 
     public List<UserDto> getUsers() {
         return users;
     }
- 
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
