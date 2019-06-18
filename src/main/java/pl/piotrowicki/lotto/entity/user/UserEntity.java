@@ -1,6 +1,5 @@
 package pl.piotrowicki.lotto.entity.user;
 
-import pl.piotrowicki.lotto.entity.user.Address;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -39,15 +38,14 @@ import pl.piotrowicki.lotto.entity.BaseEntity;
 @NamedNativeQueries({
     @NamedNativeQuery(
             name = "UserDTO.findAll",
-            query = "SELECT "
+            query = "SELECT DISTINCT"
                     + " u.id as id," 
                     + " u.username as username," 
                     + " u.email as email," 
                     + " u.city as city," 
                     + " u.last_login as lastLogin," 
-                    + " ur.role_name as role" 
-                    + " FROM USERS u"
-                    + " JOIN USER_ROLES ur ON u.username = ur.username",
+                    + " (select GROUP_CONCAT(ur.role_name SEPARATOR ', ') from USER_ROLES ur) as role" 
+                    + " FROM USERS u, USER_ROLES ur",
             resultSetMapping = "UserDTOMapping"
     )
 })

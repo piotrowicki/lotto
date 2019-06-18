@@ -3,7 +3,6 @@ package pl.piotrowicki.lotto.dto.user;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import pl.piotrowicki.lotto.enums.UserRole;
 
 /**
  *
@@ -18,17 +17,17 @@ public class UserDto implements Serializable {
     private String email;
     private String city;
     private LocalDateTime lastLogin;
-    private UserRole role;
+    private String roles;
     
     public UserDto() {}
 
-    public UserDto(Long id, String username, String email, String city, LocalDateTime lastLogin, String role) {
+    public UserDto(Long id, String username, String email, String city, LocalDateTime lastLogin, String roles) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.city = city;
         this.lastLogin = lastLogin;
-        this.role = UserRole.valueOf(role);
+        this.roles = roles;
     }
     
     public Long getId() {
@@ -71,12 +70,12 @@ public class UserDto implements Serializable {
         this.lastLogin = lastLogin;
     }
 
-    public UserRole getRole() {
-        return role;
+    public String getRole() {
+        return roles;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setRole(String role) {
+        this.roles = role;
     }
 
     @Override
