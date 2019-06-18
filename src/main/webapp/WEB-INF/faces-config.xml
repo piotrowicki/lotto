@@ -49,8 +49,8 @@
     <navigation-rule>
         <from-view-id>/users.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>changePassword</from-outcome>
-            <to-view-id>/changePassword.xhtml</to-view-id>
+            <from-outcome>passwordChange</from-outcome>
+            <to-view-id>/passwordChange</to-view-id>
         </navigation-case>
     </navigation-rule>
    
