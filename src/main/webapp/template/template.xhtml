@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     
-    <f:view locale="#{localeBean.locale}"/>
+    <f:view locale="#{userSettingsBean.locale}"/>
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -24,11 +24,11 @@
         <div class="ui-g">
             <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: right;">
                 <h:form>
-                    <p:commandLink action="#{localeBean.changeLanguage('pl')}">
+                    <p:commandLink action="#{userSettingsBean.changeLanguage('pl')}">
                         <p:graphicImage name="/images/Flag_of_Poland.png" alt="Polish" style="width: 32px;"/>
                     </p:commandLink>                     
 
-                    <p:commandLink action="#{localeBean.changeLanguage('en')}">
+                    <p:commandLink action="#{userSettingsBean.changeLanguage('en')}">
                         <p:graphicImage name="/images/Flag_of_United_Kingdom.png" alt="English" style="width: 32px;"/>
                     </p:commandLink>
                 </h:form>

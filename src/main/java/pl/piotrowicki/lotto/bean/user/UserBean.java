@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.piotrowicki.lotto.dto.user.UserDto;
+import pl.piotrowicki.lotto.service.user.LoginService;
 import pl.piotrowicki.lotto.service.user.UserService;
 
 /**
@@ -24,9 +25,20 @@ public class UserBean {
     @Inject
     private UserService userService;
     
+    @Inject
+    private LoginService loginService;
+    
     @PostConstruct
     public void init() {
         users = userService.findAll();
+    }
+    
+    public String login(String username, String password) {
+        return loginService.login(username, password);
+    }
+
+    public String logout() {
+        return loginService.logout();
     }
     
     public void updatePassword(Long id, String password) {     
