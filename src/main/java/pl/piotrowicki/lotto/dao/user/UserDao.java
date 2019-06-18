@@ -2,6 +2,7 @@ package pl.piotrowicki.lotto.dao.user;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,7 +13,7 @@ import org.hibernate.transform.Transformers;
 import pl.piotrowicki.lotto.dao.BaseDao;
 import pl.piotrowicki.lotto.dto.user.UserDto;
 import pl.piotrowicki.lotto.entity.user.UserEntity;
-import pl.piotrowicki.lotto.util.MessageUtil;
+import pl.piotrowicki.lotto.util.MessageBuilder;
 
 /**
  *
@@ -22,7 +23,7 @@ import pl.piotrowicki.lotto.util.MessageUtil;
 public class UserDao extends BaseDao {
 
     private static final Logger LOGGER = Logger.getLogger(UserDao.class);
-
+    
     @PersistenceContext
     private EntityManager em;
 
@@ -60,15 +61,22 @@ public class UserDao extends BaseDao {
         return em.createNamedQuery("UserDTO.findAll").getResultList();
     }
 
-    public void updatePassword(Long id, String password) {
+    public void updatePassword(Long id, String password) {      
         try {
             UserEntity user = (UserEntity) findById(UserEntity.class, id);
             user.setPassword(password);
             save(user);
-            MessageUtil.addInfoMessage("Update successful.");
+            MessageBuilder.aFacesMessage()
+                    .withSeverity(FacesMessage.SEVERITY_INFO)
+                    .withTitle("INFO")
+                    .withBundleMessage("common.updateSuccessful")
+                    .add();
         } catch (RuntimeException e) {
             LOGGER.error(e.getMessage());
-            MessageUtil.addErrorMessage("Something went wrong.");
+            MessageBuilder.aFacesMessage()
+                    .withSeverity(FacesMessage.SEVERITY_ERROR)
+                    .withMessage("Something went wrong.")
+                    .add();
         }
     }
 
