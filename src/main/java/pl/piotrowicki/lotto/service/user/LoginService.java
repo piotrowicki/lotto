@@ -9,10 +9,9 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
-import pl.piotrowicki.lotto.bean.user.LoggedUserBean;
+import pl.piotrowicki.lotto.bean.user.UserSettingsBean;
 import pl.piotrowicki.lotto.dto.user.UserDto;
 import pl.piotrowicki.lotto.entity.user.UserEntity;
-import pl.piotrowicki.lotto.service.user.UserService;
 
 /**
  *
@@ -27,7 +26,7 @@ public class LoginService {
     private UserService userService;
     
     @Inject
-    private LoggedUserBean loggedUserBean;
+    private UserSettingsBean settings;
 
     public String login(String username, String password) {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -41,7 +40,7 @@ public class LoginService {
             userService.save(user);
             
             UserDto userDto = mapUserToDto().apply(user);
-            loggedUserBean.setUser(userDto);
+            settings.setLoggedUser(userDto);
             
             return "/draws.xhtml?i=1&faces-redirect=true";
         } catch (ServletException ex) {

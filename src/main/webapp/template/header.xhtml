@@ -6,6 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+    
     <body>
         <ui:composition> 
             <div class="ui-g">
@@ -28,7 +29,7 @@
                                 <f:param name="i" value="3" />
                             </p:menuitem>
                             
-                            <p:menuitem rendered="#{not empty request.remoteUser}" action="#{loginBean.logout}" value="#{msg['menu.logout']} (#{loggedUserBean.user.username})" icon="fa fa-star">
+                            <p:menuitem rendered="#{not empty request.remoteUser}" action="#{userBean.logout}" value="#{msg['menu.logout']} (#{userSettingsBean.loggedUser.username})" icon="fa fa-star">
                                 <f:param name="i" value="4" />
                             </p:menuitem>
                         </p:tabMenu>

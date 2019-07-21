@@ -39,8 +39,8 @@
                     <h:outputText value="#{user.lastLogin}"/>
                 </p:column>
 
-                <p:column headerText="#{msg['users.table.changePassword']}">
-                    <p:button outcome="changePassword" value="#{msg['users.table.changePassword']}">          
+                <p:column headerText="#{msg['users.table.passwordChange']}">
+                    <p:button outcome="passwordChange" value="#{msg['users.table.passwordChange']}">          
                         <f:param name="id" value="#{user.id}"/>
                     </p:button>
                 </p:column>

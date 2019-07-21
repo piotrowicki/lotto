@@ -5,14 +5,16 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="./template/template.xhtml">
+
     <ui:define name="title">Login</ui:define>
     <ui:define name="top"/>
     <ui:define name="content">
-        <div class="ui-fluid">
-            <div class="ui-g-12 ui-md-3 ui-lg-4"/>
 
-            <div class="ui-g-12 ui-md-6 ui-lg-4">
-                <h:form id="loginForm">
+        <div class="ui-fluid">
+            <div class="ui-g-12 ui-md-2 ui-lg-4"/>
+
+            <div class="ui-g-12 ui-md-8 ui-lg-4" style="height: 100%;">
+                <h:form id="loginForm" style="margin-top: 40%;">
                     <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-12" styleClass="ui-panelgrid-blank ui-fluid" layout="grid">
                         <p:outputLabel for="username" value="#{msg['login.form.username']}:" />
                         <p:inputText id="username" binding="#{username}" class="username" required="true"/>
@@ -22,13 +24,19 @@
 
                         <p:spacer />
                         <p:commandButton id="submit" value="#{msg['login.form.submit']}" ajax="false" update="messages"
-                                         action="#{loginBean.login(username.value, password.value)}" />
+                                         action="#{userBean.login(username.value, password.value)}" />
                     </p:panelGrid>
                 </h:form>
                 <p:messages id="messages" showDetail="true" closable="true" />
             </div>
 
-            <div class="ui-g-12 ui-md-3 ui-lg-4"/>
+            <div class="ui-g-12 ui-md-2 ui-lg-4">
+                <p:dialog id="pnl_cookieDialog" widgetVar="dlg1" minHeight="40" minWidth="400" responsive="true" rendered="#{userSettingsBean.cookieModalVisible}"
+                          position="right,bottom" positionType="fixed" visible="true" style="margin: 50px;">
+                    <h:outputText value="#{msg['login.cookieInfo']}" />
+                    <p:ajax event="close" update="pnl_cookieDialog" listener="#{userSettingsBean.setCookieModalVisible(false)}" />
+                </p:dialog>
+            </div>
         </div>
     </ui:define>
 </ui:composition>
