@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn -Dmaven.test.failure.ignore=true clean package' 
             }
             post {
                 success {
@@ -25,7 +25,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 deploy adapters: 
-                    tomcat7([credentialsId: '453c067c-6c6d-4075-9116-0b8364e47783', url: 'http://xx54.37.136.83:8080/']), 
+                    tomcat7([credentialsId: '453c067c-6c6d-4075-9116-0b8364e47783', url: 'http://54.37.136.83:8080/']), 
                     contextPath: 'lotto', 
                     onFailure: false, 
                     war: '**/*.war'
