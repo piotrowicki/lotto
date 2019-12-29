@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { dockerfile true }
     environment {
         BUILD_NUM = currentBuild.getNumber()
     }
