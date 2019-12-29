@@ -58,5 +58,5 @@ pom.xml.tag
 
 # My files
 start.sh
+tomee-cfg.tar.gz
 nbproject/
-cfg/*
