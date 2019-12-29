@@ -3,9 +3,6 @@ pipeline {
     environment {
         BUILD_NUM = currentBuild.getNumber()
     }
-    tools { 
-        maven 'Maven 3.6.3'
-    }
     stages {
         stage('Preparation') {
             steps {
@@ -13,6 +10,9 @@ pipeline {
             }
         }
         stage('Build') {
+             tools { 
+               maven 'Maven 3.6.3'
+            }
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true clean package' 
             }
