@@ -1,16 +1,18 @@
 pipeline {
-    agent { dockerfile true }
-    environment {
-        BUILD_NUM = currentBuild.getNumber()
-    }
+    agent any
     stages {
         stage('Preparation') {
             steps {
                 git branch: 'master', url: 'https://github.com/piotrowicki/lotto.git'
             }
         }
+        stage('Build image') {
+            steps {
+                sh 'docker build -t tomee-image .'
+            }
+        }
         stage('Build') {
-             tools { 
+            tools { 
                maven 'Maven 3.6.3'
             }
             steps {
