@@ -34,15 +34,15 @@ pipeline {
             }
         }
         stage('Deploy') {
-            timeout(5) {
-                waitUntil {
-                    script {
-                        def r = sh script: 'wget -q http://tomee:8080 -O /dev/null', returnStatus: true
-                        return (r == 0);
+            steps {
+                timeout(5) {
+                    waitUntil {
+                        script {
+                            def r = sh script: 'wget -q http://tomee:8080 -O /dev/null', returnStatus: true
+                            return (r == 0);
+                        }
                     }
                 }
-            }
-            steps {
                 deploy adapters: [tomcat8(credentialsId: 'tomee-deployer', url: 'http://tomee:8080')], contextPath: 'lotto', onFailure: false, war: '**/*.war'         
             }
         }
