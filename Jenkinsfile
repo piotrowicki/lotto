@@ -1,10 +1,8 @@
 pipeline {
     agent any
     environment {
-        BUILD_NUM = currentBuild.getNumber()
-    }
-    tools { 
-        maven 'Maven 3.6.3'
+        IMAGE_NAME = 'tomee-image'
+        CONTAINER_NAME = 'tomee'
     }
     stages {
         stage('Preparation') {
@@ -12,7 +10,10 @@ pipeline {
                 git branch: 'prod', url: 'https://github.com/piotrowicki/lotto.git'
             }
         }
-        stage('Build') {
+        stage('Build & test') {
+            tools { 
+                maven 'Maven 3.6.3'
+            }
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true clean package' 
             }
@@ -22,9 +23,19 @@ pipeline {
                 }
             }
         }
+        stage('Build image') {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME} .'
+            }
+        } 
+        stage('Build container') {
+            steps {
+                sh 'docker rm -f ${CONTAINER_NAME} || true && docker run -d -p 8080:8080 --network="docker_app-tier" --restart always --name ${CONTAINER_NAME} ${IMAGE_NAME}'
+            }
+        }
         stage('Deploy') {
             steps {
-                deploy adapters: [tomcat8(credentialsId: '453c067c-6c6d-4075-9116-0b8364e47783', url: 'http://54.37.136.83:8080')], contextPath: 'lotto', onFailure: false, war: '**/*.war'         
+                deploy adapters: [tomcat8(credentialsId: 'tomee-deployer', url: 'http://54.37.136.83:8080')], contextPath: 'lotto', onFailure: false, war: '**/*.war'         
             }
         }
     }
