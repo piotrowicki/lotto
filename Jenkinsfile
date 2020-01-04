@@ -1,17 +1,16 @@
 pipeline {
     agent any
+    environment {
+        IMAGE_NAME = 'tomee-image'
+        CONTAINER_NAME = 'tomee'
+    }
     stages {
         stage('Preparation') {
             steps {
                 git branch: 'master', url: 'https://github.com/piotrowicki/lotto.git'
             }
         }
-        stage('Build image') {
-            steps {
-                sh 'docker build -t tomee-image .'
-            }
-        }
-        stage('Build') {
+        stage('Build & test') {
             tools { 
                maven 'Maven 3.6.3'
             }
@@ -24,5 +23,10 @@ pipeline {
                 }
             }
         }
+        stage('Build image') {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME} .'
+            }
+        }      
     }
 }
