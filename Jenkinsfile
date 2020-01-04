@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                deploy adapters: [tomcat8(credentialsId: 'tomee-deployer', url: 'http://54.37.136.83:8080')], contextPath: 'lotto', onFailure: false, war: '**/*.war'         
+                deploy adapters: [tomcat8(credentialsId: 'tomee-deployer', url: 'http://tomee:8080')], contextPath: 'lotto', onFailure: false, war: '**/*.war'         
             }
         }
     }
