@@ -15,7 +15,7 @@ pipeline {
                maven 'Maven 3.6.3'
             }
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true -Dversion="$BUILD_TIMESTAMP" clean package' 
+                sh 'mvn -Dmaven.test.failure.ignore=true clean package' 
             }
             post {
                 success {
