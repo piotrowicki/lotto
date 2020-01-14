@@ -11,4 +11,6 @@ RUN cp $CATALINA_HOME/tomee-cfg/tomcat-users.xml $CATALINA_HOME/tomee-cfg/tomee.
     cp $CATALINA_HOME/tomee-cfg/catalina.sh $CATALINA_HOME/bin && \
     cp $CATALINA_HOME/tomee-cfg/mysql-connector-java-8.0.18.jar $CATALINA_HOME/lib
 
+COPY target/lotto*.war $CATALINA_HOME/webapps/lotto.war
+
 EXPOSE 8080
