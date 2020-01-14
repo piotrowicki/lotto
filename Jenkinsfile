@@ -10,7 +10,7 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/piotrowicki/lotto.git'
             }
         }
-        stage('Build & test') {
+        stage('Build application') {
             tools { 
                maven 'Maven 3.6.3'
             }
