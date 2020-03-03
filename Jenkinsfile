@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'tomee-image'
-        CONTAINER_NAME = 'tomee'
+        IMAGE_NAME = 'lotto-image'
+        CONTAINER_NAME = 'lotto'
     }
     stages {
         stage('Preparation') {
