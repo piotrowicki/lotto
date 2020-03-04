@@ -8,7 +8,7 @@ import org.junit.Test;
 import pl.piotrowicki.lotto.dao.user.UserDao;
 import pl.piotrowicki.lotto.dto.user.UserDto;
 import pl.piotrowicki.lotto.entity.user.UserEntity;
-import pl.piotrowicki.lotto.entity.user.UserRolesEntity;
+import pl.piotrowicki.lotto.entity.user.UserRoleEntity;
 import pl.piotrowicki.lotto.enums.UserRole;
 
 public class UserDaoTest extends BaseDaoTest {
@@ -28,14 +28,14 @@ public class UserDaoTest extends BaseDaoTest {
         UserEntity firstUser = new UserEntity();
         firstUser.setUsername(USER_1);
         
-        UserRolesEntity firstRole = new UserRolesEntity();
+        UserRoleEntity firstRole = new UserRoleEntity();
         firstRole.setUsername(USER_1);
         firstRole.setRoleName(UserRole.ADMIN);
         
         UserEntity secondUser = new UserEntity();
         secondUser.setUsername(USER_1);
         
-        UserRolesEntity secondRole = new UserRolesEntity();
+        UserRoleEntity secondRole = new UserRoleEntity();
         secondRole.setUsername(USER_1);
         secondRole.setRoleName(UserRole.USER);
         

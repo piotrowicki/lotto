@@ -4,7 +4,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>pl.piotrowicki.lotto.entity.draw.DrawEntity</class>
         <class>pl.piotrowicki.lotto.entity.user.UserEntity</class>
-        <class>pl.piotrowicki.lotto.entity.user.UserRolesEntity</class>
+        <class>pl.piotrowicki.lotto.entity.user.UserRoleEntity</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test;"/>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

@@ -15,7 +15,7 @@ import pl.piotrowicki.lotto.enums.UserRole;
  */
 @Entity
 @Table(name = "USER_ROLES")
-public class UserRolesEntity extends BaseEntity {
+public class UserRoleEntity extends BaseEntity {
 
     private static final long serialVersionUID = -4783666319759511245L;
 
@@ -47,10 +47,10 @@ public class UserRolesEntity extends BaseEntity {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof UserRolesEntity)) {
+        if (!(o instanceof UserRoleEntity)) {
             return false;
         }
-        UserRolesEntity userRolesEntity = (UserRolesEntity) o;
+        UserRoleEntity userRolesEntity = (UserRoleEntity) o;
         return this.username.equals(userRolesEntity.username);
     }
 
