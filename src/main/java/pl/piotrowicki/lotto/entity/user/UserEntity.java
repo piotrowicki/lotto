@@ -44,7 +44,10 @@ import pl.piotrowicki.lotto.entity.BaseEntity;
                     + " u.email as email," 
                     + " u.city as city," 
                     + " u.last_login as lastLogin," 
-                    + " (select GROUP_CONCAT(ur.role_name SEPARATOR ', ') from USER_ROLES ur) as role" 
+                    + " ("
+                    + "     select GROUP_CONCAT(ur.role_name SEPARATOR ', ') "
+                    + "     from USER_ROLES ur WHERE u.USERNAME = ur.USERNAME"
+                    + " ) as role" 
                     + " FROM USERS u, USER_ROLES ur",
             resultSetMapping = "UserDTOMapping"
     )
