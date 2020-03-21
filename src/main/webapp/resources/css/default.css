@@ -14,3 +14,8 @@ body {
 #content {
     height: 90%;
 }
+
+#bottom {
+    position: relative;
+    bottom: 5px;
+}
