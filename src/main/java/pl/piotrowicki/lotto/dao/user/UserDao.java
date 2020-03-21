@@ -84,4 +84,12 @@ public class UserDao extends BaseDao {
     protected EntityManager getEM() {
         return em;
     }
+
+    /**
+     * For testing purposes only
+     * @param em - EntityManager
+     */
+    public void setEntityManager(EntityManager em) {
+        this.em = em;
+    }
 }

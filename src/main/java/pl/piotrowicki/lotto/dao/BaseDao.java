@@ -22,6 +22,18 @@ public abstract class BaseDao<T extends BaseEntity, Long> {
         return result;
     }
     
+    public void save(T... entites) {
+        for (T entity : entites) {
+            if (entity != null) {
+                if (entity.getId() == null) {
+                    getEM().persist(entity);
+                } else {
+                    getEM().merge(entity);
+                }
+            }
+        }
+    }
+    
     public void remove(T entity) {
         getEM().remove(entity);
     }
