@@ -16,7 +16,8 @@
         <mockito.version>1.10.19</mockito.version>
         <primefaces.version>7.0</primefaces.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
-        <jsf.version>2.2.19</jsf.version>
+        <jsf.version>2.3.9</jsf.version>
+        <jaxb.version>2.3.0</jaxb.version>
         <commons-lang.version>3.7</commons-lang.version>
         <guava.version>25.1-jre</guava.version>
     </properties>
@@ -25,8 +26,8 @@
         <!-- JEE -->
         <dependency>
             <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <artifactId>javaee-web-api</artifactId>
+            <version>8.0.1</version>
             <scope>provided</scope>
         </dependency>
         
@@ -35,6 +36,12 @@
             <artifactId>javax.faces</artifactId>
             <version>${jsf.version}</version>
             <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.version}</version>
         </dependency>
 
         <!-- Test -->
