@@ -6,10 +6,12 @@ import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 
 /**
  * @author piotrowicki <piotrowicki at gmail.com>
  */
+@Ignore
 public class BaseDaoTest {
 
     private static EntityManagerFactory emf;
