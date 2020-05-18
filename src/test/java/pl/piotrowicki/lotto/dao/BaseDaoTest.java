@@ -11,7 +11,6 @@ import org.junit.Ignore;
 /**
  * @author piotrowicki <piotrowicki at gmail.com>
  */
-@Ignore
 public class BaseDaoTest {
 
     private static EntityManagerFactory emf;
