@@ -5,6 +5,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,6 +17,7 @@ import org.mockito.runners.MockitoJUnitRunner;
  *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
+@Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class LocalDateConverterTest {
     
