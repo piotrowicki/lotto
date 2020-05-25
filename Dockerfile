@@ -1,4 +1,4 @@
-FROM tomee:11-jre-8.0.0-M3-plume
+FROM tomee:8-jre-8.0.1-plume
 
 MAINTAINER piotrowicki@gmail.com
 
