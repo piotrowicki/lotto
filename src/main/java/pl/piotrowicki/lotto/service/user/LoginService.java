@@ -28,9 +28,11 @@ public class LoginService {
     @Inject
     private UserSettingsBean settings;
 
+    @Inject
+    private FacesContext facesContext;
+
     public String login(String username, String password) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
 
         try {
             request.login(username, password);
@@ -44,7 +46,7 @@ public class LoginService {
             
             return "/draws.xhtml?i=1&faces-redirect=true";
         } catch (ServletException ex) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed:", "Login or password incorrect please try again."));
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed:", "Login or password incorrect please try again."));
         }
         return null;
     }
