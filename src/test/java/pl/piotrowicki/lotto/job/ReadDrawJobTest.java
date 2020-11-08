@@ -1,13 +1,7 @@
 package pl.piotrowicki.lotto.job;
 
-import java.text.ParseException;
-import java.time.LocalDate;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.BDDMockito.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -15,8 +9,14 @@ import pl.piotrowicki.lotto.entity.draw.DrawEntity;
 import pl.piotrowicki.lotto.service.draw.DrawService;
 import pl.piotrowicki.lotto.service.draw.JsoupReaderService;
 
+import java.text.ParseException;
+import java.time.LocalDate;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.BDDMockito.*;
+
 /**
- *
  * @author piotrowicki <piotrowicki at gmail.com>
  */
 @RunWith(MockitoJUnitRunner.class)
@@ -34,7 +34,7 @@ public class ReadDrawJobTest {
     private ReadDrawJob drawJob;
     
     @Test
-    public void testRunWithSave() throws ParseException, InstantiationException, IllegalAccessException {
+    public void testRunWithSave() throws InstantiationException, IllegalAccessException {
         // given
         DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
         given(jsoupReader.read(anyString())).willReturn(DRAW);
@@ -48,7 +48,7 @@ public class ReadDrawJobTest {
         verify(drawService).save(draw);
     }
        
-     @Test
+    @Test
     public void testRunWithoutSave() throws ParseException, InstantiationException, IllegalAccessException {
         // given
         DrawEntity draw = drawJob.convertToEntity(DrawEntity.class, DRAW);
@@ -62,7 +62,7 @@ public class ReadDrawJobTest {
         verify(drawService, never()).save(draw);
     }
     
-       @Test
+    @Test
     public void testConvertToEntity() throws InstantiationException, IllegalAccessException {
         // given
         LocalDate date = LocalDate.parse("2017-12-16");
@@ -74,5 +74,18 @@ public class ReadDrawJobTest {
         // then
         assertThat(entity.getDrawDate(), is(equalTo(date)));
         assertThat(entity.getNumbers(), is(equalTo("13 27 41 1 33 31")));
+    }
+
+    @Test
+    public void testConvertToEntityOnyDate() throws InstantiationException, IllegalAccessException {
+        // given
+        LocalDate date = LocalDate.parse("2017-12-16");
+        String input = "2017-12-16";
+
+        // when
+        DrawEntity entity = drawJob.convertToEntity(DrawEntity.class, input);
+
+        // then
+        assertThat(entity, nullValue());
     }
 }
